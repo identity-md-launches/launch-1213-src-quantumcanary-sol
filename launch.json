@@ -1,0 +1,12 @@
+{
+  "kind": "evm_contracts",
+  "contracts": [
+    {
+      "contract": "QuantumCanary",
+      "constructorArgs": [
+        "1000000000000000000"
+      ]
+    }
+  ],
+  "notes": "Deploy QuantumCanary on Ethereum mainnet with thresholdWei = 1000000000000000000 (1 ETH). Its nonpayable constructor derives the canary public key and address on chain from the fixed SEED_PHRASE. The contract is ownerless and non-upgradeable. Bounties go directly to canaryAddress(). Permissionless poke() records the observed balance high-water mark and first observed trip; isTripped() reads the live balance against the threshold and recorded mark. A refill can clear the live alarm while preserving the first recorded trip. Deployment requires no ETH funding, owner argument, supporting contracts or initialization calls."
+}
