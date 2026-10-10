@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "launchId": "5deffe44-44de-4867-98e6-4024ab572588",
+  "chainId": 1,
+  "sourceCommit": "d620a4c5747e5ed64ab2db2573ef69eb1b02652a",
+  "attestationHash": "4229e84eaad77246a2e3d28ae88f2853803f74b1da49c1f2d2b7894ce1990419",
+  "contracts": [
+    {
+      "name": "QuantumCanary",
+      "address": "0x626517225096671868609c1bbf9c1b416a4efd9a",
+      "abiHash": "e3815bb0169ff5135066bea81d1deecbb0766c9ba91f4f79b98c712e8b730442",
+      "abiPath": "abi/QuantumCanary.json"
+    }
+  ],
+  "assets": [
+    {
+      "path": "abi/QuantumCanary.json",
+      "sha256": "11c913a71f71f69a6bc2d38d4f404169e1036695578fbfd02ade99904cd91e6f"
+    },
+    {
+      "path": "art/hero.png",
+      "sha256": "03fb7056c462ec2a0565235065d8c06d5f7f3ab89616d3c595f2890056514f2e"
+    },
+    {
+      "path": "art/logo.png",
+      "sha256": "238f8ad0af0679b5cd3b55adfcd79d8db3191442fcbe0d2a447cd503a492ff85"
+    },
+    {
+      "path": "art/mascot.png",
+      "sha256": "099f772f971081da7463a48f3ef6a0aaa3d32531a81c9044377da704dfdf5927"
+    },
+    {
+      "path": "art/sticker.png",
+      "sha256": "f892b4dfa7b282fcc7870fc47fff6e6fbf6f0659d1ce213ace95d43e5e790f42"
+    },
+    {
+      "path": "assets/ccip-BVZBxkTa.js",
+      "sha256": "ef3a991330e13b511c1d2d76c288ed471861d4075923ecfb6d50a4a475bb01e0"
+    },
+    {
+      "path": "assets/ibm-plex-mono-latin-400-normal-CvHOgSBP.woff",
+      "sha256": "328d50b6ece9ca25c46eea3e885ba497f6237f2fb84ef7b92f88e14a1a25e381"
+    },
+    {
+      "path": "assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2",
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+    },
+    {
+      "path": "assets/ibm-plex-mono-latin-500-normal-CB9ihrfo.woff",
+      "sha256": "09f018c58556e5801ecc49d5b5275dcff4c73311c2af6b88e31c51d76d076a9d"
+    },
+    {
+      "path": "assets/ibm-plex-mono-latin-500-normal-DSY6xOcd.woff2",
+      "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22"
+    },
+    {
+      "path": "assets/ibm-plex-mono-latin-600-normal-BgSNZQsw.woff2",
+      "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83"
+    },
+    {
+      "path": "assets/ibm-plex-mono-latin-600-normal-DWFSQ4vo.woff",
+      "sha256": "cb96282f22c6f19112856fd6e0b34e2baefaf4ca6551e851d58c5ab0aabcd2be"
+    },
+    {
+      "path": "assets/index-1jbhhLsy.js",
+      "sha256": "a80c75f7c1a76fcab7836cb514e0e24ec3b43210483f19abba77c42bb843f0e1"
+    },
+    {
+      "path": "assets/index-DlwyRlw-.css",
+      "sha256": "dd21f789c4d1576fdd68d03058a05f2383da90a8aacb829e7e11ea173c3846aa"
+    },
+    {
+      "path": "index.html",
+      "sha256": "a98dd748a455437b7333f265c6f6850468d087a6390c06c7a49d6df08d320534"
+    },
+    {
+      "path": "licenses/IBM-Plex-Mono-OFL.txt",
+      "sha256": "23b0a9d0c6d3f140a0b77e483c5cfa6bba574325ef5cb189ed9f2fec4884533f"
+    },
+    {
+      "path": "licenses/runtime-notices.txt",
+      "sha256": "32320d89a197fdb0d8a9a9144f452beb14d9fbede966165430d8758f119a333d"
+    }
+  ],
+  "network": {
+    "chainId": 1,
+    "name": "Ethereum",
+    "testnet": false,
+    "rpcUrls": [
+      "https://ethereum-rpc.publicnode.com",
+      "https://eth.drpc.org"
+    ],
+    "explorer": "https://etherscan.io",
+    "nativeCurrency": {
+      "name": "Ether",
+      "symbol": "ETH",
+      "decimals": 18
+    },
+    "faucets": [],
+    "uniswapV4": {
+      "poolManager": "0x000000000004444c5dc75cb358380d2e3de08a90",
+      "universalRouter": "0x66a9893cc07d91d95644aedd05d03f95e1dba8af",
+      "quoter": "0x52f0e24d1c21c8a0cb1e5a5dd6198556bd9e1203",
+      "stateView": "0x7ffe42c4a5deea5b0fec41c94c136cf115597227",
+      "positionManager": "0xbd216513d74c8cf14cf4747e6aaa6420ff64ee9e",
+      "permit2": "0x000000000022d473030f116ddee9f6b43ac78ba3"
+    },
+    "pairToken": {
+      "address": "0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+      "symbol": "IMD",
+      "name": "Identity.md",
+      "decimals": 18
+    },
+    "otherPairTokens": [
+      {
+        "id": "fwa",
+        "address": "0xa0df17b5ac76ababa36e1450e2cbcd18a620c845",
+        "symbol": "FWA",
+        "name": "Fake World Assets",
+        "decimals": 18
+      }
+    ]
+  },
+  "walletAddChain": {
+    "chainId": "0x1",
+    "chainName": "Ethereum",
+    "rpcUrls": [
+      "https://ethereum-rpc.publicnode.com",
+      "https://eth.drpc.org"
+    ],
+    "nativeCurrency": {
+      "name": "Ether",
+      "symbol": "ETH",
+      "decimals": 18
+    },
+    "blockExplorerUrls": [
+      "https://etherscan.io"
+    ]
+  }
+}

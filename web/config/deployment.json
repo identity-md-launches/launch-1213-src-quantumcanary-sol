@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "launchId": "5deffe44-44de-4867-98e6-4024ab572588",
+  "chainId": 1,
+  "repoUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+  "sourceCommit": "d620a4c5747e5ed64ab2db2573ef69eb1b02652a",
+  "attestationHash": "4229e84eaad77246a2e3d28ae88f2853803f74b1da49c1f2d2b7894ce1990419",
+  "manifest": {
+    "kind": "evm_contracts",
+    "contracts": [
+      {
+        "contract": "QuantumCanary",
+        "constructorArgs": [
+          "1000000000000000000"
+        ]
+      }
+    ],
+    "notes": "Deploy QuantumCanary on Ethereum mainnet with thresholdWei = 1000000000000000000 (1 ETH). Its nonpayable constructor derives the canary public key and address on chain from the fixed SEED_PHRASE. The contract is ownerless and non-upgradeable. Bounties go directly to canaryAddress(). Permissionless poke() records the observed balance high-water mark and first observed trip; isTripped() reads the live balance against the threshold and recorded mark. A refill can clear the live alarm while preserving the first recorded trip. Deployment requires no ETH funding, owner argument, supporting contracts or initialization calls."
+  },
+  "contracts": [
+    {
+      "name": "QuantumCanary",
+      "address": "0x626517225096671868609c1bbf9c1b416a4efd9a",
+      "txHash": "0x353a06e533091c2c31e72765a52f1198617cb9f88986b0a6d5a9c92fce12136f",
+      "blockNumber": 26158146,
+      "creationCodeHash": "8a02684d7eecdd6ca9576db02467f378526860756a6f2dcf0dceee20a8ed67ca",
+      "abiHash": "e3815bb0169ff5135066bea81d1deecbb0766c9ba91f4f79b98c712e8b730442"
+    }
+  ],
+  "abiInstructions": "Build ABIs from this exact source commit; compare canonicalKeccak(abi) with abiHash. Verify deployed code on the stated chain before enabling transactions."
+}

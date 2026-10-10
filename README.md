@@ -4,6 +4,10 @@ QuantumCanary is one immutable, ownerless Solidity observer for a public ETH bou
 
 The Ethereum mainnet launch uses `thresholdWei = 1000000000000000000` (1 ETH). Once a balance at least that large has been recorded, a live balance below it triggers `isTripped()`. Anyone can call `poke()` to record funding or the first observed trip. There are no fees, rewards for poking, owners, administrators, upgrades, withdrawal methods, payable entry points, or external runtime calls.
 
+## Public website
+
+The live-deployment frontend is in [`web/`](web/README.md), with the ready-to-host static export in [`dist/`](dist/index.html). It provides Status, in-browser key verification and integration documentation for Ethereum mainnet launch 1213. Build/configuration instructions are in [web/README.md](web/README.md), worker-side checks in [web/VALIDATION.md](web/VALIDATION.md), and the implemented visual system in [DESIGN.md](DESIGN.md). The contract implementation and its build configuration are unchanged by the frontend task.
+
 ## Seed and derivation
 
 The following sentence was written by the building agent, not the requester. It is exactly 101 plain-ASCII bytes, including the final period; the code block's terminating newline is **not** part of the phrase. The contract contains it once as the public string constant `SEED_PHRASE`; both `SEED_PHRASE()` and `seedPhrase()` return it.
