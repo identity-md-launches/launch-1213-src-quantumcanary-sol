@@ -1,5 +1,17 @@
 # Quantum Canary addition-pass validation
 
+## External-link revision — 2026-10-10
+
+**Incomplete external acceptance gate; source and static export unchanged.** Finding `45e66b43cd438ac5d0729e3e9c8559edb832d1b52ff73cda763eb250634e98e2` reproduces. The response in `../.imd-responses.json` disputes only its repairability inside this repository, not the observed failures. The required URLs were preserved and the evidence refreshed; no failure was relabelled a pass.
+
+Reran the existing curl checker against the earlier 31 destinations (10 × 200, 19 × 403, 2 × 503), then used the supplied Chromium browser and `scripts/preview-server.mjs` to extract all external anchors, prompt URLs and head metadata from each route of the actual export, with live mainnet reads. At block 26,163,901, 20 payout links produce a 43-destination inventory. Every current destination was requested by bounded curl GET with redirects/browser-header retry (10 × 200, 31 × 403, 2 × 503; exit 1) and by direct Chromium navigation (9 × 200, 32 × 403, 2 × 503). DexScreener remains a Cloudflare challenge; both GitHub source-file pages return 503. One earlier hook-source browser navigation loaded successfully before failing again. X differs by client: curl fetched the actual profile HTML (200); browser GET returned 403. Exact URLs, per-route membership, all attempts and browser titles/statuses are in [LINKS.md](LINKS.md) and its linked JSON evidence.
+
+Verification appropriate to this documentation/evidence revision: confirmed the runtime source, entry HTML, public assets, configuration, dependency manifests and all of `dist/` have no diff from the accepted baseline; independently matched the manifest identifiers/contracts/network/wallet parameters against the pinned handoff and SHA-256 checked all 19 exported assets (2,672,501 bytes including manifest). `git diff --check`, response/report consistency and the complete delivery byte budget are checked in the final revision audit. No dependency installation, rebuild, typecheck or mocked-wallet suite rerun was needed for an unchanged implementation; the accepted run's actual results remain below, explicitly historical.
+
+Better Interface scope: reviewed the pinned workflow and six domain principles; there are no design, layout, copy, typography, color, component or interaction changes. This revision tests external navigation/availability and inventory completeness. The prior six-domain coverage is retained below; no new contrast measurement, mobile screenshot, screen-reader test or full accessibility review is claimed. `DESIGN.md` remains accurate and unchanged. Public mainnet reads were exercised without a wallet; no real transaction was signed or broadcast. Third-party recovery remains outside this repository's control.
+
+## Accepted implementation validation (earlier run)
+
 This is a worker report, not independent certification. The requested frontend additions and local behavior checks are complete. **The all-external-links-return-200 acceptance gate remains unmet:** 12 of 31 requested destinations returned 200; DexScreener and 18 Etherscan destinations returned 403 after retries. Every URL and result is listed in [LINKS.md](LINKS.md). No required URL was substituted or removed.
 
 ## Scope and implementation

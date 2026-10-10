@@ -54,13 +54,38 @@
     "sticker": "f892b4dfa7b282fcc7870fc47fff6e6fbf6f0659d1ce213ace95d43e5e790f42"
   },
   "noSubmodulesOrDependencyCaches": true,
-  "deliveryFileCount": 163,
-  "deliveryFileBytes": 7829127,
+  "deliveryFileCount": 164,
+  "deliveryFileBytes": 7872717,
   "byteLimit": 8388608,
   "externalLinkCheck": {
+    "destinations": 43,
+    "http200": 10,
+    "http403": 31,
+    "http503": 2,
+    "all200": false,
+    "browserHttp200": 9,
+    "browserHttp403": 32,
+    "browserHttp503": 2,
+    "browserAll200": false
+  },
+  "previousExternalLinkCheck": {
     "destinations": 31,
     "http200": 12,
     "http403": 19,
     "all200": false
+  },
+  "revisionAudit": {
+    "finding": "45e66b43cd438ac5d0729e3e9c8559edb832d1b52ff73cda763eb250634e98e2",
+    "responseVerdict": "disputed",
+    "sourceAndExportUnchanged": true,
+    "protectedFilesUnchanged": true,
+    "all19AssetSHA256Match": true,
+    "exactPinnedHandoffAndNetwork": true,
+    "routeInventoryMatchesBothSweeps": true,
+    "summaryListsEveryDestination": true,
+    "noDependencyOrBuildChanges": true,
+    "revisionResponseIncludedInByteBudget": true,
+    "noGeneratedToolArtifacts": true,
+    "buildAndInteractionSuites": "Accepted baseline unchanged; previous results retained, not rerun for documentation-only revision."
   }
 }
