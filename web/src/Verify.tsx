@@ -1,35 +1,96 @@
-import { useState, type CSSProperties } from 'react';
-import { derive, EXPONENT, hex32, P, type Derivation } from './derive';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Snapshot } from './chain';
+import { errorMessage } from './chain';
+import { derive, hex32, P, EXPONENT, type Derivation } from './derive';
 import { Copy } from './components';
+import { site } from './config';
+import { useReducedMotion } from './Seismograph';
 
-function Value({ label, value }: { label: string; value: string }) { return <div className="proof-value"><span>{label}</span><code>{value}</code></div>; }
-function Compare({ label, computed, onchain }: { label: string; computed: string; onchain: string }) {
-  const match = computed.toLowerCase() === onchain.toLowerCase();
-  return <div className={`comparison ${match ? 'match' : 'mismatch'}`}><div><strong>{match ? '✓ MATCH' : '✕ MISMATCH'}</strong><span>{label}</span></div><Value label="Computed in this browser" value={computed} /><Value label="Read from contract" value={onchain} /></div>;
+type Line = { text: string; compare?: boolean; match?: boolean };
+export function derivationTranscript(s: Snapshot, result: Derivation): Line[] {
+  const rows: Line[] = [];
+  const print = (text: string) => rows.push({ text });
+  const compare = (label: string, computed: string, chain: string) => {
+    print(`  local   ${computed}`); print(`  chain   ${chain}`);
+    rows.push({ text: `${computed.toLowerCase() === chain.toLowerCase() ? 'OK' : 'MISMATCH'}  ${label}`, compare: true, match: computed.toLowerCase() === chain.toLowerCase() });
+  };
+  print('$ canary verify --from-sentence --compare-chain');
+  print(`read block       ${s.block}`);
+  print(`seed author      ${site.seedAuthor}`);
+  print(`seedPhrase       "${s.seedPhrase}"`);
+  print('01 / keccak256(UTF-8 seedPhrase); no trimming or normalization');
+  print(`seedHash         ${result.seedHash}`);
+  compare('seedHash()', result.seedHash, s.seedHash);
+  print('02 / first valid secp256k1 point, starting counter at zero');
+  print(`p                ${hex32(P)}`);
+  print(`sqrt exponent    ${hex32(EXPONENT)}`);
+  for (const a of result.attempts) {
+    print(`counter          ${a.i}`);
+    print(`abi.encode       ${a.encoded}`);
+    print(`keccak256        ${a.digest}`);
+    print(`candidate x      ${hex32(a.x)}`);
+    print(`rhs (x³ + 7) % p ${hex32(a.rhs)}`);
+    print(`candidate y      ${hex32(a.candidateY)}`);
+    print(`y² mod p         ${hex32(a.square)}`);
+    print(`residue check    ${a.accepted ? 'ACCEPT / y² = rhs; first valid point' : 'REJECT / increment counter'}`);
+  }
+  compare('counter()', String(result.counter), String(s.counter));
+  compare('pubKeyX()', hex32(result.x), hex32(s.pubKeyX));
+  const candidate = result.attempts.at(-1)!.candidateY;
+  print('03 / choose the even root');
+  print(`parity fix       ${candidate % 2n ? `odd → p − y = ${hex32(result.y)}` : `even → keep y = ${hex32(result.y)}`}`);
+  compare('pubKeyY()', hex32(result.y), hex32(s.pubKeyY));
+  print('04 / hash the 64-byte public point; take the last 20 bytes');
+  print(`x || y           ${result.packed}`);
+  print(`keccak256(x||y)  ${result.digest}`);
+  print(`address          ${result.address}`);
+  compare('canaryAddress()', result.address, s.canaryAddress);
+  print('private key      ████████ never generated');
+  print('$ exit');
+  return rows;
 }
-export function Verify({ snapshot, stale, readError }: { snapshot?: Snapshot; stale: boolean; readError: string }) {
-  const [result, setResult] = useState<Derivation>();
-  const [phrase, setPhrase] = useState('');
+export function Verify({ snapshot, stale, readError, active }: { snapshot?: Snapshot; stale: boolean; readError: string; active: boolean }) {
+  const reduced = useReducedMotion();
+  const [session, setSession] = useState<{ lines: Line[]; snapshot: Snapshot; phrase: string }>();
+  const [shown, setShown] = useState(0);
   const [error, setError] = useState('');
-  const [run, setRun] = useState(0);
-  const validResult = result && phrase === snapshot?.seedPhrase ? result : undefined;
-  const allMatch = validResult && snapshot && validResult.seedHash === snapshot.seedHash && validResult.x === snapshot.pubKeyX && validResult.y === snapshot.pubKeyY && validResult.counter === snapshot.counter && validResult.address.toLowerCase() === snapshot.canaryAddress.toLowerCase();
+  const started = useRef(false);
+  const run = useCallback(() => {
+    if (!snapshot) return;
+    setError('');
+    try {
+      const result = derive(snapshot.seedPhrase);
+      const lines = derivationTranscript(snapshot, result);
+      setSession({ lines, snapshot, phrase: snapshot.seedPhrase }); setShown(reduced ? lines.length : 1);
+    } catch (e) { setSession(undefined); setError(errorMessage(e)); }
+  }, [snapshot, reduced]);
+  useEffect(() => { if (active && snapshot && !started.current) { started.current = true; run(); } }, [active, snapshot, run]);
+  useEffect(() => {
+    if (!session || shown >= session.lines.length || !active) return;
+    if (reduced) { setShown(session.lines.length); return; }
+    const timer = setInterval(() => setShown(n => Math.min(n + 1, session.lines.length)), 65);
+    return () => clearInterval(timer);
+  }, [session, shown, reduced, active]);
+  const complete = !!session && shown >= session.lines.length;
+  const checks = session?.lines.filter(l => l.compare) || [];
+  const matches = checks.filter(l => l.match).length;
+  const changed = !!session && !!snapshot && ['seedPhrase', 'seedHash', 'counter', 'pubKeyX', 'pubKeyY', 'canaryAddress'].some(key => session.snapshot[key as keyof Snapshot] !== snapshot[key as keyof Snapshot]);
   return <>
-    <div className="page-intro"><div><p className="eyebrow">02 / trust nothing. derive everything.</p><h1>Witness the key.<br /><span className="muted">Keep no secrets.</span></h1><p>A public sentence becomes a point on secp256k1. Follow every byte, from the contract’s seed to the bounty address. The arithmetic runs here, in your browser.</p></div><img className="verify-mascot" src="./art/mascot.png" alt="" width="220" height="220" /></div>
-    <section className="seed-panel panel" aria-labelledby="seed-title"><p className="eyebrow">The source / seedPhrase()</p><h2 id="seed-title" className="sr-only">The on-chain seed phrase</h2><blockquote>{snapshot ? `“${snapshot.seedPhrase}”` : 'Reading the exact seed phrase from Ethereum…'}</blockquote><div className="seed-credit"><p>Written by the building agent that implemented QuantumCanary.<br /><span className="muted">Public English sentence. Not a wallet recovery phrase.</span></p>{snapshot && <Copy value={snapshot.seedPhrase} label="Copy seed phrase" />}</div>
-      {snapshot && <Value label="Contract seedHash() / Keccak-256 of the UTF-8 phrase" value={snapshot.seedHash} />}
-    </section>
-    <div className="ritual-control"><div><h2>Re-derive it yourself.</h2><p className="fine">Plain JavaScript BigInt for curve arithmetic. Keccak-256 for hashing. No wallet, private key, or signing request.</p></div><button className="button primary" disabled={!snapshot} onClick={() => { if (!snapshot) return; setError(''); try { setResult(derive(snapshot.seedPhrase)); setPhrase(snapshot.seedPhrase); setRun(v => v + 1); } catch (e) { setError((e as Error).message); } }}>{result ? 'Run verification again' : 'Begin verification'} <span aria-hidden="true">→</span></button></div>
-    <div role="status">{error && <p className="notice error-text">{error}</p>}{validResult && <p className={`verification-result ${allMatch ? 'match' : 'mismatch'}`}>{allMatch ? '✓ All 5 on-chain comparisons match.' : '✕ Verification mismatch. Do not fund this address.'} {stale || readError ? 'Compared with the last observation; live reads are stale or unavailable.' : `Compared at Ethereum block ${snapshot?.block}.`}</p>}</div>
-    {validResult && snapshot ? <ol className="ritual" key={run}>
-      <li style={{ '--step': 0 } as CSSProperties}><div className="step-number">01</div><div className="step-body"><p className="eyebrow">The sentence becomes a fingerprint</p><h2>Hash the public seed.</h2><p>Use Ethereum’s Keccak-256 on the exact UTF-8 bytes. No newline, no extra spaces. This hash is not a private key.</p><Compare label="seedHash()" computed={validResult.seedHash} onchain={snapshot.seedHash} /><Value label="Field prime p" value={hex32(P)} /><Value label="Square-root exponent (p + 1) / 4" value={hex32(EXPONENT)} /></div></li>
-      <li style={{ '--step': 1 } as CSSProperties}><div className="step-number">02</div><div className="step-body"><p className="eyebrow">The search / start at zero</p><h2>Find a point on the curve.</h2><p>For each counter i, encode two 32-byte words, hash them, then reduce modulo p. Test whether x³ + 7 has a square root in this field.</p>
-        {validResult.attempts.map(a => <div className="attempt" key={String(a.i)}><h3>Attempt i = {String(a.i)} <span className={a.accepted ? 'success-text' : 'warning-text'}>{a.accepted ? '✓ accepted' : '↻ rejected; continue'}</span></h3><Value label="abi.encode(seedHash, i) / 64 bytes, big-endian" value={a.encoded} /><Value label="keccak256(encoded)" value={a.digest} /><Value label="x = uint256(hash) mod p" value={hex32(a.x)} /><Value label="rhs = (x³ + 7) mod p" value={hex32(a.rhs)} /><Value label="candidate y = rhs^((p+1)/4) mod p" value={hex32(a.candidateY)} /><Value label="candidate y² mod p" value={hex32(a.square)} /><p className="fine">{a.accepted ? '✓ y² mod p equals rhs. This is the first accepted point.' : '✕ y² mod p differs from rhs. Increment i and try again.'}</p></div>)}
-        <Compare label="counter()" computed={String(validResult.counter)} onchain={String(snapshot.counter)} /><Compare label="pubKeyX()" computed={hex32(validResult.x)} onchain={hex32(snapshot.pubKeyX)} /></div></li>
-      <li style={{ '--step': 2 } as CSSProperties}><div className="step-number">03</div><div className="step-body"><p className="eyebrow">One point, one convention</p><h2>Choose the even y.</h2><p>{validResult.attempts.at(-1)!.candidateY % 2n ? 'The candidate is odd, so use p − y.' : 'The candidate is already even, so keep it.'} This removes the choice between the two valid roots.</p><Compare label="pubKeyY()" computed={hex32(validResult.y)} onchain={hex32(snapshot.pubKeyY)} /></div></li>
-      <li style={{ '--step': 3 } as CSSProperties}><div className="step-number">04</div><div className="step-body"><p className="eyebrow">The destination</p><h2>Turn the point into an address.</h2><p>Concatenate the two 32-byte coordinates, without a 0x04 public-key prefix. Hash the 64 bytes and take the last 20 bytes.</p><Value label="x || y / 64 bytes" value={validResult.packed} /><Value label="keccak256(x || y)" value={validResult.digest} /><Compare label="canaryAddress()" computed={validResult.address} onchain={snapshot.canaryAddress} /></div></li>
-    </ol> : <div className="ritual-wait panel"><span aria-hidden="true">[ sentence → hash → point → address ]</span><p>Begin verification to reveal every intermediate value.</p></div>}
-    <section className="explanation section-grid"><div><p className="eyebrow">The point of the experiment</p><h2>A public key.<br />An unknown private key.</h2></div><div><p>A normal wallet starts with a secret number and multiplies the curve’s generator to get a public key. This construction goes directly to the public point. It never chooses or computes that secret number.</p><p>A corresponding private key exists, but finding it requires solving the elliptic-curve discrete logarithm problem. Knowing the seed sentence does not give anyone a shortcut under the standard secp256k1 and Keccak assumptions.</p><p>A sufficiently capable quantum computer could solve that problem and sign a transfer. That is why a falling ETH balance is a public signal worth watching.</p><details><summary>Understand the signal’s limits</summary><p>A balance drop alone cannot identify the hardware used. A classical cryptographic breakthrough, address-preimage attack, or Ethereum rule or consensus failure could also break the assumptions.</p><p>The deployed alarm trips only when the balance falls below its threshold after arming. A smaller drop above the threshold does not trip it. A drain and refill between observations can be missed. The first recorded time is when poke observes the trip, not necessarily when the spend happened.</p><p>A refill clears the live view. The first recorded trip remains. Integrations should consider both and wait for appropriate chain finality.</p></details></div></section>
+    <div className="page-intro"><h1>Don’t trust.<br />Recompute.</h1><p className="reading">A sentence. A hash. A point on secp256k1. An address. Run the same construction here, in your browser, and compare every result with Ethereum. No wallet. No secret input.</p></div>
+    <section className="numbered-section" aria-labelledby="verify-title"><h2 id="verify-title"><span>01</span> Open a terminal.</h2><div className="terminal">
+      <div className="terminal-heading"><span>quantum-canary / local derivation</span><button className="button" onClick={run} disabled={!snapshot || (!!session && !complete)}>{session && !complete ? 'Running…' : '$ run again'}</button></div>
+      {(stale || readError) && <p className="notice">The chain observation is not current. Results below compare against the recorded block. Restore fresh reads before relying on them.</p>}
+      {changed && <p className="notice">On-chain derivation values changed since this run. Run again to compare the current observation.</p>}
+      {error && <p className="notice" role="alert">{error}</p>}
+      <div className="terminal-output" aria-label="Derivation transcript" aria-busy={!!session && !complete}>
+        {!session && <p>Waiting for the seed and getters from Ethereum.<span className="cursor" aria-hidden="true">█</span></p>}
+        {session?.lines.slice(0, shown).map((line, i) => <div key={i} className={`terminal-line ${line.compare ? `comparison ${line.match ? 'match' : 'mismatch'}` : ''}`}><span className="line-number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><code>{line.text}</code></div>)}
+        {!!session && !complete && <span className="cursor" aria-hidden="true">█</span>}
+      </div>
+      <div className="verification-result" role="status">{complete ? `${matches === 5 ? 'OK' : 'MISMATCH'} / ${matches} of 5 on-chain comparisons match at block ${session.snapshot.block}.${stale || readError || changed ? ' Current verification required.' : ''}` : session ? 'Computing and printing the derivation…' : 'Waiting for Ethereum.'}</div>
+      {complete && <div className="terminal-footer"><Copy value={session.lines.map(l => l.text).join('\n')} label="Copy transcript" /><span>Exact inputs. Native JavaScript BigInt. Keccak-256.</span></div>}
+    </div></section>
+    <section className="numbered-section" aria-labelledby="seed-title"><h2 id="seed-title"><span>02</span> The sentence is public.</h2><blockquote className="seed-quote">{snapshot?.seedPhrase || 'Reading seedPhrase()…'}</blockquote><p>Author: {site.seedAuthor}. The agent building the observer chose it; the requester did not.</p><p className="reading">An ordinary wallet begins with a secret scalar and computes a public point. This construction begins with the point. A corresponding private key exists mathematically, but nobody generated it. The sentence is not a wallet recovery phrase.</p></section>
+    <section className="numbered-section" aria-labelledby="assumptions-title"><h2 id="assumptions-title"><span>03</span> Know what the proof proves.</h2><div className="reading-columns"><p>This verifies the construction and its agreement with the on-chain getters. Finding the private key still requires solving the elliptic-curve discrete logarithm problem under the standard secp256k1 and Keccak assumptions.</p><p>A sufficiently capable quantum computer could solve it and sign a transfer. A classical breakthrough, address-preimage attack, or a failure of Ethereum’s rules could also break the assumptions. The balance cannot tell you which happened.</p><p>The alarm has a threshold, not a detector for every wei spent. Someone must poke to arm it. A drain and refill between observations can be missed. <a href="#integrate">A permanent response needs your own latch.</a></p></div></section>
   </>;
 }

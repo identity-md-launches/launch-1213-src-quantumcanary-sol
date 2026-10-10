@@ -1,0 +1,35 @@
+{
+  "started": "2026-10-10T14:01:30.128Z",
+  "checks": [
+    {
+      "name": "Live production reads without wallet",
+      "result": "[·]\nNOT YET FUNDED\n\nThe observed high-water mark is below threshold. Fund the address, then poke to arm.",
+      "balance": "0 ETH"
+    },
+    {
+      "name": "Live hook ledger",
+      "result": "ETH pending\n0 ETH\naccruedFees() · ERC-6909 claims\nHook retired\nfalse\nretired() · permanent once true\nTotal ETH paid to canary\n0 ETH\nSum of all BountyPaid events\nCanary balance\n0 ETH\nNative ETH · all funding sources"
+    },
+    {
+      "name": "Live browser derivation",
+      "result": "OK / 5 of 5 on-chain comparisons match at block 26162497."
+    }
+  ],
+  "console": [],
+  "failures": [],
+  "fonts": [
+    {
+      "family": "Anton",
+      "status": "loaded"
+    },
+    {
+      "family": "IBM Plex Mono",
+      "status": "loaded"
+    },
+    {
+      "family": "IBM Plex Mono",
+      "status": "loaded"
+    }
+  ],
+  "block": "● VERIFIED OBSERVATIONBlock 26,162,497\n2026-10-10 14:01:23 UTCPublic reads every 12 seconds."
+}

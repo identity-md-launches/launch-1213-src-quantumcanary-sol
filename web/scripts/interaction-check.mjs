@@ -2,7 +2,7 @@ import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { chromium, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { decodeFunctionData, encodeFunctionResult, parseAbi, parseEther, toHex } from 'viem';
+import { decodeFunctionData, encodeFunctionResult, parseAbi, parseEther, toHex, encodeAbiParameters, encodeEventTopics } from 'viem';
 import { preview } from './preview-server.mjs';
 const root = resolve(import.meta.dirname, '../..');
 const output = resolve(root, 'artifacts/browser');
@@ -10,6 +10,8 @@ await mkdir(output, { recursive: true });
 const config = JSON.parse(await readFile(resolve(root, 'dist/imd-deployment.json'), 'utf8'));
 const abi = JSON.parse(await readFile(resolve(root, 'dist', config.contracts[0].abiPath), 'utf8'));
 const tokenAbi = parseAbi(['function balanceOf(address) view returns (uint256)', 'function decimals() view returns (uint8)', 'function symbol() view returns (string)']);
+const hookAbi = parseAbi(['function accruedFees() view returns (uint256)', 'function retired() view returns (bool)', 'function canaryAddress() view returns (address)', 'function quantumCanary() view returns (address)', 'function poolManager() view returns (address)', 'function payout() returns (uint256)', 'event BountyPaid(address indexed destination, uint256 ethAmount)']);
+const hook = '0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc';
 const canary = '0x379C0A5704C211f26eadd26e670246E242Af9e7E';
 const observer = config.contracts[0].address;
 const account = '0x1111111111111111111111111111111111111111'; // Mock wallet only; no key exists in this test.
@@ -19,8 +21,8 @@ const seed = 'IMD Quantum Canary #1 warns that if this balance ever drops, a qua
 const report = { started: new Date().toISOString(), checks: [], failures: [], console: [], requests: [] };
 const server = await preview();
 let browser;
-function state() { return { balance: 0n, mark: 0n, trippedAt: 0n, trippedBlock: 0n, block: 26158256n, imd: parseEther('123456.789'), fail: false, mismatch: false, imdFail: false, codeMissing: false, pending: false, sent: [], stale: false }; }
-function block(s) { return { number: toHex(s.block), hash: blockHash, parentHash: hash, timestamp: toHex(BigInt(Math.floor(Date.now()/1000) - (s.stale ? 300 : 0))), nonce: '0x0000000000000000', difficulty: '0x0', gasLimit: '0x1c9c380', gasUsed: '0x0', miner: observer, extraData: '0x', transactions: [], baseFeePerGas: '0x3b9aca00', size: '0x1', stateRoot: hash, receiptsRoot: hash, transactionsRoot: hash, logsBloom: '0x'+'00'.repeat(256), sha3Uncles: hash, uncles: [] }; }
+function state() { return { startTime: BigInt(Math.floor(Date.now()/1000)), balance: 0n, mark: 0n, trippedAt: 0n, trippedBlock: 0n, block: 26158256n, imd: parseEther('123456.789'), fail: false, mismatch: false, imdFail: false, codeMissing: false, pending: false, sent: [], stale: false, hookPending: parseEther('0.125'), retired: false, historyFail: false, hookMismatch: false, noPayout: false, lastPaid: 0n, cumulativePaid: parseEther('0.75') }; }
+function block(s) { return { number: toHex(s.block), hash: blockHash, parentHash: hash, timestamp: toHex(s.startTime - (s.stale ? 300n : 0n)), nonce: '0x0000000000000000', difficulty: '0x0', gasLimit: '0x1c9c380', gasUsed: '0x0', miner: observer, extraData: '0x', transactions: [], baseFeePerGas: '0x3b9aca00', size: '0x1', stateRoot: hash, receiptsRoot: hash, transactionsRoot: hash, logsBloom: '0x'+'00'.repeat(256), sha3Uncles: hash, uncles: [] }; }
 function rpc(s, q) {
   const { method, params=[] } = q;
   report.requests.push(method);
@@ -31,24 +33,28 @@ function rpc(s, q) {
     case 'eth_blockNumber': result=toHex(s.block); break;
     case 'eth_getBlockByNumber': result=block(s); break;
     case 'eth_getBalance': result=toHex(params[0].toLowerCase() === canary.toLowerCase() ? s.balance : parseEther('5')); break;
-    case 'eth_getCode': result=params[0].toLowerCase()===observer.toLowerCase() && !s.codeMissing ? '0x6000' : '0x'; break;
+    case 'eth_getCode': result=(params[0].toLowerCase()===observer.toLowerCase() && !s.codeMissing) || (params[0].toLowerCase()===hook && params[1]!==toHex(26158146n)) ? '0x6000' : '0x'; break;
+    case 'eth_getLogs': if(s.historyFail) return {jsonrpc:'2.0',id:q.id,error:{code:-32000,message:'History unavailable'}}; result=[paymentLog(s,s.cumulativePaid)];break;
     case 'eth_call': {
       const isToken=params[0].to.toLowerCase()===config.network.pairToken.address.toLowerCase();
-      const usedAbi=isToken ? tokenAbi : abi;
+      const isHook=params[0].to.toLowerCase()===hook;
+      const usedAbi=isToken ? tokenAbi : isHook ? hookAbi : abi;
       if (isToken && s.imdFail) return {jsonrpc:'2.0',id:q.id,error:{code:-32000,message:'Token read unavailable'}};
       const {functionName}=decodeFunctionData({abi:usedAbi,data:params[0].data});
-      const values={seedPhrase:seed,SEED_PHRASE:seed,seedHash:'0x24049af853e3f3a0d855c4dcaaed3fc054dcaae445f08ff572999789ab606655',canaryAddress:canary,pubKeyX:0xae07cae0c4e680f898fc1655da5e33c66be3bd8ddc07934fcbdadc7d3e674625n+(s.mismatch?1n:0n),pubKeyY:0x6b5e6d8b021bca37ceaa23d85cefadca41979671e49af160f49b7d27e4b9affan,counter:0n,thresholdWei:parseEther('1'),highWaterMark:s.mark,isTripped:s.balance<parseEther('1')&&s.mark>=parseEther('1'),trippedAt:s.trippedAt,trippedBlock:s.trippedBlock,balanceOf:s.imd,decimals:18,symbol:'IMD'};
+      const values={seedPhrase:seed,SEED_PHRASE:seed,seedHash:'0x24049af853e3f3a0d855c4dcaaed3fc054dcaae445f08ff572999789ab606655',canaryAddress:canary,pubKeyX:0xae07cae0c4e680f898fc1655da5e33c66be3bd8ddc07934fcbdadc7d3e674625n+(s.mismatch?1n:0n),pubKeyY:0x6b5e6d8b021bca37ceaa23d85cefadca41979671e49af160f49b7d27e4b9affan,counter:0n,thresholdWei:parseEther('1'),highWaterMark:s.mark,isTripped:s.balance<parseEther('1')&&s.mark>=parseEther('1'),trippedAt:s.trippedAt,trippedBlock:s.trippedBlock,balanceOf:s.imd,decimals:18,symbol:'IMD',accruedFees:s.hookPending,retired:s.retired,quantumCanary:observer,poolManager:config.network.uniswapV4.poolManager,payout:s.noPayout ? 0n : s.hookPending};
+      if(isHook&&functionName==='canaryAddress'&&s.hookMismatch)values.canaryAddress=observer;
       result=functionName==='poke' ? '0x' : encodeFunctionResult({abi:usedAbi,functionName,result:values[functionName]}); break;
     }
     case 'eth_estimateGas': result='0x5208';break;
     case 'eth_gasPrice': result='0x3b9aca00';break;
     case 'eth_getTransactionCount': result='0x0';break;
     case 'eth_getTransactionByHash': result={hash,from:account,to:s.sent.at(-1)?.to||observer,value:s.sent.at(-1)?.value||'0x0',input:s.sent.at(-1)?.data||'0x',nonce:'0x0',gas:'0x5208',gasPrice:'0x3b9aca00',v:'0x25',r:hash,s:hash,type:'0x0',blockHash:s.pending?null:blockHash,blockNumber:s.pending?null:toHex(s.block),transactionIndex:s.pending?null:'0x0'};break;
-    case 'eth_getTransactionReceipt': result=s.pending ? null : { transactionHash:hash,transactionIndex:'0x0',blockHash,blockNumber:toHex(s.block),from:account,to:s.sent.at(-1)?.to||observer,gasUsed:'0x5208',cumulativeGasUsed:'0x5208',effectiveGasPrice:'0x3b9aca00',contractAddress:null,logs:[],logsBloom:'0x'+'00'.repeat(256),status:'0x1',type:'0x0' };break;
+    case 'eth_getTransactionReceipt': result=s.pending ? null : { transactionHash:hash,transactionIndex:'0x0',blockHash,blockNumber:toHex(s.block),from:account,to:s.sent.at(-1)?.to||observer,gasUsed:'0x5208',cumulativeGasUsed:'0x5208',effectiveGasPrice:'0x3b9aca00',contractAddress:null,logs:s.sent.at(-1)?.to.toLowerCase()===hook&&s.lastPaid?[paymentLog(s,s.lastPaid)]:[],logsBloom:'0x'+'00'.repeat(256),status:'0x1',type:'0x0' };break;
     default: throw Error('Unexpected mocked RPC: '+method);
   }
   return {jsonrpc:'2.0',id:q.id,result};
 }
+function paymentLog(s, value) { return {address:hook,blockNumber:toHex(s.block),blockHash,transactionHash:hash,transactionIndex:'0x0',logIndex:'0x0',removed:false,topics:encodeEventTopics({abi:hookAbi,eventName:'BountyPaid',args:{destination:canary}}),data:encodeAbiParameters([{type:'uint256'}],[value])}; }
 async function setup(s, wallet=false) {
   const context=await browser.newContext({viewport:{width:1440,height:1000},permissions:['clipboard-read','clipboard-write']});
   const page=await context.newPage();
@@ -61,7 +67,7 @@ async function setup(s, wallet=false) {
     await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(response),headers:{'access-control-allow-origin':'*'}});
   });
   if(wallet) {
-    await page.exposeFunction('mockBroadcast',async tx=>{s.sent.push(tx);s.block++;if(tx.to.toLowerCase()===canary.toLowerCase())s.balance+=BigInt(tx.value);else {if(s.balance>s.mark)s.mark=s.balance;if(s.balance<parseEther('1')&&s.mark>=parseEther('1')&&!s.trippedAt){s.trippedAt=BigInt(Math.floor(Date.now()/1000));s.trippedBlock=s.block;}}return hash;});
+    await page.exposeFunction('mockBroadcast',async tx=>{s.sent.push(tx);s.block++;if(tx.to.toLowerCase()===canary.toLowerCase())s.balance+=BigInt(tx.value);else if(tx.to.toLowerCase()===hook){s.lastPaid=s.hookPending;s.balance+=s.hookPending;s.cumulativePaid+=s.hookPending;s.hookPending=0n;}else {if(s.balance>s.mark)s.mark=s.balance;if(s.balance<parseEther('1')&&s.mark>=parseEther('1')&&!s.trippedAt){s.trippedAt=BigInt(Math.floor(Date.now()/1000));s.trippedBlock=s.block;}}return hash;});
     await page.addInitScript(({account})=>{
       const listeners={};
       window.mockWallet={chain:'0xa',added:false,reject:false,connectReject:false,calls:[],emit:(event,value)=>{(listeners[event]||[]).forEach(f=>f(value));}};
@@ -82,26 +88,28 @@ async function setup(s, wallet=false) {
 }
 const check=(name,detail)=>{report.checks.push({name,detail});console.log('PASS '+name);};
 try {
-  browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+  browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,args:['--no-sandbox']});
   const s=state();const {page,context,problems}=await setup(s);
   await expect(page.locator('.signal-banner h2')).toHaveText('NOT YET FUNDED');
   await expect(page.locator('.metrics')).toContainText('123,456.789 IMD');
   const qr=page.locator('img.qr');await expect(qr).toBeVisible();
   await page.getByRole('button',{name:'Copy bounty address',exact:true}).click();
   expect(await page.evaluate(()=>navigator.clipboard.readText())).toBe(canary);
+  await expect(page.locator('.ledger-values')).toContainText('0.125 ETH');
+  await expect(page.locator('.ledger-values')).toContainText('0.75 ETH');
   check('Disconnected public reads, IMD, QR and clipboard','No wallet requests; correct full bounty address copied.');
   await page.getByRole('button',{name:'Connect a browser wallet',exact:true}).click();
   await expect(page.getByText(/No browser wallet found/)).toBeVisible();
   check('Missing wallet recovery','Install/open-wallet explanation is shown; reads remain usable.');
   await page.locator('header nav a[href="#verify"]').click();
-  await page.getByRole('button',{name:'Begin verification'}).click();
   await expect(page.locator('.comparison.match')).toHaveCount(5);
-  await page.screenshot({path:resolve(output,'verify-desktop.png'),fullPage:true,animations:'disabled'});
-  check('Browser derivation interactions','Five green matches and all intermediate values displayed.');
+  await page.locator('.terminal').screenshot({path:resolve(output,'verify-terminal.jpeg'),animations:'disabled',quality:78});
+  check('Browser derivation interactions','Five textual OK comparisons and all real intermediate values printed line by line.');
   await page.emulateMedia({reducedMotion:'reduce'});
-  await page.getByRole('button',{name:'Run verification again'}).click();
-  expect(await page.locator('.ritual li').first().evaluate(e=>getComputedStyle(e).animationName)).toBe('none');
-  check('Reduced motion','The staged verification has no animation when reduced motion is requested.');
+  await page.getByRole('button',{name:'$ run again',exact:true}).click();
+  await expect(page.locator('.comparison.match')).toHaveCount(5);
+  expect(await page.locator('.cursor').first().evaluate(e=>getComputedStyle(e).animationName)).toBe('none');
+  check('Reduced motion','The complete transcript appears without staged printing; cursor blinking is disabled.');
   for(const width of [1440,768,390,320]) {
     await page.setViewportSize({width,height:900});
     for(const route of ['status','verify','integrate']) {
@@ -109,11 +117,14 @@ try {
       const overflow=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
       expect(overflow.scroll,`${route} at ${width}px overflow`).toBeLessThanOrEqual(overflow.viewport);
       await expect(page.locator('main h1:visible')).toHaveCount(1);
-      if(width===1440||width===390) await page.screenshot({path:resolve(output,`${route}-${width}.png`),fullPage:true,animations:'disabled'});
+      if(width===1440||width===390) await page.screenshot({path:resolve(output,`${route}-${width}.jpeg`),fullPage:false,animations:'disabled',quality:78});
     }
   }
   check('Responsive production export','Status, Verify and Integrate: no horizontal overflow at 1440, 768, 390 and 320 CSS px.');
   await page.setViewportSize({width:1440,height:1000});
+  await page.locator('header nav a[href="#status"]').click();
+  await page.locator('.money-section').screenshot({path:resolve(output,'money-flow.jpeg'),animations:'disabled',quality:70});
+  await page.locator('.fund-panel').screenshot({path:resolve(output,'fund-controls.jpeg'),animations:'disabled',quality:78});
   for(const route of ['status','verify','integrate']) {
     await page.locator(`header nav a[href="#${route}"]`).click();
     const audit=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();
@@ -133,9 +144,22 @@ try {
   check('Text enlargement and skip-link route preservation','All three pages reflow at 200% root font size; skip link preserves Integrate. This is text enlargement, not native browser zoom.');
   const computed=await page.evaluate(()=>{
     const root=getComputedStyle(document.documentElement);
-    const colors={};for(const token of ['--bg-page','--bg-surface','--bg-hover','--text','--text-muted','--accent','--success','--danger','--focus'])colors[token]=root.getPropertyValue(token).trim();
-    return {colors,fontLoaded:document.fonts.check('400 16px "IBM Plex Mono"'),font:getComputedStyle(document.body).fontFamily};
+    const colors={};for(const token of ['--bg','--surface','--hover','--text','--muted','--reading','--alarm','--trip','--trip-bg','--focus'])colors[token]=root.getPropertyValue(token).trim();
+    return {colors,fontLoaded:document.fonts.check('400 16px "IBM Plex Mono"')&&document.fonts.check('400 48px Anton'),font:getComputedStyle(document.body).fontFamily};
   });
+  const rgb=hex=>hex.slice(1).match(/.{2}/g).map(v=>parseInt(v,16));
+  const luminance=values=>values.map(v=>{v/=255;return v<=0.04045?v/12.92:((v+0.055)/1.055)**2.4;}).reduce((s,v,i)=>s+v*[0.2126,0.7152,0.0722][i],0);
+  const contrast=(fg,bg)=>{const a=luminance(fg),b=luminance(bg);return (Math.max(a,b)+0.05)/(Math.min(a,b)+0.05);};
+  computed.contrast=[];
+  for(const [foreground,background] of [['--text','--bg'],['--muted','--bg'],['--reading','--bg'],['--muted','--surface'],['--text','--surface'],['--alarm','--surface'],['--trip','--trip-bg'],['--bg','--text'],['--focus','--bg']]) {
+    const fg=rgb(computed.colors[foreground]),bg=rgb(computed.colors[background]);
+    const normal=contrast(fg,bg);
+    // body::after can darken a pixel by at most 12%. For light text,
+    // darken only the foreground: a conservative lower bound over the overlay.
+    const lower=luminance(fg)>luminance(bg)?contrast(fg.map(v=>v*0.88),bg):contrast(fg,bg.map(v=>v*0.88));
+    computed.contrast.push({foreground,background,normal:Number(normal.toFixed(2)),overlayLowerBound:Number(lower.toFixed(2))});
+    expect(lower).toBeGreaterThanOrEqual(4.5);
+  }
   await writeFile(resolve(output,'computed-design.json'),JSON.stringify(computed,null,2));
   check('Font and color tokens','IBM Plex Mono loaded locally: '+computed.fontLoaded+'; browser-computed semantic colors recorded.');
   await page.locator('header nav a[href="#status"]').click();
@@ -144,14 +168,30 @@ try {
   await page.locator('.skip-link').focus();await page.keyboard.press('Enter');
   expect(await page.evaluate(()=>document.activeElement.id)).toBe('main');
   await page.locator('header nav a[href="#verify"]').focus();
-  await page.screenshot({path:resolve(output,'keyboard-focus.png'),animations:'disabled'});
+  await page.screenshot({path:resolve(output,'keyboard-focus.jpeg'),animations:'disabled',quality:78});
   await page.keyboard.press('Enter');
   await expect(page.locator('header nav a[href="#verify"]')).toHaveAttribute('aria-current','page');
   check('Keyboard paths','Skip link focuses main; keyboard activation changes route and keeps visible navigation focus.');
   await page.locator('header nav a[href="#status"]').click();
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  const liveCanvas=await page.locator('canvas').evaluate(c=>c.toDataURL());
+  await page.waitForTimeout(250);
+  expect(await page.locator('canvas').evaluate(c=>c.toDataURL())).not.toBe(liveCanvas);
   await page.getByRole('button',{name:'Pause trace'}).click();
   await expect(page.getByText('Trace paused · reads continue')).toBeVisible();
+  await page.waitForTimeout(80);
+  const pausedCanvas=await page.locator('canvas').evaluate(c=>c.toDataURL());
+  await page.waitForTimeout(300);
+  expect(await page.locator('canvas').evaluate(c=>c.toDataURL())).toBe(pausedCanvas);
   await page.getByRole('button',{name:'Resume trace'}).click();
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await expect(page.getByRole('button',{name:'Static trace · reduced motion'})).toBeDisabled();
+  await page.waitForTimeout(80);
+  const staticCanvas=await page.locator('canvas').evaluate(c=>c.toDataURL());
+  await page.waitForTimeout(1100);
+  expect(await page.locator('canvas').evaluate(c=>c.toDataURL())).toBe(staticCanvas);
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  check('Canvas scrolling and static modes','Canvas pixels change while live; pause and reduced motion keep pixels stable between actual observations.');
   s.balance=parseEther('1');s.block++;
   await page.getByRole('button',{name:'Refresh ↻',exact:true}).click();
   await expect(page.locator('.signal-banner h2')).toHaveText('AWAITING POKE');
@@ -162,7 +202,7 @@ try {
   await page.getByRole('button',{name:'Refresh ↻',exact:true}).click();
   await expect(page.locator('.signal-banner h2')).toHaveText('TRIPPED');
   await expect(page.locator('.trip-sticker')).toBeVisible();
-  await page.screenshot({path:resolve(output,'tripped-desktop.png'),fullPage:true,animations:'disabled'});
+  await page.locator('.monitor').screenshot({path:resolve(output,'tripped-desktop.jpeg'),animations:'disabled',quality:78});
   s.balance=parseEther('1');s.block++;
   await page.getByRole('button',{name:'Refresh ↻',exact:true}).click();
   await expect(page.locator('.signal-banner h2')).toHaveText('ARMED');
@@ -173,9 +213,9 @@ try {
   await page.getByRole('button',{name:'Refresh ↻',exact:true}).click();
   await expect(page.getByText('On-chain values do not match the locally derived key. Transactions are disabled.').first()).toBeVisible();
   await page.locator('header nav a[href="#verify"]').click();
-  await page.getByRole('button',{name:'Run verification again'}).click();
+  await page.getByRole('button',{name:'$ run again',exact:true}).click();
   await expect(page.locator('.comparison.mismatch')).toHaveCount(1);
-  check('Derivation mismatch','A changed on-chain x is red, overall verification fails, transactions gated.');
+  check('Derivation mismatch','Changed on-chain x prints MISMATCH, overall verification fails, transactions gated. Red remains exclusive to TRIPPED.');
   expect(problems).toEqual([]);
   await context.close();
 
@@ -225,6 +265,46 @@ try {
   expect(decodeFunctionData({abi,data:ws.sent[1].data}).functionName).toBe('poke');
   await expect(p.locator('.signal-banner h2')).toHaveText('ARMED');
   check('Mock poke transaction','Observer recipient, poke selector, zero ETH; high-water mark refreshes and alarm arms.');
+  ws.noPayout=true;
+  await p.getByRole('button',{name:'$ payout()',exact:true}).click();
+  await expect(p.getByText(/Simulation would pay no ETH/)).toBeVisible();
+  expect(ws.sent).toHaveLength(2);
+  ws.noPayout=false;await p.evaluate(()=>window.mockWallet.reject=true);
+  await p.getByRole('button',{name:'$ payout()',exact:true}).click();
+  await expect(p.locator('.fund-ledger').getByText(/Request declined in your wallet/)).toBeVisible();
+  expect(ws.sent).toHaveLength(2);
+  check('Payout simulation and wallet rejection','Zero-result simulation and rejected signing submit nothing; payout can be retried.');
+  await p.evaluate(()=>window.mockWallet.reject=false);ws.pending=true;
+  await p.getByRole('button',{name:'$ payout()',exact:true}).click();
+  await expect(p.getByText('Payout submitted. Waiting for an Ethereum confirmation…')).toBeVisible();
+  await expect(p.getByRole('button',{name:'Payout pending…',exact:true})).toBeDisabled();
+  expect(ws.sent).toHaveLength(3);
+  expect(ws.sent[2].to.toLowerCase()).toBe(hook);
+  expect(BigInt(ws.sent[2].value||'0x0')).toBe(0n);
+  expect(decodeFunctionData({abi:hookAbi,data:ws.sent[2].data}).functionName).toBe('payout');
+  await p.locator('header nav a[href="#integrate"]').click();await p.locator('header nav a[href="#status"]').click();
+  await expect(p.getByRole('button',{name:'Payout pending…',exact:true})).toBeDisabled();
+  ws.pending=false;ws.block++;
+  await expect(p.getByText(/Payout confirmed: 0.125 ETH paid/)).toBeVisible({timeout:20000});
+  await expect(p.getByRole('button',{name:'$ payout()',exact:true})).toBeDisabled();
+  await expect(p.locator('.ledger-values')).toContainText('0.875 ETH');
+  check('Mock payout and receipt lock','Exact hook, payout selector, zero ETH; lock survives navigation; BountyPaid receipt and cumulative events update totals.');
+  ws.retired=true;ws.hookPending=parseEther('0.2');ws.block++;
+  await p.getByRole('button',{name:'Refresh fund reads',exact:true}).click();
+  await expect(p.getByText('Hook retired. This site will not request a payout to the compromised address.')).toBeVisible();
+  await expect(p.getByRole('button',{name:'$ payout()',exact:true})).toBeDisabled();
+  check('Retirement remains gated after refill','An armed/refilled canary does not re-enable payout from a retired hook.');
+  ws.retired=false;ws.historyFail=true;ws.block++;
+  await p.getByRole('button',{name:'Refresh fund reads',exact:true}).click();
+  await expect(p.locator('.ledger-values')).toContainText('No partial total is shown');
+  await expect(p.locator('.ledger-values')).toContainText('0.2 ETH');
+  check('Incomplete history is explicit','Pending fees remain readable while a failed full-history scan shows no invented or partial total.');
+  ws.historyFail=false;ws.hookMismatch=true;ws.block++;
+  await p.getByRole('button',{name:'Refresh fund reads',exact:true}).click();
+  await expect(p.getByText(/Hook destination, observer or PoolManager does not match/)).toBeVisible();
+  await expect(p.getByRole('button',{name:'$ payout()',exact:true})).toBeDisabled();
+  check('Hook destination binding','A mismatched hook recipient blocks payout despite previously valid reads.');
+  ws.hookMismatch=false;
   await p.evaluate(()=>{window.mockWallet.chain='0xa';window.mockWallet.emit('chainChanged','0xa');});
   await expect(p.getByText('Wrong network',{exact:true})).toBeVisible();
   await expect(p.getByRole('button',{name:'Call poke()'})).toHaveCount(0);

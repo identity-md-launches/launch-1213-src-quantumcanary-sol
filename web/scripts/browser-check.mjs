@@ -25,7 +25,7 @@ const url = `${origin}/preview/`;
 let browser;
 const report = { started: new Date().toISOString(), checks: [], console: [], failures: [] };
 try {
-  browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+  browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH, args: ['--no-sandbox'] });
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, ignoreHTTPSErrors: true });
   const page = await context.newPage();
   page.on('pageerror', e => report.failures.push(e.message));
@@ -34,12 +34,15 @@ try {
   await page.goto(url);
   await expect(page.locator('.balance-value')).not.toHaveText('— ETH', { timeout: 45000 });
   report.checks.push({ name: 'Live production reads without wallet', result: await page.locator('.signal-banner').innerText(), balance: await page.locator('.balance-value').innerText() });
-  await page.screenshot({ path: resolve(reportDir, 'status-desktop.png'), fullPage: true, animations: 'disabled' });
+  await page.screenshot({ path: resolve(reportDir, 'live-status-desktop.jpeg'), fullPage: false, animations: 'disabled', quality: 70 });
+  await expect(page.locator('.fund-ledger .field').first()).not.toContainText('—', { timeout: 45000 });
+  report.checks.push({ name: 'Live hook ledger', result: await page.locator('.ledger-values').innerText() });
   await page.locator('header nav a[href="#verify"]').click();
-  await page.getByRole('button', { name: 'Begin verification' }).click();
-  await expect(page.getByText('✓ All 5 on-chain comparisons match.', { exact: false })).toBeVisible();
-  await page.screenshot({ path: resolve(reportDir, 'verify-desktop.png'), fullPage: true, animations: 'disabled' });
+  await expect(page.getByText(/OK \/ 5 of 5 on-chain comparisons match/)).toBeVisible();
+  await page.screenshot({ path: resolve(reportDir, 'live-verify-desktop.jpeg'), fullPage: false, animations: 'disabled', quality: 70 });
   report.checks.push({ name: 'Live browser derivation', result: await page.locator('.verification-result').innerText() });
+  report.fonts = await page.evaluate(() => [...document.fonts].map(f => ({family:f.family, status:f.status})));
+  report.block = await page.locator('.balance-meta').innerText();
   await context.close();
 } catch (e) {
   report.failures.push(e.stack);

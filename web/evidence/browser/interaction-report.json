@@ -1,0 +1,117 @@
+{
+  "started": "2026-10-10T14:01:30.339Z",
+  "checks": [
+    {
+      "name": "Disconnected public reads, IMD, QR and clipboard",
+      "detail": "No wallet requests; correct full bounty address copied."
+    },
+    {
+      "name": "Missing wallet recovery",
+      "detail": "Install/open-wallet explanation is shown; reads remain usable."
+    },
+    {
+      "name": "Browser derivation interactions",
+      "detail": "Five textual OK comparisons and all real intermediate values printed line by line."
+    },
+    {
+      "name": "Reduced motion",
+      "detail": "The complete transcript appears without staged printing; cursor blinking is disabled."
+    },
+    {
+      "name": "Responsive production export",
+      "detail": "Status, Verify and Integrate: no horizontal overflow at 1440, 768, 390 and 320 CSS px."
+    },
+    {
+      "name": "Automated accessibility",
+      "detail": "Axe WCAG 2 A/AA, 2.1 AA and 2.2 AA tags: no violations across all three routes."
+    },
+    {
+      "name": "Text enlargement and skip-link route preservation",
+      "detail": "All three pages reflow at 200% root font size; skip link preserves Integrate. This is text enlargement, not native browser zoom."
+    },
+    {
+      "name": "Font and color tokens",
+      "detail": "IBM Plex Mono loaded locally: true; browser-computed semantic colors recorded."
+    },
+    {
+      "name": "Keyboard paths",
+      "detail": "Skip link focuses main; keyboard activation changes route and keeps visible navigation focus."
+    },
+    {
+      "name": "Canvas scrolling and static modes",
+      "detail": "Canvas pixels change while live; pause and reduced motion keep pixels stable between actual observations."
+    },
+    {
+      "name": "Full alarm lifecycle and chart pause",
+      "detail": "Unfunded → awaiting poke → armed → tripped → refilled; first-trip record persists."
+    },
+    {
+      "name": "Derivation mismatch",
+      "detail": "Changed on-chain x prints MISMATCH, overall verification fails, transactions gated. Red remains exclusive to TRIPPED."
+    },
+    {
+      "name": "Wallet unknown-chain fallback",
+      "detail": "Switch 4902 → add exact supplied Ethereum network → switch again."
+    },
+    {
+      "name": "Amount validation, irreversible consent and rejection",
+      "detail": "Zero amount rejected; consent required; declined signature sends nothing and recovers."
+    },
+    {
+      "name": "Mock bounty transaction and receipt lock",
+      "detail": "Exact canary recipient and 0.01 ETH, no calldata; duplicate sends locked through receipt and route changes."
+    },
+    {
+      "name": "Mock poke transaction",
+      "detail": "Observer recipient, poke selector, zero ETH; high-water mark refreshes and alarm arms."
+    },
+    {
+      "name": "Payout simulation and wallet rejection",
+      "detail": "Zero-result simulation and rejected signing submit nothing; payout can be retried."
+    },
+    {
+      "name": "Mock payout and receipt lock",
+      "detail": "Exact hook, payout selector, zero ETH; lock survives navigation; BountyPaid receipt and cumulative events update totals."
+    },
+    {
+      "name": "Retirement remains gated after refill",
+      "detail": "An armed/refilled canary does not re-enable payout from a retired hook."
+    },
+    {
+      "name": "Incomplete history is explicit",
+      "detail": "Pending fees remain readable while a failed full-history scan shows no invented or partial total."
+    },
+    {
+      "name": "Hook destination binding",
+      "detail": "A mismatched hook recipient blocks payout despite previously valid reads."
+    },
+    {
+      "name": "Connected chain change",
+      "detail": "A wallet chainChanged event immediately removes the poke action until the chain is corrected."
+    },
+    {
+      "name": "Stale chain gating",
+      "detail": "Old block timestamp is labelled stale and prevents signing."
+    },
+    {
+      "name": "RPC outage and retry",
+      "detail": "No fabricated zero/alarm on failure; retry restores the live state."
+    },
+    {
+      "name": "Independent token failure",
+      "detail": "An IMD RPC error leaves the ETH alarm readable and labels the token counter unavailable."
+    },
+    {
+      "name": "Deployment code gate",
+      "detail": "Missing observer bytecode blocks the snapshot and transactions."
+    },
+    {
+      "name": "Runtime ABI tamper gate",
+      "detail": "A modified ABI fails the canonical Keccak binding before transactions can appear."
+    }
+  ],
+  "failures": [],
+  "console": [],
+  "finished": "2026-10-10T14:01:57.593Z",
+  "requestCount": 660
+}

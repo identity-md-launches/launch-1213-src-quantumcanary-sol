@@ -1,0 +1,72 @@
+{
+  "colors": {
+    "--bg": "#090e0b",
+    "--surface": "#0d1510",
+    "--hover": "#1a2c20",
+    "--text": "#a6edb6",
+    "--muted": "#a0b5a6",
+    "--reading": "#e2e0d2",
+    "--alarm": "#eee56b",
+    "--trip": "#ffb1a8",
+    "--trip-bg": "#361210",
+    "--focus": "#e2e0d2"
+  },
+  "fontLoaded": true,
+  "font": "\"IBM Plex Mono\", monospace",
+  "contrast": [
+    {
+      "foreground": "--text",
+      "background": "--bg",
+      "normal": 14.28,
+      "overlayLowerBound": 10.94
+    },
+    {
+      "foreground": "--muted",
+      "background": "--bg",
+      "normal": 8.95,
+      "overlayLowerBound": 6.97
+    },
+    {
+      "foreground": "--reading",
+      "background": "--bg",
+      "normal": 14.66,
+      "overlayLowerBound": 11.23
+    },
+    {
+      "foreground": "--muted",
+      "background": "--surface",
+      "normal": 8.53,
+      "overlayLowerBound": 6.65
+    },
+    {
+      "foreground": "--text",
+      "background": "--surface",
+      "normal": 13.62,
+      "overlayLowerBound": 10.43
+    },
+    {
+      "foreground": "--alarm",
+      "background": "--surface",
+      "normal": 14.19,
+      "overlayLowerBound": 10.86
+    },
+    {
+      "foreground": "--trip",
+      "background": "--trip-bg",
+      "normal": 9.68,
+      "overlayLowerBound": 7.47
+    },
+    {
+      "foreground": "--bg",
+      "background": "--text",
+      "normal": 14.28,
+      "overlayLowerBound": 10.94
+    },
+    {
+      "foreground": "--focus",
+      "background": "--bg",
+      "normal": 14.66,
+      "overlayLowerBound": 11.23
+    }
+  ]
+}

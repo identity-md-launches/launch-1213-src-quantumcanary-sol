@@ -2,73 +2,82 @@
 
 ## Overview
 
-Quantum Canary is a public Ethereum observatory for bounty donors, independent verifiers and integration developers. Its implemented identity is dark, monospace, technical and slightly manifesto-like: canary yellow for emphasis, phosphor green for verified results, a restrained balance trace, and the supplied canary artwork. It deliberately has one dark theme.
+A cold, dense public instrument for donors, independent verifiers and contract integrators. The site reads like a technical dispatch: a large ragged headline, numbered sections, justified reading columns, ledgers, shell commands and a terminal transcript. Its tone is direct about the alarm, money flow and limits of observation. The Status headline uses the requested wording. This is deliberately a single dark theme.
 
-Status prioritizes the balance and alarm, followed by arming details, donation and poke. Verify stages the derivation in four numbered steps. Integrate puts the deployment address beside a copyable Solidity example. The Status hero arrangement is page-specific; the shared header, page introductions, typography, panels and controls form the reusable system.
+There are three hash-routed pages. Status carries the balance instrument, direct funding, poke, optional community fund and PGP-style statement. Verify prints the browser derivation. Integrate presents the observer interface and a permanent-latch example. The shared shell is a document, not a grid of cards. The app has no eyebrow labels, split copy/picture hero, glow, blur or rounded surfaces.
+
+Source of truth: `web/src/style.css`, `App.tsx`, `components.tsx`, `Seismograph.tsx`, `Verify.tsx`, `Actions.tsx`, `MoneyFlow.tsx` and `Integrate.tsx`. Browser evidence and limitations are recorded in `web/VALIDATION.md`.
 
 ## Colors
 
-All application colors are defined in `web/src/style.css`. Primitives are named by hue/tone; components use semantic tokens.
+The canonical CSS tokens are hex values in `web/src/style.css:root`:
 
-| Semantic token | Value | Role |
+| Token | Value | Use |
 | --- | --- | --- |
-| `--bg-page` | `#0b100d` | Root background, inset inputs |
-| `--bg-surface` | `#101812` | Monitor, funding, code and proof surfaces |
-| `--bg-hover` | `#172019` | Hover surfaces and alarm banner |
-| `--border` | `#33463a` | Structural borders and chart grid |
-| `--text` | `#e8ede6` | Headings, body, neutral controls |
-| `--text-muted` | `#a0b09f` | Supporting text and metadata |
-| `--accent`, `--focus` | `#e9ee68` | Primary action, focus, canary emphasis |
-| `--success` | `#92f5a8` | Balance trace, curve values, matches, armed state |
-| `--danger` | `#ffaaa0` | Errors, mismatches and tripped state |
+| `--bg` | `#090e0b` | Near-black page and inputs |
+| `--surface` | `#0d1510` | Strip paper, transcript and code |
+| `--hover` | `#1a2c20` | Hover controls and comparison rows |
+| `--text` | `#a6edb6` | Phosphor green working text, headlines, controls |
+| `--muted` | `#a0b5a6` | Secondary text, measurement metadata |
+| `--reading` | `#e2e0d2` | Bone reading text, notices and mismatch text |
+| `--line` | `#355340` | Structural rules |
+| `--control` | `#72967d` | Control boundaries and important side rules |
+| `--alarm` | `#eee56b` | Alarm concept, threshold line, principal ETH balance |
+| `--trip` | `#ffb1a8` | TRIPPED ink only |
+| `--trip-bg` | `#361210` | TRIPPED paper only |
+| `--focus` | `#e2e0d2` | Keyboard focus perimeter |
 
-Color always has a text counterpart: MATCH/MISMATCH, named alarm states and persistent transaction messages. Solid yellow marks the current principal action; secondary controls have an outlined neutral surface. The supplied art retains its original colors. QR codes intentionally use black-on-white treatment with a quiet border.
+Yellow never denotes routine calls to action or every metric. Red does not denote generic wallet errors or a derivation mismatch; those use bone text and an explicit label. The single most prominent number is the canary ETH balance. Status always includes text, never color alone.
 
-Computed-token contrast checks: primary text/page 16.17:1; muted/page 8.41:1; muted/surface 7.93:1; muted/banner 7.32:1; green/surface 13.65:1; red/banner 9.16:1; button text/yellow 15.44:1. These are measured flat color pairs, not a claim about every image-backed or antialiased pixel. See `web/VALIDATION.md`.
+The canvas paint palette in `Seismograph.tsx` matches these tokens; faint grid ink is `#27422f`, or `#653028` on tripped paper. Hex-dump texture is decorative `#204329` at 40% opacity. All nine tested text pairs exceed 4.5:1, including conservative 12% overlay attenuation. Measured examples: working text/page 14.28:1; bone/page 14.66:1; muted/surface 8.53:1; tripped ink/paper 9.68:1. See the recorded computed values rather than treating these numbers as a claim about every antialiased pixel.
 
 ## Typography
 
-`web/src/main.tsx` imports local Latin IBM Plex Mono at weights 400, 500 and 600 from `@fontsource/ibm-plex-mono`. Fallbacks are `SFMono-Regular`, Consolas and monospace. Normal text is 400, headings/actions usually 500, the wordmark 600. Browser font loading was checked.
+Exactly two families are loaded locally:
 
-The root is 16px. Semantic type tokens are `--text-caption` 12px, `--text-small` 13px, `--text-body` 15px and `--text-title` clamp(36.8px, 4.7vw, 66.4px). Body copy uses 1.75 line height and a 70ch maximum measure. H1 uses 1.13 line height and −.06em tracking; H2 uses 24–32px (some Status section headings 28.8–40px), 1.25 line height and −.045em tracking. H3 is 16px/1.5. Small instrument metadata is 10–11px; explanatory captions remain 12px. At widths below 30rem, H1 is 36px.
+- **IBM Plex Mono**, regular 400 and semibold 600, with monospace fallback. WOFF2 is bundled from the existing `@fontsource/ibm-plex-mono` dependency. Body, data, code, navigation and controls use it. Numeric data uses tabular figures. Synthetic weights/styles are disabled.
+- **Anton**, regular 400, then Arial Narrow/sans-serif fallback. `web/public/fonts/anton-latin-400.woff2` supplies display headlines and the rotated margin annotation. Anton's OFL is in `public/licenses/Anton-OFL.txt`.
 
-Numbers use tabular figures. Headings balance their wrapping; descriptions use pretty wrapping. Exact addresses and hashes wrap anywhere and remain selectable. Code uses the same mono family, preserves whitespace and wraps long lines. The mobile amount input stays 20px. Do not truncate a value that is being verified.
+The root is 16px with 1.65 body line height. Reading passages use 14–16px by role; most instrument/control text is 12–14px. Main Status type is `clamp(3.15rem, 7.6vw, 6.8rem)`, 1.08 leading, −0.015em tracking; the narrowest breakpoint uses 3.15rem/1.12. Page introductions use `clamp(3.5rem, 8vw, 7rem)` and mobile overrides. Section headings use `clamp(2rem, 4.1vw, 3.2rem)` at 1.18 leading; subsection headings are Plex Mono 1.0625rem/600. Real section numbers are inline with headings, not eyebrow text.
+
+Display headings are left aligned, uppercase through CSS, and deliberately ragged. Long-form reading measures cap at 66ch; print-like two-column passages are justified with hyphenation on desktop. They become left-aligned single columns below 48rem. Addresses/hashes wrap at any character, remain selectable, and are never irretrievably truncated. Code keeps indentation in keyboard-scrollable preformatted areas. Inputs remain 16px on mobile. The mobile terminal is 12px; decorative line numbers can be smaller.
 
 ## Layout
 
-The shared content maximum is 1264px, including 40px side padding. Padding reduces to 28px at 64rem and 18px at 30rem. The spacing vocabulary is 8, 16, 24, 32, 48 and 80px, exposed as `--space-1` through `--space-6`; component-specific chart and dense instrument spacing is explicit in the stylesheet.
+`.document-shell` is at most 1280px wide with 64px inline padding; at 100rem and above it becomes 1400px/80px. Standard section spacing is 3rem, reduced to 2.25rem on mobile. Within-group gaps use .5rem, .75rem, 1rem and 1.5rem; columns use 2–3rem. One continuous set of ruled sections carries hierarchy.
 
-`.section-grid` is a two-column content/action pattern with a 70px gap, reducing to 36px at 64rem and one column at 48rem. `.metrics` moves from four columns to two. `.integration-grid` places metadata beside code, then stacks. `.page-intro` gives each page a heading, description and optional visual.
+The header is in normal flow. Navigation wraps instead of opening a menu. The Status hero is full width; the tiny vertical margin annotation occupies the outer margin, never a second hero column. The hero's reading passage uses newspaper columns. The strip chart spans the document and has a fixed 228px drawing height; its heading/caption can wrap.
 
-At 48rem the header wraps, navigation spans a second row, primary content stacks and the Status illustration becomes a subdued background character. At 30rem the proof steps become one column, the Verify illustration is omitted, smaller actions wrap, the footer becomes a vertical list, and SVG labels are enlarged to compensate for chart scaling. Donation controls stay inside the page gutters.
+The three shell commands form a horizontal ruled strip. Below 30rem they become three horizontal rows. Funding uses two editorial columns above 48rem and one below it. Metrics and fee readouts are ledger rows; they become stacked term/value rows below 30rem. The flow table has a labelled, keyboard-focusable horizontal scroll region on narrow displays; the page itself does not scroll horizontally. ABI/Solidity areas scroll independently.
 
-The final export was checked at 1440, 768, 390 and 320 CSS pixels across all routes, with no page-level horizontal overflow. All routes also reflowed under 200% root text enlargement. This is not native browser zoom or a physical-device test.
+Breakpoints in source: 100rem, 68rem, 48rem and 30rem. Shell padding steps from 80/64px to 40px, 24px and 16px. The network label hides below 68rem, the margin annotation below 48rem. Tested browser widths: 1440, 768, 390 and 320 CSS pixels; all three routes reflowed. 200% root text enlargement was checked separately from native browser zoom.
 
 ## Elevation & Depth
 
-The interface is flat. Tone, spacing and 1px borders establish structure; there are no elevated cards or modal shadows. The seismograph has a faint second trace for phosphor glow and a static scanline overlay with `pointer-events: none`. The overlay cannot intercept controls. The hero art fades at its edge with a radial mask. Step entrances are brief translations/fades, not a continuous display effect.
+Everything is flat. Solid/dashed rules denote sections, controls, code and the statement. There are no shadows, glass layers or gradients used as glows. A fixed, pointer-transparent `body::after` overlays subtle CRT scanlines and a vignette at 12% opacity. The overlay is decorative and disabled in forced-colors/print. The hero's background hex dump uses the actual read seed hash and is hidden from assistive technology.
 
 ## Shapes
 
-The common radius is `--radius: 3px`. Buttons, inputs and panels are nearly square. Circular forms are reserved for the logo, status dots and numbered verification steps. The integration “bool” motif has a small fixed rotation. Artwork is not recolored or regenerated.
+`--radius: 0px` is used by buttons and inputs. All surfaces and data rows have square corners. The statement uses a dashed border, code and the instrument use thin solid rules, and redaction bars are text glyphs with a readable description. No rounded card component exists.
+
+The four original mascot PNGs stay intact. `public/art/ink/{logo,mascot,hero}.png` are literal one-bit Floyd–Steinberg prints, sized 128, 320 and 360 pixels and made by `scripts/ink-art.py`. The header, funding margin and statement use those versions. `.ink-art` uses screen blending and 82% opacity. The original full-color `sticker.png` is reserved for an actual, current TRIPPED banner. The payment QR keeps a high-contrast quiet zone.
 
 ## Components
 
-- `web/src/components.tsx`: `Copy` provides clipboard feedback and a selectable-text fallback message; `AddressValue` pairs a full address explorer link with copy; `QR` emits an Ethereum payment URI with the runtime chain ID; `Field` renders a semantic term/value pair; `Seismograph` renders real session samples, pause/resume and a table equivalent. The `amount` helper formats exact integers without floating-point conversion.
-- `web/src/App.tsx`: shared header/footer, hash navigation and the private `SignalBanner` pattern. The active route uses `aria-current`. The skip link focuses the main landmark without changing the route. Alarm labels distinguish unknown/stale, unfunded, awaiting poke, armed and tripped states. A TRIPPED banner uses the supplied sticker.
-- `web/src/Actions.tsx`: donation amount/review/consent and poke. Controls reflect prepare, sign, confirm, success, error and uncertain states. Pending state persists across hash-page changes. Wrong chain, stale reads and failed verification prevent signing. Transaction controls are native buttons; the sole form uses a bound label, `aria-invalid`, inline recovery text and focus on invalid input.
-- `web/src/Verify.tsx`: `Value`, `Compare` and `.ritual` are page-local proof patterns. Every comparison includes computed and contract values plus explicit match text. Four steps enter with a 500ms `cubic-bezier(.2,0,0,1)` animation, staggered by 100ms, only when reduced motion is not requested. The data is immediately available in the DOM; no animation gates verification.
-- `web/src/Integrate.tsx`: deployment metadata, full ABI download/disclosure, and a copyable Solidity snippet. It distinguishes the observer from the bounty address and explains live versus recorded alarms.
-
-`.button` is the neutral control; `.primary` fills the principal action; `.small` serves copy/utility controls. Standard controls have 44px minimum height; small desktop utilities are 36px with spacing. Keyboard focus is a 2px yellow outline offset 5px, with a system Highlight override in forced colors. Hover rules apply only on hover-capable devices. Press scale is .96 with 150ms transitions and reduced-motion protection. Loading disables controls and retains explanatory text; errors persist near their flow.
+- **Shell / numbered sections — `App.tsx`, `.numbered-section`:** one visible main heading per route; inline real section numbers; skip link; active navigation underlined and bracketed. Hash section links scroll/focus funding, watch, money and footnotes. No sticky overlay obscures targets.
+- **Controls — `.button`, `.text-button`:** 44px minimum principal targets, 40px for the instrument's text control. Primary transaction steps use green fill/black text. Peers are outlined or underlined. Hover is immediate; focus uses a two-pixel bone outline offset four pixels; disabled states remain labelled. Native buttons, links, inputs and details provide semantics.
+- **`AddressValue`, `Copy`, `QR`, `Field` — `components.tsx`:** full copyable/explorer-linked addresses; announced copy result/failure; an Ethereum payment URI containing chain ID but no prefilled amount; semantic definition-list rows. Snapshot unavailability is an em dash, never a fabricated zero.
+- **`SignalBanner` — `App.tsx`:** named UNAVAILABLE/NOT CURRENT, NOT YET FUNDED, AWAITING POKE, ARMED and TRIPPED states. `AWAITING POKE` preserves the deployed observer's arming requirement. Only current TRIPPED uses red and the color sticker.
+- **`Seismograph` — `Seismograph.tsx`:** observed stepped balance, UTC grid, real threshold, pause/resume, static reduced-motion rendering and an exact-data table. Scroll is capped near 25fps and stops when hidden/inactive/stale. Jagged alarm marks are labelled as alarm graphics, not fabricated observations.
+- **Funding/poke/payout — `Actions.tsx`, `MoneyFlow.tsx`:** amount review, irreversible-transfer consent, fresh-read/simulation gates, independent pending and receipt states, persistent recoverable errors and explorer receipts. The payout policy is stricter than the published hook: this UI disables it after trip or retirement. Read `web/docs/fund-source.md` for the material distinction.
+- **Terminal — `Verify.tsx`:** 65ms line-by-line output from the unchanged derivation; five textual OK/MISMATCH comparisons, whole-transcript copy, run-again command, observation block and staleness. Reduced motion prints immediately. The decorative cursor blinks four times over five seconds and then stops; reduced motion disables blinking entirely.
+- **Statement — `App.tsx`:** custom PGP-style boundary lines, manifesto reading columns, redacted private-key line, small print mascot. Explicitly labelled as statement formatting, not a digital signature.
+- **Integration — `Integrate.tsx`:** runtime observer address and attested ABI download, a prominent live-check/latch caveat, selectable/copyable Solidity and disclosed full ABI. The guard's observation function persists a latch only in a successful transaction.
 
 ## Do's and Don'ts
 
-- Reuse `.page-intro`, `.section-grid`, `.panel`, semantic color tokens and the existing native controls when adding a page.
-- Give a new page one visible H1, preserve the shared hash-navigation model, and keep reading possible without a wallet.
-- Treat a displayed balance as an observation with a block and age. Do not fabricate chart history or show a failed read as zero.
-- Derive contract addresses and ABI paths from the runtime manifest. Keep financial consequences and chain requirements beside their actions.
-- Keep full proof values selectable and accessible. Use text as well as color for outcomes.
-- Preserve the four supplied images and the deliberate dark theme. Do not add remote assets, gratuitous animation, extra themes or a competing component system.
+Use `.numbered-section` and a real heading for a new section; use `Field` for a datum and a table for a flow. Keep actions native, visible and stateful. Use bone for sustained explanation, phosphor for working text, yellow for the alarm/principal balance, and red only for TRIPPED. Keep real values exact and expose freshness. Preserve the full seed and its building-agent attribution.
 
-Design guidance is adapted from Better Interface (Jakub Krehel, MIT) and the documentation method from Impeccable (Paul Bakaus, Apache-2.0), at the pinned commits recorded in `web/README.md`. Both licenses/notices are retained in `web/docs/licenses/better-interface.txt`.
+Do not add card grids, eyebrow labels, gradients as glows, a copy/picture split hero, extra font families, ornamental charts or speculative token promotion. A new route should reuse the shell, focus behavior, display heading, numbered sections and existing controls. Add a technical detail to the product only when it helps its reader act or verify something.
+
+Better Interface and Impeccable attribution/licenses are retained in `web/docs/licenses/better-interface.txt`; the eth-frontend-ux notice is alongside it. Browser evidence supplements this source record; it is not a screen-reader, native-device or independent security certification.

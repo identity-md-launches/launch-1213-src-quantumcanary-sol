@@ -6,7 +6,7 @@ The Ethereum mainnet launch uses `thresholdWei = 1000000000000000000` (1 ETH). O
 
 ## Public website
 
-The live-deployment frontend is in [`web/`](web/README.md), with the ready-to-host static export in [`dist/`](dist/index.html). It provides Status, in-browser key verification and integration documentation for Ethereum mainnet launch 1213. Build/configuration instructions are in [web/README.md](web/README.md), worker-side checks in [web/VALIDATION.md](web/VALIDATION.md), and the implemented visual system in [DESIGN.md](DESIGN.md). The contract implementation and its build configuration are unchanged by the frontend task.
+The live-deployment frontend is in [`web/`](web/README.md), with the ready-to-host static export in [`dist/`](dist/index.html). It provides Status, in-browser key verification and integration documentation for Ethereum mainnet launch 1213. Build/configuration instructions are in [web/README.md](web/README.md), worker-side checks in [web/VALIDATION.md](web/VALIDATION.md), and the implemented visual system in [DESIGN.md](DESIGN.md). The contract implementation and its build configuration are unchanged by the frontend task. The redesigned site adds a canvas balance strip, terminal verification, and the optional launch-1235 fund ledger/payout controls. The canary itself has no token. [Fund-source notes](web/docs/fund-source.md) explain the published hook’s post-retirement payout behavior and the distinction between headline fee examples and actual pool input.
 
 ## Seed and derivation
 

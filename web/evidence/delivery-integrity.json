@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-10T14:14:16.806949+00:00",
+  "manifest": {
+    "handoffMatches": true,
+    "networkMatches": true,
+    "assetHashesMatch": true,
+    "assetCount": 18,
+    "exportBytes": 2597314
+  },
+  "sourceMatchesBuiltCopy": true,
+  "protectedPathsUnchanged": true,
+  "noSubmodulesOrPackagedCaches": true,
+  "preservedSha256": {
+    "web/src/chain.ts": "b1707c3842427646f92b66ef7c1208b354a45690087cba5817191d29ba80350b",
+    "web/src/wallet.ts": "34c4158c75066b06c53264b5d49f988f73dfdd246fbea739261812d0d0073002",
+    "web/src/derive.ts": "084331e1837af1bd818b8d507a1e3717f0f9c757641bc4157b1b7637804abf4e",
+    "web/src/useCanary.ts": "aa3dfa32d01db69d965fc284a4186f770b07a895c0a221fa8986c349f105f393",
+    "web/public/art/logo.png": "238f8ad0af0679b5cd3b55adfcd79d8db3191442fcbe0d2a447cd503a492ff85",
+    "web/public/art/mascot.png": "099f772f971081da7463a48f3ef6a0aaa3d32531a81c9044377da704dfdf5927",
+    "web/public/art/hero.png": "03fb7056c462ec2a0565235065d8c06d5f7f3ab89616d3c595f2890056514f2e",
+    "web/public/art/sticker.png": "f892b4dfa7b282fcc7870fc47fff6e6fbf6f0659d1ce213ace95d43e5e790f42"
+  },
+  "bytes": {
+    "limit": 8388608,
+    "filesExcludingThisReport": 133,
+    "uncompressedExcludingThisReport": 7302797
+  }
+}

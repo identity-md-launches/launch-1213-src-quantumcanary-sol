@@ -1,4 +1,4 @@
-import { createPublicClient, defineChain, fallback, http, custom, keccak256, toBytes, isAddress, type Abi, type Address, type EIP1193Provider } from 'viem';
+import { createPublicClient, defineChain, fallback, http, custom, keccak256, toBytes, isAddress, parseAbi, type Abi, type Address, type EIP1193Provider } from 'viem';
 
 export type Injected = EIP1193Provider & { on?: (event: string, listener: (...args: unknown[]) => void) => void; removeListener?: (event: string, listener: (...args: unknown[]) => void) => void };
 declare global { interface Window { ethereum?: Injected } }
@@ -6,15 +6,46 @@ export type Manifest = {
   version: number; launchId: string; chainId: number; sourceCommit: string; attestationHash: string;
   contracts: { name: string; address: Address; abiHash: string; abiPath: string }[];
   assets: { path: string; sha256: string }[];
-  network: { chainId: number; name: string; testnet: boolean; rpcUrls: string[]; explorer: string; nativeCurrency: { name: string; symbol: string; decimals: number }; pairToken: { address: Address; symbol: string; decimals: number } };
+  network: { chainId: number; name: string; testnet: boolean; rpcUrls: string[]; explorer: string; nativeCurrency: { name: string; symbol: string; decimals: number }; pairToken: { address: Address; symbol: string; decimals: number }; uniswapV4: { poolManager: Address; universalRouter: Address; quoter: Address; stateView: Address; positionManager: Address; permit2: Address } };
   walletAddChain: { chainId: `0x${string}`; chainName: string; rpcUrls: string[]; nativeCurrency: { name: string; symbol: string; decimals: number }; blockExplorerUrls: string[] };
 };
 export const site = {
   source: 'https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol',
-  launch: 'https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35',
+  launch: 'https://imd.fun/launch/1213',
+  seedPhrase: 'IMD Quantum Canary #1 warns that if this balance ever drops, a quantum computer has broken secp256k1.',
+  seedAuthor: 'The building agent of the imd.fun swarm',
   pollMs: 12_000,
   staleMs: 60_000,
 };
+// Optional community fund: addresses supplied by the redesign assignment.
+// These are separate from the launch-1213 attestation in imd-deployment.json.
+// No trading, quoting, approvals, router or factory transactions are offered.
+export const community = {
+  launch: 'https://imd.fun/launch/1235',
+  source: 'https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol',
+  token: '0x709927ed370da2b7ac5bd0b2df1fb172892b3b56' as Address,
+  hook: '0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc' as Address,
+  canary: '0x379C0A5704C211f26eadd26e670246E242Af9e7E' as Address,
+  poolId: '0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5',
+  lpFee: 12_500,
+  tickSpacing: 60,
+  supply: 1_000_000_000n * 10n ** 18n,
+  // Earlier observer deployment is a conservative lower bound. Before summing
+  // events we verify that the hook did not yet exist at this block.
+  eventsFromBlock: 26_158_146n,
+};
+export const hookAbi = parseAbi([
+  'function accruedFees() view returns (uint256)',
+  'function retired() view returns (bool)',
+  'function canaryAddress() view returns (address)',
+  'function quantumCanary() view returns (address)',
+  'function poolManager() view returns (address)',
+  'function payout() returns (uint256 paid)',
+  'event BountyPaid(address indexed destination, uint256 ethAmount)',
+  'error PayoutInProgress()',
+  'error OnlyPoolManager()',
+  'error UnexpectedUnlock()',
+]);
 export const tokenAbi = [
   { type: 'function', name: 'balanceOf', inputs: [{ name: 'account', type: 'address' }], outputs: [{ type: 'uint256' }], stateMutability: 'view' },
   { type: 'function', name: 'decimals', inputs: [], outputs: [{ type: 'uint8' }], stateMutability: 'view' },

@@ -22,6 +22,18 @@
       "sha256": "03fb7056c462ec2a0565235065d8c06d5f7f3ab89616d3c595f2890056514f2e"
     },
     {
+      "path": "art/ink/hero.png",
+      "sha256": "0bd68373a0ec491999ce413e2bd4c613a9c7d396fcd6a15e71faf041b6c41c16"
+    },
+    {
+      "path": "art/ink/logo.png",
+      "sha256": "f72d34f461a7e080147a8b86be13f020c289ef21b9c51ab24e7680d0d3840bea"
+    },
+    {
+      "path": "art/ink/mascot.png",
+      "sha256": "b6def970f431cb446391747fff41989e5b3f61cf7bebbb19b6035210219b8488"
+    },
+    {
       "path": "art/logo.png",
       "sha256": "238f8ad0af0679b5cd3b55adfcd79d8db3191442fcbe0d2a447cd503a492ff85"
     },
@@ -34,44 +46,36 @@
       "sha256": "f892b4dfa7b282fcc7870fc47fff6e6fbf6f0659d1ce213ace95d43e5e790f42"
     },
     {
-      "path": "assets/ccip-BVZBxkTa.js",
-      "sha256": "ef3a991330e13b511c1d2d76c288ed471861d4075923ecfb6d50a4a475bb01e0"
-    },
-    {
-      "path": "assets/ibm-plex-mono-latin-400-normal-CvHOgSBP.woff",
-      "sha256": "328d50b6ece9ca25c46eea3e885ba497f6237f2fb84ef7b92f88e14a1a25e381"
+      "path": "assets/ccip-Bg2gCfr8.js",
+      "sha256": "8f2438a9293d7235571c94dcafcbcefa7de34d33ae059d4989b92fc3b6da02d2"
     },
     {
       "path": "assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2",
       "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
     },
     {
-      "path": "assets/ibm-plex-mono-latin-500-normal-CB9ihrfo.woff",
-      "sha256": "09f018c58556e5801ecc49d5b5275dcff4c73311c2af6b88e31c51d76d076a9d"
-    },
-    {
-      "path": "assets/ibm-plex-mono-latin-500-normal-DSY6xOcd.woff2",
-      "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22"
-    },
-    {
       "path": "assets/ibm-plex-mono-latin-600-normal-BgSNZQsw.woff2",
       "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83"
     },
     {
-      "path": "assets/ibm-plex-mono-latin-600-normal-DWFSQ4vo.woff",
-      "sha256": "cb96282f22c6f19112856fd6e0b34e2baefaf4ca6551e851d58c5ab0aabcd2be"
+      "path": "assets/index-5I4qwU6Z.css",
+      "sha256": "0cd488e9eb512ece48845a4f04a959a70592e22ab7d7510b28e772e2ffa9d2af"
     },
     {
-      "path": "assets/index-1jbhhLsy.js",
-      "sha256": "a80c75f7c1a76fcab7836cb514e0e24ec3b43210483f19abba77c42bb843f0e1"
+      "path": "assets/index-BS0TeM24.js",
+      "sha256": "11e73bb0ba43c558f962d19d2b2168e440c9d3a2c22f46b0bebf23dc91771764"
     },
     {
-      "path": "assets/index-DlwyRlw-.css",
-      "sha256": "dd21f789c4d1576fdd68d03058a05f2383da90a8aacb829e7e11ea173c3846aa"
+      "path": "fonts/anton-latin-400.woff2",
+      "sha256": "d0fa07ff63dd60cbc0e2f58e29c802dca2a5ae0276c999f59c6111ab7bbaec3b"
     },
     {
       "path": "index.html",
-      "sha256": "a98dd748a455437b7333f265c6f6850468d087a6390c06c7a49d6df08d320534"
+      "sha256": "22d999856669ed54cc9900894462c6d3413c4e23da3d7b4076723d5f62a39ecb"
+    },
+    {
+      "path": "licenses/Anton-OFL.txt",
+      "sha256": "ee67e6ee22790b7929f1a3769ca2801d565c64b5a9096942c1adf5596de9c9e4"
     },
     {
       "path": "licenses/IBM-Plex-Mono-OFL.txt",
