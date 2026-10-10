@@ -23,6 +23,42 @@
         "label": "CANARY on Uniswap ↗"
       },
       {
+        "href": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+        "label": "CANARY on DexScreener ↗"
+      },
+      {
+        "href": "https://etherscan.io/tx/0xa37131b9e076a06099a5e3a79e990ce248b796a0ddf940b2861b98fe7f263a99",
+        "label": "Etherscan ↗"
+      },
+      {
+        "href": "https://etherscan.io/tx/0xe1972122e021b815f63ed46c9d1dbd7e8724b19d446961c3d3ae0b30a1977af5",
+        "label": "Etherscan ↗"
+      },
+      {
+        "href": "https://etherscan.io/tx/0x013539209f8916815f42bd2691cd0df1c2169e0cb1fd49a36111b97614a66105",
+        "label": "Etherscan ↗"
+      },
+      {
+        "href": "https://etherscan.io/tx/0xa99de90b87bfe37beeccaa317e3f24b3e61d2cfc8da54ced5dfd51ed46aee502",
+        "label": "Etherscan ↗"
+      },
+      {
+        "href": "https://etherscan.io/tx/0xb2364e3abc501480f9cd566a335c570a9b675b7c6f9ec4cf8469064ef88bd7e1",
+        "label": "Etherscan ↗"
+      },
+      {
+        "href": "https://etherscan.io/tx/0xe1995c7a40ca73208ac4511a4ca391cf84b4e34a593c7d030bf6fcda1cc047b3",
+        "label": "Etherscan ↗"
+      },
+      {
+        "href": "https://etherscan.io/tx/0x2f76bf946a78758976485b599bf2b851b2886c9052a49fd0933b6ef35965f2b0",
+        "label": "Etherscan ↗"
+      },
+      {
+        "href": "https://etherscan.io/tx/0xcc4f921d0fe68d7bedf1ec5e8c6d6e8a1adb3496a1a2aa8c7d70241b6c01d939",
+        "label": "Etherscan ↗"
+      },
+      {
         "href": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
         "label": "0x709927ed370da2b7ac5bd0b2df1fb172892b3b56 ↗"
       },
@@ -91,6 +127,10 @@
         "label": "Source on GitHub ↗"
       },
       {
+        "href": "https://x.com/Quantum_Canary",
+        "label": "X: @Quantum_Canary ↗"
+      },
+      {
         "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
         "label": "Hook source on GitHub ↗"
       },
@@ -101,12 +141,36 @@
       {
         "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
         "label": "CANARY launch on the IMD explorer ↗"
+      },
+      {
+        "href": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "CANARY on Uniswap ↗"
+      },
+      {
+        "href": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+        "label": "CANARY on DexScreener ↗"
+      },
+      {
+        "href": "https://quantum-canary.sites.imd.fun/",
+        "label": "Head metadata: og:url"
+      },
+      {
+        "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+        "label": "Head metadata: og:image"
+      },
+      {
+        "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+        "label": "Head metadata: twitter:image"
       }
     ]
   },
   {
     "route": "verify",
     "links": [
+      {
+        "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
+        "label": "GitHub source ↗"
+      },
       {
         "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
         "label": "Observer contract ↗"
@@ -116,6 +180,10 @@
         "label": "Source on GitHub ↗"
       },
       {
+        "href": "https://x.com/Quantum_Canary",
+        "label": "X: @Quantum_Canary ↗"
+      },
+      {
         "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
         "label": "Hook source on GitHub ↗"
       },
@@ -126,6 +194,38 @@
       {
         "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
         "label": "CANARY launch on the IMD explorer ↗"
+      },
+      {
+        "href": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "CANARY on Uniswap ↗"
+      },
+      {
+        "href": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+        "label": "CANARY on DexScreener ↗"
+      },
+      {
+        "href": "https://quantum-canary.sites.imd.fun/",
+        "label": "Head metadata: og:url"
+      },
+      {
+        "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+        "label": "Head metadata: og:image"
+      },
+      {
+        "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+        "label": "Head metadata: twitter:image"
+      },
+      {
+        "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#readContract",
+        "label": "AI prompt reference"
+      },
+      {
+        "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
+        "label": "AI prompt reference"
+      },
+      {
+        "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+        "label": "AI prompt reference"
       }
     ]
   },
@@ -145,6 +245,10 @@
         "label": "Source on GitHub ↗"
       },
       {
+        "href": "https://x.com/Quantum_Canary",
+        "label": "X: @Quantum_Canary ↗"
+      },
+      {
         "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
         "label": "Hook source on GitHub ↗"
       },
@@ -155,6 +259,26 @@
       {
         "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
         "label": "CANARY launch on the IMD explorer ↗"
+      },
+      {
+        "href": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "CANARY on Uniswap ↗"
+      },
+      {
+        "href": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+        "label": "CANARY on DexScreener ↗"
+      },
+      {
+        "href": "https://quantum-canary.sites.imd.fun/",
+        "label": "Head metadata: og:url"
+      },
+      {
+        "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+        "label": "Head metadata: og:image"
+      },
+      {
+        "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+        "label": "Head metadata: twitter:image"
       }
     ]
   }

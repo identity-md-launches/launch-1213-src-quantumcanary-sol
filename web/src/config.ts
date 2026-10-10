@@ -11,6 +11,8 @@ export type Manifest = {
 };
 export const site = {
   source: 'https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol',
+  contractSource: 'https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol',
+  social: 'https://x.com/Quantum_Canary',
   launch: 'https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35',
   build: 'https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556',
   seedPhrase: 'IMD Quantum Canary #1 warns that if this balance ever drops, a quantum computer has broken secp256k1.',
@@ -26,6 +28,7 @@ export const community = {
   build: 'https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f',
   repository: 'https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol',
   uniswap: 'https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56',
+  dexscreener: 'https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5',
   source: 'https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol',
   token: '0x709927ed370da2b7ac5bd0b2df1fb172892b3b56' as Address,
   hook: '0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc' as Address,

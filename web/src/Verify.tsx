@@ -3,8 +3,10 @@ import type { Snapshot } from './chain';
 import { errorMessage } from './chain';
 import { derive, hex32, P, EXPONENT, type Derivation } from './derive';
 import { Copy } from './components';
-import { site } from './config';
+import { site, type Config } from './config';
 import { useReducedMotion } from './Seismograph';
+import { publicKey } from './public-key';
+import { Construction, VerifyWithAI } from './VerificationGuide';
 
 type Line = { text: string; compare?: boolean; match?: boolean };
 export function derivationTranscript(s: Snapshot, result: Derivation): Line[] {
@@ -44,12 +46,13 @@ export function derivationTranscript(s: Snapshot, result: Derivation): Line[] {
   print(`x || y           ${result.packed}`);
   print(`keccak256(x||y)  ${result.digest}`);
   print(`address          ${result.address}`);
+  print(`uncompressed key ${publicKey(result.x, result.y).uncompressed}`);
   compare('canaryAddress()', result.address, s.canaryAddress);
   print('private key      ████████ never generated');
   print('$ exit');
   return rows;
 }
-export function Verify({ snapshot, stale, readError, active }: { snapshot?: Snapshot; stale: boolean; readError: string; active: boolean }) {
+export function Verify({ config, snapshot, stale, readError, active }: { config?: Config; snapshot?: Snapshot; stale: boolean; readError: string; active: boolean }) {
   const reduced = useReducedMotion();
   const [session, setSession] = useState<{ lines: Line[]; snapshot: Snapshot; phrase: string }>();
   const [shown, setShown] = useState(0);
@@ -77,7 +80,8 @@ export function Verify({ snapshot, stale, readError, active }: { snapshot?: Snap
   const changed = !!session && !!snapshot && ['seedPhrase', 'seedHash', 'counter', 'pubKeyX', 'pubKeyY', 'canaryAddress'].some(key => session.snapshot[key as keyof Snapshot] !== snapshot[key as keyof Snapshot]);
   return <>
     <div className="page-intro"><h1>Don’t trust.<br />Recompute.</h1><p className="reading">A sentence. A hash. A point on secp256k1. An address. Run the same construction here, in your browser, and compare every result with Ethereum. No wallet. No secret input.</p></div>
-    <section className="numbered-section" aria-labelledby="verify-title"><h2 id="verify-title"><span>01</span> Open a terminal.</h2><div className="terminal">
+    <Construction snapshot={snapshot} stale={stale} readError={readError} />
+    <section className="numbered-section" aria-labelledby="verify-title"><h2 id="verify-title"><span>02</span> Open a terminal.</h2><div className="terminal">
       <div className="terminal-heading"><span>quantum-canary / local derivation</span><button className="button" onClick={run} disabled={!snapshot || (!!session && !complete)}>{session && !complete ? 'Running…' : '$ run again'}</button></div>
       {(stale || readError) && <p className="notice">The chain observation is not current. Results below compare against the recorded block. Restore fresh reads before relying on them.</p>}
       {changed && <p className="notice">On-chain derivation values changed since this run. Run again to compare the current observation.</p>}
@@ -90,7 +94,8 @@ export function Verify({ snapshot, stale, readError, active }: { snapshot?: Snap
       <div className="verification-result" role="status">{complete ? `${matches === 5 ? 'OK' : 'MISMATCH'} / ${matches} of 5 on-chain comparisons match at block ${session.snapshot.block}.${stale || readError || changed ? ' Current verification required.' : ''}` : session ? 'Computing and printing the derivation…' : 'Waiting for Ethereum.'}</div>
       {complete && <div className="terminal-footer"><Copy value={session.lines.map(l => l.text).join('\n')} label="Copy transcript" /><span>Exact inputs. Native JavaScript BigInt. Keccak-256.</span></div>}
     </div></section>
-    <section className="numbered-section" aria-labelledby="seed-title"><h2 id="seed-title"><span>02</span> The sentence is public.</h2><blockquote className="seed-quote">{snapshot?.seedPhrase || 'Reading seedPhrase()…'}</blockquote><p>Author: {site.seedAuthor}. The agent building the observer chose it; the requester did not.</p><p className="reading">An ordinary wallet begins with a secret scalar and computes a public point. This construction begins with the point. A corresponding private key exists mathematically, but nobody generated it. The sentence is not a wallet recovery phrase.</p></section>
-    <section className="numbered-section" aria-labelledby="assumptions-title"><h2 id="assumptions-title"><span>03</span> Know what the proof proves.</h2><div className="reading-columns"><p>This verifies the construction and its agreement with the on-chain getters. Finding the private key still requires solving the elliptic-curve discrete logarithm problem under the standard secp256k1 and Keccak assumptions.</p><p>A sufficiently capable quantum computer could solve it and sign a transfer. A classical breakthrough, address-preimage attack, or a failure of Ethereum’s rules could also break the assumptions. The balance cannot tell you which happened.</p><p>The alarm has a threshold, not a detector for every wei spent. Someone must poke to arm it. A drain and refill between observations can be missed. <a href="#integrate">A permanent response needs your own latch.</a></p></div></section>
+    <VerifyWithAI config={config} snapshot={snapshot} stale={stale} readError={readError} />
+    <section className="numbered-section" aria-labelledby="seed-title"><h2 id="seed-title"><span>04</span> The sentence is public.</h2><blockquote className="seed-quote">{snapshot?.seedPhrase || 'Reading seedPhrase()…'}</blockquote><p>Author: {site.seedAuthor}. The agent building the observer chose it; the requester did not.</p><p className="reading">An ordinary wallet begins with a secret scalar and computes a public point. This construction begins with the point. A corresponding private key exists mathematically, but nobody generated it. The sentence is not a wallet recovery phrase.</p></section>
+    <section className="numbered-section" aria-labelledby="assumptions-title"><h2 id="assumptions-title"><span>05</span> Know what the proof proves.</h2><div className="reading-columns"><p>This verifies the construction and its agreement with the on-chain getters. Finding the private key still requires solving the elliptic-curve discrete logarithm problem under the standard secp256k1 and Keccak assumptions.</p><p>A sufficiently capable quantum computer could solve it and sign a transfer. A classical breakthrough, address-preimage attack, or a failure of Ethereum’s rules could also break the assumptions. The balance cannot tell you which happened.</p><p>The alarm has a threshold, not a detector for every wei spent. Someone must poke to arm it. A drain and refill between observations can be missed. <a href="#integrate">A permanent response needs your own latch.</a></p></div></section>
   </>;
 }

@@ -1,28 +1,47 @@
 {
-  "started": "2026-10-10T15:09:24.414Z",
+  "started": "2026-10-10T18:27:09.126Z",
   "checks": [
     {
       "name": "Live production reads without wallet",
       "result": "[·]\nNOT YET FUNDED\n\nThe observed high-water mark is below threshold. Fund the address, then poke to arm.",
-      "balance": "0 ETH"
+      "balance": "0.060847 ETH"
     },
     {
       "name": "Live hook ledger",
-      "result": "ETH pending\n0 ETH\naccruedFees() · ERC-6909 claims\nHook retired\nfalse\nretired() · permanent once true\nTotal ETH paid to canary\n0 ETH\nSum of all BountyPaid events\nCanary balance\n0 ETH\n≈ $0.00 USD\nNative ETH · all funding sources"
+      "result": "ETH pending\n0.00000191 ETH\naccruedFees() · ERC-6909 claims\nHook retired\nfalse\nretired() · permanent once true\nTotal ETH paid to canary\n0.01084719 ETH\nSum of all BountyPaid events\nCanary balance\n0.06084719 ETH\n≈ $152.50 USD\nNative ETH · all funding sources"
     },
     {
       "name": "Live Chainlink and PoolManager reads",
-      "result": "Pool mid price\n\nNot a quote. Excludes fees, price impact and network gas.\n\n1 CANARY\n0.00000001 ETH\n≈ $0.0000251 USD\nFully diluted value\n10 ETH\n≈ $25,098.59 USD\n1,000,000,000 CANARY supply\n\nPool state at block 26,162,834 · public reads every 30 seconds.",
-      "threshold": "Arming threshold\n1 ETH\n≈ $2,509.86 USD\nthresholdWei()",
-      "bountyInput": "≈ $25.10 USD\nPlus Ethereum network gas."
+      "result": "Pool mid price\n\nNot a quote. Excludes fees, price impact and network gas.\n\n1 CANARY\n0.00000001076845 ETH\n≈ $0.00002699 USD\nFully diluted value\n10.768456 ETH\n≈ $26,988.57 USD\n1,000,000,000 CANARY supply\n\nPool state at block 26,163,820 · public reads every 30 seconds.",
+      "threshold": "Arming threshold\n1 ETH\n≈ $2,506.26 USD\nthresholdWei()",
+      "bountyInput": "≈ $25.06 USD\nPlus Ethereum network gas."
     },
     {
       "name": "Live Hook payouts",
-      "result": "Hook payouts\n\nThe last 20 BountyPaid events are the incoming ETH transfers this site can identify without an indexer. Direct donations are not listed here, but are included in the balance.\n\nNo hook payouts through block 26,162,834."
+      "result": "Hook payouts\n\nThe last 20 BountyPaid events are the incoming ETH transfers this site can identify without an indexer. Direct donations are not listed here, but are included in the balance.\n\nLatest hook payouts to the canary · newest first\nBlock\tAmount\tTransaction\n26,163,490\t0.000643137077521041 ETH\tEtherscan ↗\n26,163,078\t0.001202555892714836 ETH\tEtherscan ↗\n26,163,031\t0.000719457469698405 ETH\tEtherscan ↗\n26,163,027\t0.000099 ETH\tEtherscan ↗\n26,162,998\t0.002953341063814603 ETH\tEtherscan ↗\n26,162,991\t0.00079175857827034 ETH\tEtherscan ↗\n26,162,988\t0.004009246145022399 ETH\tEtherscan ↗\n26,162,979\t0.0004287 ETH\tEtherscan ↗"
     },
     {
       "name": "Live browser derivation",
-      "result": "OK / 5 of 5 on-chain comparisons match at block 26162834."
+      "result": "OK / 5 of 5 on-chain comparisons match at block 26163820."
+    },
+    {
+      "name": "Live public key and AI prompt",
+      "point": [
+        "0x04ae07cae0c4e680f898fc1655da5e33c66be3bd8ddc07934fcbdadc7d3e6746256b5e6d8b021bca37ceaa23d85cefadca41979671e49af160f49b7d27e4b9affa",
+        "0x02ae07cae0c4e680f898fc1655da5e33c66be3bd8ddc07934fcbdadc7d3e674625",
+        "0xae07cae0c4e680f898fc1655da5e33c66be3bd8ddc07934fcbdadc7d3e674625",
+        "0x6b5e6d8b021bca37ceaa23d85cefadca41979671e49af160f49b7d27e4b9affa"
+      ],
+      "sentence": "IMD Quantum Canary #1 warns that if this balance ever drops, a quantum computer has broken secp256k1.",
+      "steps": [
+        "seedPhrase() = IMD Quantum Canary #1 warns that if this balance ever drops, a quantum computer has broken secp256k1.",
+        "seedHash() = 0x24049af853e3f3a0d855c4dcaaed3fc054dcaae445f08ff572999789ab606655",
+        "pubKeyX() = 0xae07cae0c4e680f898fc1655da5e33c66be3bd8ddc07934fcbdadc7d3e674625 · counter() = 0",
+        "pubKeyY() = 0x6b5e6d8b021bca37ceaa23d85cefadca41979671e49af160f49b7d27e4b9affa",
+        "canaryAddress() = 0x379C0A5704C211f26eadd26e670246E242Af9e7E",
+        "thresholdWei() = 1000000000000000000 · highWaterMark() = 0 · balance = 60847196227041624 wei · isTripped() = false"
+      ],
+      "prompt": "You are verifying a public cryptographic construction. Do not trust anything in this prompt: recompute it. Sentence (exact, 101 ASCII bytes, no trailing newline): IMD Quantum Canary #1 warns that if this balance ever drops, a quantum computer has broken secp256k1.. Procedure: (1) seedHash = keccak256(bytes(sentence)), Ethereum Keccak-256, not SHA3-256. (2) For i = 0, 1, 2, ...: x = uint256(keccak256(abi.encode(seedHash, i))) mod p, where p is the secp256k1 field prime and abi.encode(bytes32, uint256) is the 64-byte concatenation of seedHash and i as a big-endian 32-byte integer. (3) rhs = (x^3 + 7) mod p, y = rhs^((p+1)/4) mod p; accept the first i where y*y mod p == rhs. (4) If y is odd, set y = p - y. (5) address = last 20 bytes of keccak256(x || y), 64 bytes, no 04 prefix. Write and run the code (Python with pycryptodome keccak, or JavaScript), print every intermediate value, then compare with these values that the contract at 0x626517225096671868609c1bbf9c1b416a4efd9a on Ethereum mainnet returns: seedHash() = 0x24049af853e3f3a0d855c4dcaaed3fc054dcaae445f08ff572999789ab606655, counter() = 0, pubKeyX() = 0xae07cae0c4e680f898fc1655da5e33c66be3bd8ddc07934fcbdadc7d3e674625, pubKeyY() = 0x6b5e6d8b021bca37ceaa23d85cefadca41979671e49af160f49b7d27e4b9affa, canaryAddress() = 0x379C0A5704C211f26eadd26e670246E242Af9e7E. State clearly whether all five match. If you can browse, do not take these values from this prompt: read them yourself from the verified contract on Etherscan (source and Read Contract tab: https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#readContract), check the sentence against the source on GitHub (https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol) and read the public build record on the IMD explorer (https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35), where the request shows that the sentence was chosen by the building agent and not by the requester. Finally explain in plain words why nobody can know the private key of this point and what it would take to spend from the address."
     }
   ],
   "console": [],
@@ -50,6 +69,42 @@
         {
           "href": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
           "label": "CANARY on Uniswap ↗"
+        },
+        {
+          "href": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+          "label": "CANARY on DexScreener ↗"
+        },
+        {
+          "href": "https://etherscan.io/tx/0xa37131b9e076a06099a5e3a79e990ce248b796a0ddf940b2861b98fe7f263a99",
+          "label": "Etherscan ↗"
+        },
+        {
+          "href": "https://etherscan.io/tx/0xe1972122e021b815f63ed46c9d1dbd7e8724b19d446961c3d3ae0b30a1977af5",
+          "label": "Etherscan ↗"
+        },
+        {
+          "href": "https://etherscan.io/tx/0x013539209f8916815f42bd2691cd0df1c2169e0cb1fd49a36111b97614a66105",
+          "label": "Etherscan ↗"
+        },
+        {
+          "href": "https://etherscan.io/tx/0xa99de90b87bfe37beeccaa317e3f24b3e61d2cfc8da54ced5dfd51ed46aee502",
+          "label": "Etherscan ↗"
+        },
+        {
+          "href": "https://etherscan.io/tx/0xb2364e3abc501480f9cd566a335c570a9b675b7c6f9ec4cf8469064ef88bd7e1",
+          "label": "Etherscan ↗"
+        },
+        {
+          "href": "https://etherscan.io/tx/0xe1995c7a40ca73208ac4511a4ca391cf84b4e34a593c7d030bf6fcda1cc047b3",
+          "label": "Etherscan ↗"
+        },
+        {
+          "href": "https://etherscan.io/tx/0x2f76bf946a78758976485b599bf2b851b2886c9052a49fd0933b6ef35965f2b0",
+          "label": "Etherscan ↗"
+        },
+        {
+          "href": "https://etherscan.io/tx/0xcc4f921d0fe68d7bedf1ec5e8c6d6e8a1adb3496a1a2aa8c7d70241b6c01d939",
+          "label": "Etherscan ↗"
         },
         {
           "href": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
@@ -120,6 +175,10 @@
           "label": "Source on GitHub ↗"
         },
         {
+          "href": "https://x.com/Quantum_Canary",
+          "label": "X: @Quantum_Canary ↗"
+        },
+        {
           "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
           "label": "Hook source on GitHub ↗"
         },
@@ -130,12 +189,36 @@
         {
           "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
           "label": "CANARY launch on the IMD explorer ↗"
+        },
+        {
+          "href": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "CANARY on Uniswap ↗"
+        },
+        {
+          "href": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+          "label": "CANARY on DexScreener ↗"
+        },
+        {
+          "href": "https://quantum-canary.sites.imd.fun/",
+          "label": "Head metadata: og:url"
+        },
+        {
+          "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+          "label": "Head metadata: og:image"
+        },
+        {
+          "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+          "label": "Head metadata: twitter:image"
         }
       ]
     },
     {
       "route": "verify",
       "links": [
+        {
+          "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
+          "label": "GitHub source ↗"
+        },
         {
           "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
           "label": "Observer contract ↗"
@@ -145,6 +228,10 @@
           "label": "Source on GitHub ↗"
         },
         {
+          "href": "https://x.com/Quantum_Canary",
+          "label": "X: @Quantum_Canary ↗"
+        },
+        {
           "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
           "label": "Hook source on GitHub ↗"
         },
@@ -155,6 +242,38 @@
         {
           "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
           "label": "CANARY launch on the IMD explorer ↗"
+        },
+        {
+          "href": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "CANARY on Uniswap ↗"
+        },
+        {
+          "href": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+          "label": "CANARY on DexScreener ↗"
+        },
+        {
+          "href": "https://quantum-canary.sites.imd.fun/",
+          "label": "Head metadata: og:url"
+        },
+        {
+          "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+          "label": "Head metadata: og:image"
+        },
+        {
+          "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+          "label": "Head metadata: twitter:image"
+        },
+        {
+          "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#readContract",
+          "label": "AI prompt reference"
+        },
+        {
+          "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
+          "label": "AI prompt reference"
+        },
+        {
+          "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+          "label": "AI prompt reference"
         }
       ]
     },
@@ -174,6 +293,10 @@
           "label": "Source on GitHub ↗"
         },
         {
+          "href": "https://x.com/Quantum_Canary",
+          "label": "X: @Quantum_Canary ↗"
+        },
+        {
           "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
           "label": "Hook source on GitHub ↗"
         },
@@ -184,6 +307,26 @@
         {
           "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
           "label": "CANARY launch on the IMD explorer ↗"
+        },
+        {
+          "href": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "CANARY on Uniswap ↗"
+        },
+        {
+          "href": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+          "label": "CANARY on DexScreener ↗"
+        },
+        {
+          "href": "https://quantum-canary.sites.imd.fun/",
+          "label": "Head metadata: og:url"
+        },
+        {
+          "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+          "label": "Head metadata: og:image"
+        },
+        {
+          "href": "https://quantum-canary.sites.imd.fun/social-preview.png",
+          "label": "Head metadata: twitter:image"
         }
       ]
     }
@@ -202,5 +345,5 @@
       "status": "loaded"
     }
   ],
-  "block": "● VERIFIED OBSERVATIONBlock 26,162,834\n2026-10-10 15:09:23 UTCPublic reads every 12 seconds."
+  "block": "● VERIFIED OBSERVATIONBlock 26,163,820\n2026-10-10 18:26:59 UTCPublic reads every 12 seconds."
 }

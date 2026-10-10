@@ -4,6 +4,7 @@ import { publicClient, site, type Config } from './config';
 import { checkedWallet, type Wallet } from './wallet';
 import { errorMessage, readSnapshot, type Snapshot } from './chain';
 import { AddressValue, Arrow, QR, UsdValue } from './components';
+import { PublicKey } from './PublicKey';
 
 type Transaction = { phase: 'idle' | 'preparing' | 'signing' | 'confirming' | 'uncertain' | 'success' | 'error'; message: string; hash?: Hash };
 const idle: Transaction = { phase: 'idle', message: '' };
@@ -100,7 +101,9 @@ export function Actions({ config, wallet, snapshot, stale, readError, refresh, e
       <div className="fund-copy"><h2 id="fund-title"><span>02</span> Put ETH on the line.</h2><p>Anyone can send ETH straight to the canary address. No owner. No withdrawal function. No known private key.</p><p>Nobody, including the authors, can move it under today’s cryptographic assumptions. A quantum computer that breaks secp256k1 could recover the key and claim the bounty.</p><p className="warning-note">Bounties are irreversible. There is no refund or recovery path. Send only what you are willing to lock forever.</p><p className="fine">A balance drop is evidence of a broken security assumption, not proof of a particular computer. <a href="#verify">Read the assumptions →</a></p><img className="fund-art ink-art" src="./art/ink/mascot.png" alt="" width="140" height="140" loading="lazy" /></div>
       <div className="fund-panel">
         <h3>Send directly to the canary.</h3><p>No token purchase. No hook fee. No LP fee. Only network gas.</p>
-        {snapshot ? <><AddressValue value={snapshot.canaryAddress} config={config} label="Copy bounty address" /><div className="qr-row"><QR address={snapshot.canaryAddress} chainId={config.manifest.chainId} /><p className="fine">Ethereum mainnet only.<br />Scan to send directly.<br />This is the bounty account; the observer contract cannot accept donations.</p></div></> : <p>Reading the bounty address from the contract…</p>}
+        {snapshot ? <AddressValue value={snapshot.canaryAddress} config={config} label="Copy bounty address" /> : <p>Reading the bounty address from the contract…</p>}
+        <PublicKey snapshot={snapshot} stale={stale} readError={readError} />
+        {snapshot && <div className="qr-row"><QR address={snapshot.canaryAddress} chainId={config.manifest.chainId} /><p className="fine">Ethereum mainnet only.<br />Scan to send directly.<br />This is the bounty account; the observer contract cannot accept donations.</p></div>}
         <form onSubmit={e => { e.preventDefault(); setInputError(''); try { setReview(validAmount(input)); setConsent(false); } catch (err) { setInputError(errorMessage(err)); inputRef.current?.focus(); } }}>
           <label htmlFor="bounty-amount">Bounty amount <span className="muted">(ETH)</span></label>
           <div className="amount-input"><input ref={inputRef} id="bounty-amount" name="bounty-amount" type="text" inputMode="decimal" autoComplete="off" value={input} aria-invalid={!!inputError} aria-describedby="amount-context amount-error" disabled={active(fund) || active(poke)} onChange={e => { setInput(e.target.value); setReview(undefined); setInputError(''); }} /><span>ETH</span></div>

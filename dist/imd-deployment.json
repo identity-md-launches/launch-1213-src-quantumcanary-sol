@@ -46,8 +46,8 @@
       "sha256": "f892b4dfa7b282fcc7870fc47fff6e6fbf6f0659d1ce213ace95d43e5e790f42"
     },
     {
-      "path": "assets/ccip-nghk8PgQ.js",
-      "sha256": "16db62d0d3bd3634b6885c15249b19b5baf5fe1e4dfc76dad375906c12939fe4"
+      "path": "assets/ccip-qXxL_LqJ.js",
+      "sha256": "0971547f253dfc401d139c329954356ecd08afdb2123e15526e2e61aa2e0bed6"
     },
     {
       "path": "assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2",
@@ -58,12 +58,12 @@
       "sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83"
     },
     {
-      "path": "assets/index-MtICzycO.js",
-      "sha256": "8d6233ff9f741949f41a637ad6f6439d4044d4a5367c594412a25b7566783934"
+      "path": "assets/index-BFesJOSl.css",
+      "sha256": "871bfe9933bc9e72af0b9d56f3de9d6e9e5b71fde2324107c49b04fd49a72c9d"
     },
     {
-      "path": "assets/index-ez1ol8uT.css",
-      "sha256": "f8cfdc7fbde77d8b2b05e0793f560e732fa133efb8eb4bded603abef81037e59"
+      "path": "assets/index-Cik3Sw6s.js",
+      "sha256": "f19ff703f8950f84ebc50272d5b79fc3255c48ee288e93919be9cb3fe16b3b7b"
     },
     {
       "path": "fonts/anton-latin-400.woff2",
@@ -71,7 +71,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "e0f4bb75ee4df33d00ba38e48e9cc8468993b5704ed1703db04f7274c41c03b9"
+      "sha256": "fb1d68965b6581e4d93c83c6b1de3af1216e726139f231a17d6d3f50036e00a9"
     },
     {
       "path": "licenses/Anton-OFL.txt",

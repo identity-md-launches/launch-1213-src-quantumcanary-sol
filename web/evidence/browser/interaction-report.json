@@ -1,6 +1,10 @@
 {
-  "started": "2026-10-10T15:09:24.890Z",
+  "started": "2026-10-10T18:25:41.192Z",
   "checks": [
+    {
+      "name": "Public key and Status additions",
+      "detail": "65-byte and 33-byte encodings match all live mock getters, both copy exactly, block sits immediately below the bounty address; three-line recap precedes flow table; market/social links match brief."
+    },
     {
       "name": "Read-only completion features",
       "detail": "Oracle USD and live input conversion, inverted pool price / exact FDV, 20 newest payouts, preserved a11y texture, token identity, three-job provenance, original PNG downloads and 1200×630 social metadata."
@@ -16,6 +20,10 @@
     {
       "name": "Missing wallet recovery",
       "detail": "Install/open-wallet explanation is shown; reads remain usable."
+    },
+    {
+      "name": "Six steps and independent prompt",
+      "detail": "All six values read from mock contract; construction precedes terminal, public key follows address row, AI prompt follows terminal. Exact clipboard verified by keyboard; denied clipboard gives selectable-text recovery. No wallet."
     },
     {
       "name": "Browser derivation interactions",
@@ -52,6 +60,10 @@
     {
       "name": "Full alarm lifecycle and chart pause",
       "detail": "Unfunded → awaiting poke → armed → tripped → refilled; first-trip record persists."
+    },
+    {
+      "name": "Getter-driven additions after refresh",
+      "detail": "Changed RPC x updates public key, construction and copied prompt, while each new surface labels the failed verification."
     },
     {
       "name": "Derivation mismatch",
@@ -98,8 +110,16 @@
       "detail": "A wallet chainChanged event immediately removes the poke action until the chain is corrected."
     },
     {
+      "name": "Stale additions",
+      "detail": "Last observed getter values remain readable/copyable and are explicitly labelled stale on Status and Verify."
+    },
+    {
       "name": "Stale chain gating",
       "detail": "Old block timestamp is labelled stale and prevents signing."
+    },
+    {
+      "name": "No hard-coded getter fallback",
+      "detail": "Initial RPC failure shows no key or copyable placeholder prompt; six-step values remain loading until actual reads recover."
     },
     {
       "name": "RPC outage and retry",
@@ -132,6 +152,6 @@
   ],
   "failures": [],
   "console": [],
-  "finished": "2026-10-10T15:10:22.916Z",
-  "requestCount": 939
+  "finished": "2026-10-10T18:26:29.509Z",
+  "requestCount": 899
 }

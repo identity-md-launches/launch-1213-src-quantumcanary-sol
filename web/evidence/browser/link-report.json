@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-10-10T15:12:44.859757+00:00",
-  "method": "GET, following redirects; retry non-200 once with desktop browser headers",
-  "uniqueLinks": 17,
+  "checkedAt": "2026-10-10T18:29:29.691377+00:00",
+  "method": "curl GET, following redirects, 20-second total timeout; retry non-200/error once with desktop browser headers",
+  "uniqueLinks": 31,
   "all200": false,
   "results": [
     {
@@ -10,16 +10,45 @@
         "CANARY on Uniswap \u2197"
       ],
       "routes": [
-        "status"
+        "status",
+        "verify",
+        "integrate"
       ],
       "attempts": [
         {
           "status": 200,
           "finalUrl": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-          "bytesRead": 86728
+          "bytesRead": 86728,
+          "exitCode": 0
         }
       ],
       "status": 200
+    },
+    {
+      "url": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+      "labels": [
+        "CANARY on DexScreener \u2197"
+      ],
+      "routes": [
+        "status",
+        "verify",
+        "integrate"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+          "bytesRead": 5737,
+          "exitCode": 0
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+          "bytesRead": 5951,
+          "exitCode": 0
+        }
+      ],
+      "status": 403
     },
     {
       "url": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
@@ -33,12 +62,14 @@
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
-          "reason": "Forbidden"
+          "bytesRead": 5578,
+          "exitCode": 0
         },
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
-          "reason": "Forbidden"
+          "bytesRead": 5792,
+          "exitCode": 0
         }
       ],
       "status": 403
@@ -55,12 +86,14 @@
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
-          "reason": "Forbidden"
+          "bytesRead": 5578,
+          "exitCode": 0
         },
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
-          "reason": "Forbidden"
+          "bytesRead": 5792,
+          "exitCode": 0
         }
       ],
       "status": 403
@@ -77,12 +110,14 @@
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
-          "reason": "Forbidden"
+          "bytesRead": 5578,
+          "exitCode": 0
         },
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
-          "reason": "Forbidden"
+          "bytesRead": 5792,
+          "exitCode": 0
         }
       ],
       "status": 403
@@ -102,12 +137,38 @@
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
-          "reason": "Forbidden"
+          "bytesRead": 5578,
+          "exitCode": 0
         },
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
-          "reason": "Forbidden"
+          "bytesRead": 5792,
+          "exitCode": 0
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#readContract",
+      "labels": [
+        "AI prompt reference"
+      ],
+      "routes": [
+        "verify"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#readContract",
+          "bytesRead": 5578,
+          "exitCode": 0
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#readContract",
+          "bytesRead": 5792,
+          "exitCode": 0
         }
       ],
       "status": 403
@@ -124,12 +185,14 @@
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-          "reason": "Forbidden"
+          "bytesRead": 5578,
+          "exitCode": 0
         },
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-          "reason": "Forbidden"
+          "bytesRead": 5792,
+          "exitCode": 0
         }
       ],
       "status": 403
@@ -146,12 +209,14 @@
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
-          "reason": "Forbidden"
+          "bytesRead": 5578,
+          "exitCode": 0
         },
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
-          "reason": "Forbidden"
+          "bytesRead": 5792,
+          "exitCode": 0
         }
       ],
       "status": 403
@@ -168,12 +233,14 @@
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
-          "reason": "Forbidden"
+          "bytesRead": 5578,
+          "exitCode": 0
         },
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
-          "reason": "Forbidden"
+          "bytesRead": 5792,
+          "exitCode": 0
         }
       ],
       "status": 403
@@ -190,12 +257,14 @@
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
-          "reason": "Forbidden"
+          "bytesRead": 5578,
+          "exitCode": 0
         },
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
-          "reason": "Forbidden"
+          "bytesRead": 5792,
+          "exitCode": 0
         }
       ],
       "status": 403
@@ -212,12 +281,206 @@
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-          "reason": "Forbidden"
+          "bytesRead": 5572,
+          "exitCode": 0
         },
         {
           "status": 403,
           "finalUrl": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-          "reason": "Forbidden"
+          "bytesRead": 5786,
+          "exitCode": 0
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/tx/0x013539209f8916815f42bd2691cd0df1c2169e0cb1fd49a36111b97614a66105",
+      "labels": [
+        "Etherscan \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0x013539209f8916815f42bd2691cd0df1c2169e0cb1fd49a36111b97614a66105",
+          "bytesRead": 5677,
+          "exitCode": 0
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0x013539209f8916815f42bd2691cd0df1c2169e0cb1fd49a36111b97614a66105",
+          "bytesRead": 5870,
+          "exitCode": 0
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/tx/0x2f76bf946a78758976485b599bf2b851b2886c9052a49fd0933b6ef35965f2b0",
+      "labels": [
+        "Etherscan \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0x2f76bf946a78758976485b599bf2b851b2886c9052a49fd0933b6ef35965f2b0",
+          "bytesRead": 5677,
+          "exitCode": 0
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0x2f76bf946a78758976485b599bf2b851b2886c9052a49fd0933b6ef35965f2b0",
+          "bytesRead": 5870,
+          "exitCode": 0
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/tx/0xa37131b9e076a06099a5e3a79e990ce248b796a0ddf940b2861b98fe7f263a99",
+      "labels": [
+        "Etherscan \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xa37131b9e076a06099a5e3a79e990ce248b796a0ddf940b2861b98fe7f263a99",
+          "bytesRead": 5677,
+          "exitCode": 0
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xa37131b9e076a06099a5e3a79e990ce248b796a0ddf940b2861b98fe7f263a99",
+          "bytesRead": 5870,
+          "exitCode": 0
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/tx/0xa99de90b87bfe37beeccaa317e3f24b3e61d2cfc8da54ced5dfd51ed46aee502",
+      "labels": [
+        "Etherscan \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xa99de90b87bfe37beeccaa317e3f24b3e61d2cfc8da54ced5dfd51ed46aee502",
+          "bytesRead": 5677,
+          "exitCode": 0
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xa99de90b87bfe37beeccaa317e3f24b3e61d2cfc8da54ced5dfd51ed46aee502",
+          "bytesRead": 5870,
+          "exitCode": 0
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/tx/0xb2364e3abc501480f9cd566a335c570a9b675b7c6f9ec4cf8469064ef88bd7e1",
+      "labels": [
+        "Etherscan \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xb2364e3abc501480f9cd566a335c570a9b675b7c6f9ec4cf8469064ef88bd7e1",
+          "bytesRead": 5677,
+          "exitCode": 0
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xb2364e3abc501480f9cd566a335c570a9b675b7c6f9ec4cf8469064ef88bd7e1",
+          "bytesRead": 5870,
+          "exitCode": 0
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/tx/0xcc4f921d0fe68d7bedf1ec5e8c6d6e8a1adb3496a1a2aa8c7d70241b6c01d939",
+      "labels": [
+        "Etherscan \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xcc4f921d0fe68d7bedf1ec5e8c6d6e8a1adb3496a1a2aa8c7d70241b6c01d939",
+          "bytesRead": 5677,
+          "exitCode": 0
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xcc4f921d0fe68d7bedf1ec5e8c6d6e8a1adb3496a1a2aa8c7d70241b6c01d939",
+          "bytesRead": 5870,
+          "exitCode": 0
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/tx/0xe1972122e021b815f63ed46c9d1dbd7e8724b19d446961c3d3ae0b30a1977af5",
+      "labels": [
+        "Etherscan \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xe1972122e021b815f63ed46c9d1dbd7e8724b19d446961c3d3ae0b30a1977af5",
+          "bytesRead": 5677,
+          "exitCode": 0
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xe1972122e021b815f63ed46c9d1dbd7e8724b19d446961c3d3ae0b30a1977af5",
+          "bytesRead": 5870,
+          "exitCode": 0
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/tx/0xe1995c7a40ca73208ac4511a4ca391cf84b4e34a593c7d030bf6fcda1cc047b3",
+      "labels": [
+        "Etherscan \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xe1995c7a40ca73208ac4511a4ca391cf84b4e34a593c7d030bf6fcda1cc047b3",
+          "bytesRead": 5677,
+          "exitCode": 0
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/tx/0xe1995c7a40ca73208ac4511a4ca391cf84b4e34a593c7d030bf6fcda1cc047b3",
+          "bytesRead": 5870,
+          "exitCode": 0
         }
       ],
       "status": 403
@@ -234,7 +497,8 @@
         {
           "status": 200,
           "finalUrl": "https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f",
-          "bytesRead": 1578574
+          "bytesRead": 1580459,
+          "exitCode": 0
         }
       ],
       "status": 200
@@ -251,7 +515,8 @@
         {
           "status": 200,
           "finalUrl": "https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556",
-          "bytesRead": 97501
+          "bytesRead": 99103,
+          "exitCode": 0
         }
       ],
       "status": 200
@@ -260,7 +525,8 @@
       "url": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
       "labels": [
         "Canary build job on the IMD explorer \u2197",
-        "Contract build \u2197"
+        "Contract build \u2197",
+        "AI prompt reference"
       ],
       "routes": [
         "status",
@@ -271,7 +537,8 @@
         {
           "status": 200,
           "finalUrl": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
-          "bytesRead": 257050
+          "bytesRead": 258278,
+          "exitCode": 0
         }
       ],
       "status": 200
@@ -291,7 +558,8 @@
         {
           "status": 200,
           "finalUrl": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-          "bytesRead": 1118459
+          "bytesRead": 1120167,
+          "exitCode": 0
         }
       ],
       "status": 200
@@ -311,7 +579,27 @@
         {
           "status": 200,
           "finalUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
-          "bytesRead": 329290
+          "bytesRead": 329290,
+          "exitCode": 0
+        }
+      ],
+      "status": 200
+    },
+    {
+      "url": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
+      "labels": [
+        "GitHub source \u2197",
+        "AI prompt reference"
+      ],
+      "routes": [
+        "verify"
+      ],
+      "attempts": [
+        {
+          "status": 200,
+          "finalUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
+          "bytesRead": 277796,
+          "exitCode": 0
         }
       ],
       "status": 200
@@ -331,7 +619,8 @@
         {
           "status": 200,
           "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
-          "bytesRead": 320267
+          "bytesRead": 320268,
+          "exitCode": 0
         }
       ],
       "status": 200
@@ -346,22 +635,74 @@
       ],
       "attempts": [
         {
-          "status": 503,
+          "status": 200,
           "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
-          "reason": "Service Unavailable"
-        },
-        {
-          "status": 503,
-          "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
-          "reason": "Service Unavailable"
-        },
-        {
-          "status": 503,
-          "reason": "Service Unavailable"
+          "bytesRead": 383029,
+          "exitCode": 0
         }
       ],
-      "status": 503,
-      "earlierRunStatus": 200
+      "status": 200
+    },
+    {
+      "url": "https://quantum-canary.sites.imd.fun/",
+      "labels": [
+        "Head metadata: og:url"
+      ],
+      "routes": [
+        "status",
+        "verify",
+        "integrate"
+      ],
+      "attempts": [
+        {
+          "status": 200,
+          "finalUrl": "https://quantum-canary.sites.imd.fun/",
+          "bytesRead": 1747,
+          "exitCode": 0
+        }
+      ],
+      "status": 200
+    },
+    {
+      "url": "https://quantum-canary.sites.imd.fun/social-preview.png",
+      "labels": [
+        "Head metadata: og:image",
+        "Head metadata: twitter:image"
+      ],
+      "routes": [
+        "status",
+        "verify",
+        "integrate"
+      ],
+      "attempts": [
+        {
+          "status": 200,
+          "finalUrl": "https://quantum-canary.sites.imd.fun/social-preview.png",
+          "bytesRead": 54402,
+          "exitCode": 0
+        }
+      ],
+      "status": 200
+    },
+    {
+      "url": "https://x.com/Quantum_Canary",
+      "labels": [
+        "X: @Quantum_Canary \u2197"
+      ],
+      "routes": [
+        "status",
+        "verify",
+        "integrate"
+      ],
+      "attempts": [
+        {
+          "status": 200,
+          "finalUrl": "https://x.com/Quantum_Canary",
+          "bytesRead": 71908,
+          "exitCode": 0
+        }
+      ],
+      "status": 200
     }
   ]
 }

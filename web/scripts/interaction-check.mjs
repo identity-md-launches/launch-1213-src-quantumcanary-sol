@@ -20,6 +20,10 @@ const observer = config.contracts[0].address;
 const account = '0x1111111111111111111111111111111111111111'; // Mock wallet only; no key exists in this test.
 const hash = '0x' + 'a1'.repeat(32);
 const blockHash = '0x' + 'b2'.repeat(32);
+const x = 'ae07cae0c4e680f898fc1655da5e33c66be3bd8ddc07934fcbdadc7d3e674625';
+const y = '6b5e6d8b021bca37ceaa23d85cefadca41979671e49af160f49b7d27e4b9affa';
+const uncompressed = `0x04${x}${y}`;
+const compressed = `0x02${x}`;
 const seed = 'IMD Quantum Canary #1 warns that if this balance ever drops, a quantum computer has broken secp256k1.';
 const report = { started: new Date().toISOString(), checks: [], failures: [], console: [], requests: [] };
 const server = await preview();
@@ -107,6 +111,19 @@ try {
   const qr=page.locator('img.qr');await expect(qr).toBeVisible();
   await page.getByRole('button',{name:'Copy bounty address',exact:true}).click();
   expect(await page.evaluate(()=>navigator.clipboard.readText())).toBe(canary);
+  const statusKey = page.locator('#fund .public-key');
+  await expect(statusKey.locator('code')).toHaveText([uncompressed,compressed,`0x${x}`,`0x${y}`]);
+  expect(await statusKey.evaluate(e=>e.previousElementSibling.className)).toBe('address-row');
+  for(const [label,value] of [['Copy uncompressed key',uncompressed],['Copy compressed key',compressed]]) {
+    await statusKey.getByRole('button',{name:label,exact:true}).click();
+    expect(await page.evaluate(()=>navigator.clipboard.readText())).toBe(value);
+  }
+  await expect(page.locator('.swap-recap ol li')).toHaveCount(3);
+  expect(await page.locator('.swap-recap').evaluate(e=>!!(e.compareDocumentPosition(document.querySelector('.flow-table')) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+  await expect(page.locator('.token-details a', {hasText:'CANARY on DexScreener'})).toHaveAttribute('href','https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5');
+  await expect(page.locator('.site-footer a', {hasText:'CANARY on DexScreener'})).toHaveCount(1);
+  await expect(page.locator('.site-footer a', {hasText:'X: @Quantum_Canary'})).toHaveAttribute('href','https://x.com/Quantum_Canary');
+  check('Public key and Status additions','65-byte and 33-byte encodings match all live mock getters, both copy exactly, block sits immediately below the bounty address; three-line recap precedes flow table; market/social links match brief.');
   await expect(page.locator('.ledger-values')).toContainText('0.125 ETH');
   await expect(page.locator('.ledger-values')).toContainText('0.75 ETH');
   await expect(page.locator('.metrics .field').first()).toContainText('≈ $2,000.00 USD');
@@ -160,6 +177,24 @@ try {
   await page.locator('header nav a[href="#verify"]').click();
   await expect(page.locator('.comparison.match')).toHaveCount(5);
   await page.locator('.terminal').screenshot({path:resolve(output,'verify-terminal.jpeg'),animations:'disabled',quality:78});
+  const transcript = await page.locator('.terminal-line code').allTextContents();
+  expect(transcript[transcript.findIndex(t=>t.startsWith('address '))+1]).toBe(`uncompressed key ${uncompressed}`);
+  await expect(page.locator('.construction-steps li')).toHaveCount(6);
+  const stepValues=await page.locator('.construction-steps code').allTextContents();
+  for(const [i,value] of [[0,seed],[1,'0x24049af853e3f3a0d855c4dcaaed3fc054dcaae445f08ff572999789ab606655'],[2,`0x${x}`],[3,`0x${y}`],[4,canary],[5,'thresholdWei() = 1000000000000000000']])expect(stepValues[i]).toContain(value);
+  expect(await page.locator('.construction').evaluate(e=>!!(e.compareDocumentPosition(document.querySelector('.terminal')) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+  expect(await page.locator('.terminal').evaluate(e=>!!(e.compareDocumentPosition(document.querySelector('.verify-ai')) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+  const aiPrompt=await page.locator('.ai-prompt').innerText();
+  expect(aiPrompt).toContain(`Sentence (exact, 101 ASCII bytes, no trailing newline): ${seed}. Procedure:`);
+  for(const value of [observer,`pubKeyX() = 0x${x}`,`pubKeyY() = 0x${y}`,`canaryAddress() = ${canary}`,'counter() = 0'])expect(aiPrompt).toContain(value);
+  await page.getByRole('button',{name:'Copy AI prompt',exact:true}).focus();
+  await page.keyboard.press('Enter');
+  expect(await page.evaluate(()=>navigator.clipboard.readText())).toBe(aiPrompt);
+  await page.evaluate(()=>{window.savedClipboard=navigator.clipboard.writeText; navigator.clipboard.writeText=async()=>{throw Error('Permission denied');};});
+  await page.getByRole('button',{name:'Copy AI prompt',exact:true}).click();
+  await expect(page.locator('.verify-ai .copy-error')).toHaveText('Copy unavailable. Select the value manually.');
+  await page.evaluate(()=>navigator.clipboard.writeText=window.savedClipboard);
+  check('Six steps and independent prompt','All six values read from mock contract; construction precedes terminal, public key follows address row, AI prompt follows terminal. Exact clipboard verified by keyboard; denied clipboard gives selectable-text recovery. No wallet.');
   check('Browser derivation interactions','Five textual OK comparisons and all real intermediate values printed line by line.');
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.getByRole('button',{name:'$ run again',exact:true}).click();
@@ -170,6 +205,18 @@ try {
     await page.setViewportSize({width,height:900});
     for(const route of ['status','verify','integrate']) {
       await page.locator(`header nav a[href="#${route}"]`).click();
+      await expect(page.locator('meta[name="twitter:site"]')).toHaveAttribute('content','@Quantum_Canary');
+      if(route==='integrate') {
+        await expect(page.locator('.public-key.compact code')).toHaveText([uncompressed,compressed,`0x${x}`,`0x${y}`]);
+        for(const [label,value] of [['Copy uncompressed key',uncompressed],['Copy compressed key',compressed]]) {
+          await page.locator('.public-key.compact').getByRole('button',{name:label,exact:true}).click();
+          expect(await page.evaluate(()=>navigator.clipboard.readText())).toBe(value);
+        }
+      }
+      if(width===1440||width===320) {
+        const surfaces=route==='status'?['#fund .public-key','.swap-recap','.site-footer']:route==='verify'?['.construction','.verify-ai']:['.public-key.compact'];
+        for(let i=0;i<surfaces.length;i++)await page.locator(surfaces[i]).screenshot({path:resolve(output,`addition-${route}-${width}-${i}.jpeg`),animations:'disabled',quality:74});
+      }
       const overflow=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
       expect(overflow.scroll,`${route} at ${width}px overflow`).toBeLessThanOrEqual(overflow.viewport);
       await expect(page.locator('main h1:visible')).toHaveCount(1);
@@ -192,7 +239,7 @@ try {
     expect(audit.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target)})),`axe ${route}`).toEqual([]);
   }
   check('Automated accessibility','Axe WCAG 2 A/AA, 2.1 AA and 2.2 AA tags: no violations across all three routes.');
-  await writeFile(resolve(output,'CanaryGuard.sol'),await page.locator('.code-panel pre').innerText());
+  await writeFile(resolve(output,'CanaryGuard.sol'),await page.getByLabel('Solidity integration example').innerText());
   await page.locator('.skip-link').focus();await page.keyboard.press('Enter');
   await expect(page.locator('header nav a[href="#integrate"]')).toHaveAttribute('aria-current','page');
   await page.evaluate(()=>document.documentElement.style.fontSize='200%');
@@ -275,6 +322,14 @@ try {
   await page.locator('header nav a[href="#verify"]').click();
   await page.getByRole('button',{name:'$ run again',exact:true}).click();
   await expect(page.locator('.comparison.mismatch')).toHaveCount(1);
+  await expect(page.locator('.verify-ai')).toContainText('Unverified: the observation failed local checks.');
+  const changedX=toHex(BigInt(`0x${x}`)+1n,{size:32});
+  await expect(page.locator('.ai-prompt')).toContainText(`pubKeyX() = ${changedX}`);
+  await expect(page.locator('.construction-steps code').nth(2)).toContainText(changedX);
+  await page.locator('header nav a[href="#integrate"]').click();
+  await expect(page.locator('.public-key.compact code').first()).toHaveText(`0x04${changedX.slice(2)}${y}`);
+  await expect(page.locator('.public-key.compact')).toContainText('Unverified: the observation failed local checks.');
+  check('Getter-driven additions after refresh','Changed RPC x updates public key, construction and copied prompt, while each new surface labels the failed verification.');
   check('Derivation mismatch','Changed on-chain x prints MISMATCH, overall verification fails, transactions gated. Red remains exclusive to TRIPPED.');
   expect(problems).toEqual([]);
   await context.close();
@@ -377,12 +432,24 @@ try {
   await p.getByRole('button',{name:'Refresh ↻',exact:true}).click();
   await expect(p.getByText('Observation is stale.',{exact:true})).toBeVisible();
   await expect(p.getByRole('button',{name:'Call poke()'})).toBeDisabled();
+  await expect(p.locator('#fund .public-key')).toContainText('Last observed at block');
+  await p.locator('header nav a[href="#verify"]').click();
+  await expect(p.locator('.verify-ai')).toContainText('Retry reads above for a current observation.');
+  check('Stale additions','Last observed getter values remain readable/copyable and are explicitly labelled stale on Status and Verify.');
   check('Stale chain gating','Old block timestamp is labelled stale and prevents signing.');
   expect(w.problems).toEqual([]);await w.context.close();
 
   const es=state();es.fail=true;const e=await setup(es);
   await expect(e.page.getByText('Live reads unavailable.',{exact:true})).toBeVisible({timeout:25000});
   await expect(e.page.locator('.balance-value')).toHaveText('— ETH');
+  await expect(e.page.locator('#fund .public-key code')).toHaveCount(0);
+  await expect(e.page.locator('#fund .public-key button')).toHaveCount(0);
+  await e.page.locator('header nav a[href="#verify"]').click();
+  await expect(e.page.getByRole('button',{name:'Copy AI prompt',exact:true})).toHaveCount(0);
+  await expect(e.page.locator('.ai-prompt')).toHaveText('Waiting for the sentence and expected values from Ethereum…');
+  await expect(e.page.locator('.construction-steps code')).toHaveText(Array(6).fill('Reading from the contract…'));
+  await e.page.locator('header nav a[href="#status"]').click();
+  check('No hard-coded getter fallback','Initial RPC failure shows no key or copyable placeholder prompt; six-step values remain loading until actual reads recover.');
   es.fail=false;
   await e.page.getByRole('button',{name:'Retry reads',exact:true}).click();
   await expect(e.page.locator('.signal-banner h2')).toHaveText('NOT YET FUNDED');
