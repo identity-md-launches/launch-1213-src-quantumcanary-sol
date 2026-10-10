@@ -1,5 +1,5 @@
 {
-  "started": "2026-10-10T14:01:30.128Z",
+  "started": "2026-10-10T15:09:24.414Z",
   "checks": [
     {
       "name": "Live production reads without wallet",
@@ -8,15 +8,186 @@
     },
     {
       "name": "Live hook ledger",
-      "result": "ETH pending\n0 ETH\naccruedFees() · ERC-6909 claims\nHook retired\nfalse\nretired() · permanent once true\nTotal ETH paid to canary\n0 ETH\nSum of all BountyPaid events\nCanary balance\n0 ETH\nNative ETH · all funding sources"
+      "result": "ETH pending\n0 ETH\naccruedFees() · ERC-6909 claims\nHook retired\nfalse\nretired() · permanent once true\nTotal ETH paid to canary\n0 ETH\nSum of all BountyPaid events\nCanary balance\n0 ETH\n≈ $0.00 USD\nNative ETH · all funding sources"
+    },
+    {
+      "name": "Live Chainlink and PoolManager reads",
+      "result": "Pool mid price\n\nNot a quote. Excludes fees, price impact and network gas.\n\n1 CANARY\n0.00000001 ETH\n≈ $0.0000251 USD\nFully diluted value\n10 ETH\n≈ $25,098.59 USD\n1,000,000,000 CANARY supply\n\nPool state at block 26,162,834 · public reads every 30 seconds.",
+      "threshold": "Arming threshold\n1 ETH\n≈ $2,509.86 USD\nthresholdWei()",
+      "bountyInput": "≈ $25.10 USD\nPlus Ethereum network gas."
+    },
+    {
+      "name": "Live Hook payouts",
+      "result": "Hook payouts\n\nThe last 20 BountyPaid events are the incoming ETH transfers this site can identify without an indexer. Direct donations are not listed here, but are included in the balance.\n\nNo hook payouts through block 26,162,834."
     },
     {
       "name": "Live browser derivation",
-      "result": "OK / 5 of 5 on-chain comparisons match at block 26162497."
+      "result": "OK / 5 of 5 on-chain comparisons match at block 26162834."
     }
   ],
   "console": [],
   "failures": [],
+  "externalLinks": [
+    {
+      "route": "status",
+      "links": [
+        {
+          "href": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+          "label": "0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 ↗"
+        },
+        {
+          "href": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
+          "label": "0x379C0A5704C211f26eadd26e670246E242Af9e7E ↗"
+        },
+        {
+          "href": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "0x709927ed370da2b7ac5bd0b2df1fb172892b3b56 ↗"
+        },
+        {
+          "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "CANARY on the IMD explorer ↗"
+        },
+        {
+          "href": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "CANARY on Uniswap ↗"
+        },
+        {
+          "href": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "0x709927ed370da2b7ac5bd0b2df1fb172892b3b56 ↗"
+        },
+        {
+          "href": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
+          "label": "0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc ↗"
+        },
+        {
+          "href": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
+          "label": "0x379C0A5704C211f26eadd26e670246E242Af9e7E ↗"
+        },
+        {
+          "href": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
+          "label": "0x000000000004444c5dc75cb358380d2e3de08a90 ↗"
+        },
+        {
+          "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "CANARY launch on the IMD explorer ↗"
+        },
+        {
+          "href": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
+          "label": "Hook on Etherscan ↗"
+        },
+        {
+          "href": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "Token on Etherscan ↗"
+        },
+        {
+          "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
+          "label": "Canary observer on Etherscan ↗"
+        },
+        {
+          "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+          "label": "Canary build job on the IMD explorer ↗"
+        },
+        {
+          "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
+          "label": "published hook source"
+        },
+        {
+          "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+          "label": "Contract build ↗"
+        },
+        {
+          "href": "https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f",
+          "label": "Hook and token build ↗"
+        },
+        {
+          "href": "https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556",
+          "label": "This site ↗"
+        },
+        {
+          "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+          "label": "Contract source on GitHub ↗"
+        },
+        {
+          "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
+          "label": "Hook and token source on GitHub ↗"
+        },
+        {
+          "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
+          "label": "Observer contract ↗"
+        },
+        {
+          "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+          "label": "Source on GitHub ↗"
+        },
+        {
+          "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
+          "label": "Hook source on GitHub ↗"
+        },
+        {
+          "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+          "label": "Canary build job on the IMD explorer ↗"
+        },
+        {
+          "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "CANARY launch on the IMD explorer ↗"
+        }
+      ]
+    },
+    {
+      "route": "verify",
+      "links": [
+        {
+          "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
+          "label": "Observer contract ↗"
+        },
+        {
+          "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+          "label": "Source on GitHub ↗"
+        },
+        {
+          "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
+          "label": "Hook source on GitHub ↗"
+        },
+        {
+          "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+          "label": "Canary build job on the IMD explorer ↗"
+        },
+        {
+          "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "CANARY launch on the IMD explorer ↗"
+        }
+      ]
+    },
+    {
+      "route": "integrate",
+      "links": [
+        {
+          "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
+          "label": "0x626517225096671868609c1bbf9c1b416a4efd9a ↗"
+        },
+        {
+          "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
+          "label": "Observer contract ↗"
+        },
+        {
+          "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+          "label": "Source on GitHub ↗"
+        },
+        {
+          "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
+          "label": "Hook source on GitHub ↗"
+        },
+        {
+          "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+          "label": "Canary build job on the IMD explorer ↗"
+        },
+        {
+          "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "label": "CANARY launch on the IMD explorer ↗"
+        }
+      ]
+    }
+  ],
   "fonts": [
     {
       "family": "Anton",
@@ -31,5 +202,5 @@
       "status": "loaded"
     }
   ],
-  "block": "● VERIFIED OBSERVATIONBlock 26,162,497\n2026-10-10 14:01:23 UTCPublic reads every 12 seconds."
+  "block": "● VERIFIED OBSERVATIONBlock 26,162,834\n2026-10-10 15:09:23 UTCPublic reads every 12 seconds."
 }

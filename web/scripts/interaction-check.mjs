@@ -11,6 +11,9 @@ const config = JSON.parse(await readFile(resolve(root, 'dist/imd-deployment.json
 const abi = JSON.parse(await readFile(resolve(root, 'dist', config.contracts[0].abiPath), 'utf8'));
 const tokenAbi = parseAbi(['function balanceOf(address) view returns (uint256)', 'function decimals() view returns (uint8)', 'function symbol() view returns (string)']);
 const hookAbi = parseAbi(['function accruedFees() view returns (uint256)', 'function retired() view returns (bool)', 'function canaryAddress() view returns (address)', 'function quantumCanary() view returns (address)', 'function poolManager() view returns (address)', 'function payout() returns (uint256)', 'event BountyPaid(address indexed destination, uint256 ethAmount)']);
+const priceAbi = parseAbi(['function latestRoundData() view returns (uint80, int256, uint256, uint256, uint80)']);
+const poolAbi = parseAbi(['function extsload(bytes32) view returns (bytes32)']);
+const feed = '0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419';
 const hook = '0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc';
 const canary = '0x379C0A5704C211f26eadd26e670246E242Af9e7E';
 const observer = config.contracts[0].address;
@@ -21,7 +24,7 @@ const seed = 'IMD Quantum Canary #1 warns that if this balance ever drops, a qua
 const report = { started: new Date().toISOString(), checks: [], failures: [], console: [], requests: [] };
 const server = await preview();
 let browser;
-function state() { return { startTime: BigInt(Math.floor(Date.now()/1000)), balance: 0n, mark: 0n, trippedAt: 0n, trippedBlock: 0n, block: 26158256n, imd: parseEther('123456.789'), fail: false, mismatch: false, imdFail: false, codeMissing: false, pending: false, sent: [], stale: false, hookPending: parseEther('0.125'), retired: false, historyFail: false, hookMismatch: false, noPayout: false, lastPaid: 0n, cumulativePaid: parseEther('0.75') }; }
+function state() { return { startTime: BigInt(Math.floor(Date.now()/1000)), balance: 0n, mark: 0n, trippedAt: 0n, trippedBlock: 0n, block: 26158256n, imd: parseEther('123456.789'), fail: false, mismatch: false, imdFail: false, codeMissing: false, pending: false, sent: [], stale: false, hookPending: parseEther('0.125'), retired: false, historyFail: false, feedFail: false, poolFail: false, eventCount: 1, hookMismatch: false, noPayout: false, lastPaid: 0n, cumulativePaid: parseEther('0.75') }; }
 function block(s) { return { number: toHex(s.block), hash: blockHash, parentHash: hash, timestamp: toHex(s.startTime - (s.stale ? 300n : 0n)), nonce: '0x0000000000000000', difficulty: '0x0', gasLimit: '0x1c9c380', gasUsed: '0x0', miner: observer, extraData: '0x', transactions: [], baseFeePerGas: '0x3b9aca00', size: '0x1', stateRoot: hash, receiptsRoot: hash, transactionsRoot: hash, logsBloom: '0x'+'00'.repeat(256), sha3Uncles: hash, uncles: [] }; }
 function rpc(s, q) {
   const { method, params=[] } = q;
@@ -34,8 +37,17 @@ function rpc(s, q) {
     case 'eth_getBlockByNumber': result=block(s); break;
     case 'eth_getBalance': result=toHex(params[0].toLowerCase() === canary.toLowerCase() ? s.balance : parseEther('5')); break;
     case 'eth_getCode': result=(params[0].toLowerCase()===observer.toLowerCase() && !s.codeMissing) || (params[0].toLowerCase()===hook && params[1]!==toHex(26158146n)) ? '0x6000' : '0x'; break;
-    case 'eth_getLogs': if(s.historyFail) return {jsonrpc:'2.0',id:q.id,error:{code:-32000,message:'History unavailable'}}; result=[paymentLog(s,s.cumulativePaid)];break;
+    case 'eth_getLogs': if(s.historyFail) return {jsonrpc:'2.0',id:q.id,error:{code:-32000,message:'History unavailable'}}; result=Array.from({length:s.eventCount},(_,i)=>({...paymentLog(s,s.cumulativePaid/BigInt(s.eventCount)),blockNumber:toHex(s.block-BigInt(i)),logIndex:toHex(i)}));break;
     case 'eth_call': {
+      const target=params[0].to.toLowerCase();
+      if(target===feed) {
+        if(s.feedFail)return {jsonrpc:'2.0',id:q.id,error:{code:-32000,message:'Oracle unavailable'}};
+        result=encodeFunctionResult({abi:priceAbi,functionName:'latestRoundData',result:[1n,2000n*10n**8n,s.startTime,s.startTime,1n]});break;
+      }
+      if(target===config.network.uniswapV4.poolManager.toLowerCase()) {
+        if(s.poolFail)return {jsonrpc:'2.0',id:q.id,error:{code:-32000,message:'Pool unavailable'}};
+        result=encodeFunctionResult({abi:poolAbi,functionName:'extsload',result:toHex((12_500n<<208n)|((1n<<96n)*10_000n),{size:32})});break;
+      }
       const isToken=params[0].to.toLowerCase()===config.network.pairToken.address.toLowerCase();
       const isHook=params[0].to.toLowerCase()===hook;
       const usedAbi=isToken ? tokenAbi : isHook ? hookAbi : abi;
@@ -97,6 +109,50 @@ try {
   expect(await page.evaluate(()=>navigator.clipboard.readText())).toBe(canary);
   await expect(page.locator('.ledger-values')).toContainText('0.125 ETH');
   await expect(page.locator('.ledger-values')).toContainText('0.75 ETH');
+  await expect(page.locator('.metrics .field').first()).toContainText('≈ $2,000.00 USD');
+  await expect(page.locator('#amount-context')).toContainText('≈ $20.00 USD');
+  await page.getByLabel('Bounty amount (ETH)').fill('0.125');
+  await expect(page.locator('#amount-context')).toContainText('≈ $250.00 USD');
+  await page.getByLabel('Bounty amount (ETH)').fill('invalid');
+  await expect(page.locator('#amount-context .usd-value')).toHaveCount(0);
+  await page.getByLabel('Bounty amount (ETH)').fill('0.01');
+  await expect(page.locator('.market-values')).toContainText('0.00000001 ETH');
+  await expect(page.locator('.market-values')).toContainText('≈ $0.00002 USD');
+  await expect(page.locator('.market-values')).toContainText('≈ $20,000.00 USD');
+  await expect(page.locator('.hex-texture')).toHaveAttribute('aria-hidden','true');
+  await expect(page.locator('.money-thesis')).toHaveText('The canary needs no token.CANARY exists anyway.');
+  await expect(page.locator('.token-identity')).toContainText('Quantum Canary (CANARY)');
+  expect(await page.locator('.token-identity img').getAttribute('src')).toBe('./art/ink/logo.png');
+  await expect(page.locator('.provenance ol > li')).toHaveCount(3);
+  await expect(page.locator('.provenance')).toContainText('holds 0% of CANARY');
+  await expect(page.locator('a[href*="imd.fun/launch/"]')).toHaveCount(0);
+  await expect(page.locator('.press-kit a[download]')).toHaveCount(4);
+  for (const link of await page.locator('.press-kit a').all()) {
+    const path=await link.getAttribute('href');
+    const response=await page.request.get(new URL(path,server.url).href);
+    expect(response.status()).toBe(200);
+    expect(Buffer.compare(await response.body(),await readFile(resolve(root,'web/public',path)))).toBe(0);
+  }
+  expect(await page.locator('meta[property="og:url"]').getAttribute('content')).toBe('https://quantum-canary.sites.imd.fun/');
+  expect(await page.locator('meta[name="twitter:card"]').getAttribute('content')).toBe('summary_large_image');
+  const previewImage=await page.request.get(server.url+'social-preview.png');
+  expect(previewImage.status()).toBe(200);
+  const png=await previewImage.body();expect(png.readUInt32BE(16)).toBe(1200);expect(png.readUInt32BE(20)).toBe(630);
+  s.eventCount=25;
+  await page.getByRole('button',{name:'Refresh fund reads',exact:true}).click();
+  await expect(page.locator('.payout-table tbody tr')).toHaveCount(20);
+  await expect(page.locator('.payout-table tbody tr').first()).toContainText(s.block.toLocaleString('en-US'));
+  await expect(page.locator('.payout-table tbody tr').last()).toContainText((s.block-19n).toLocaleString('en-US'));
+  await expect(page.locator('.hook-history')).toContainText('Direct donations are not listed here, but are included in the balance.');
+  check('Read-only completion features','Oracle USD and live input conversion, inverted pool price / exact FDV, 20 newest payouts, preserved a11y texture, token identity, three-job provenance, original PNG downloads and 1200×630 social metadata.');
+  s.feedFail=true;
+  await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));
+  await expect(page.locator('.usd-value')).toHaveCount(0,{timeout:20000});
+  await expect(page.locator('.market-values')).toContainText('0.00000001 ETH');
+  s.feedFail=false;
+  await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));
+  await expect(page.locator('#amount-context')).toContainText('≈ $20.00 USD');
+  check('Oracle outage after a successful read','Previous USD figures disappear after a failed refresh and recover on the next successful public read.');
   check('Disconnected public reads, IMD, QR and clipboard','No wallet requests; correct full bounty address copied.');
   await page.getByRole('button',{name:'Connect a browser wallet',exact:true}).click();
   await expect(page.getByText(/No browser wallet found/)).toBeVisible();
@@ -121,9 +177,13 @@ try {
     }
   }
   check('Responsive production export','Status, Verify and Integrate: no horizontal overflow at 1440, 768, 390 and 320 CSS px.');
+  await page.locator('header nav a[href="#status"]').click();
+  await page.locator('.hook-history').screenshot({path:resolve(output,'hook-payouts-320.jpeg'),animations:'disabled',quality:75});
   await page.setViewportSize({width:1440,height:1000});
   await page.locator('header nav a[href="#status"]').click();
   await page.locator('.money-section').screenshot({path:resolve(output,'money-flow.jpeg'),animations:'disabled',quality:70});
+  await page.locator('.provenance').screenshot({path:resolve(output,'provenance.jpeg'),animations:'disabled',quality:70});
+  await page.locator('.site-footer').screenshot({path:resolve(output,'footer.jpeg'),animations:'disabled',quality:70});
   await page.locator('.fund-panel').screenshot({path:resolve(output,'fund-controls.jpeg'),animations:'disabled',quality:78});
   for(const route of ['status','verify','integrate']) {
     await page.locator(`header nav a[href="#${route}"]`).click();
@@ -297,6 +357,8 @@ try {
   ws.retired=false;ws.historyFail=true;ws.block++;
   await p.getByRole('button',{name:'Refresh fund reads',exact:true}).click();
   await expect(p.locator('.ledger-values')).toContainText('No partial total is shown');
+  await expect(p.locator('.hook-history')).toContainText('Hook payout history unavailable. Retry fund reads.');
+  await expect(p.locator('.payout-table')).toHaveCount(0);
   await expect(p.locator('.ledger-values')).toContainText('0.2 ETH');
   check('Incomplete history is explicit','Pending fees remain readable while a failed full-history scan shows no invented or partial total.');
   ws.historyFail=false;ws.hookMismatch=true;ws.block++;
@@ -326,6 +388,23 @@ try {
   await expect(e.page.locator('.signal-banner h2')).toHaveText('NOT YET FUNDED');
   check('RPC outage and retry','No fabricated zero/alarm on failure; retry restores the live state.');
   await e.context.close();
+  const fs=state();fs.feedFail=true;const f=await setup(fs);
+  await expect(f.page.locator('.market-values')).toContainText('0.00000001 ETH',{timeout:20000});
+  await expect(f.page.locator('.usd-value')).toHaveCount(0);
+  await expect(f.page.locator('#amount-context')).toHaveText('Plus Ethereum network gas.');
+  await expect(f.page.locator('.signal-banner h2')).toHaveText('NOT YET FUNDED');
+  check('Silent oracle failure','All USD figures disappear while native amounts, pool price, and the alarm remain usable; no USD error banner.');
+  await f.context.close();
+  const ps=state();ps.poolFail=true;const pool=await setup(ps);
+  await expect(pool.page.locator('.market-read')).toContainText('Pool mid price unavailable',{timeout:20000});
+  await expect(pool.page.locator('#amount-context')).toContainText('≈ $20.00 USD');
+  check('Independent pool failure','Pool unavailability does not hide valid Chainlink dollar context or alarm reads.');
+  await pool.context.close();
+  const emptyState=state();emptyState.eventCount=0;const empty=await setup(emptyState);
+  await expect(empty.page.locator('.hook-history')).toContainText('No hook payouts through block');
+  await expect(empty.page.locator('.payout-table')).toHaveCount(0);
+  check('Empty payout history','Zero events is explicit; no synthetic transfer rows.');
+  await empty.context.close();
   const ts=state();ts.imdFail=true;const t=await setup(ts);
   await expect(t.page.locator('.signal-banner h2')).toHaveText('NOT YET FUNDED',{timeout:20000});
   await expect(t.page.locator('.metrics')).toContainText('IMD read unavailable');

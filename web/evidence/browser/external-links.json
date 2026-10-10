@@ -1,0 +1,161 @@
+[
+  {
+    "route": "status",
+    "links": [
+      {
+        "href": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+        "label": "0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 ↗"
+      },
+      {
+        "href": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
+        "label": "0x379C0A5704C211f26eadd26e670246E242Af9e7E ↗"
+      },
+      {
+        "href": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "0x709927ed370da2b7ac5bd0b2df1fb172892b3b56 ↗"
+      },
+      {
+        "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "CANARY on the IMD explorer ↗"
+      },
+      {
+        "href": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "CANARY on Uniswap ↗"
+      },
+      {
+        "href": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "0x709927ed370da2b7ac5bd0b2df1fb172892b3b56 ↗"
+      },
+      {
+        "href": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
+        "label": "0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc ↗"
+      },
+      {
+        "href": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
+        "label": "0x379C0A5704C211f26eadd26e670246E242Af9e7E ↗"
+      },
+      {
+        "href": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
+        "label": "0x000000000004444c5dc75cb358380d2e3de08a90 ↗"
+      },
+      {
+        "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "CANARY launch on the IMD explorer ↗"
+      },
+      {
+        "href": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
+        "label": "Hook on Etherscan ↗"
+      },
+      {
+        "href": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "Token on Etherscan ↗"
+      },
+      {
+        "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
+        "label": "Canary observer on Etherscan ↗"
+      },
+      {
+        "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+        "label": "Canary build job on the IMD explorer ↗"
+      },
+      {
+        "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
+        "label": "published hook source"
+      },
+      {
+        "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+        "label": "Contract build ↗"
+      },
+      {
+        "href": "https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f",
+        "label": "Hook and token build ↗"
+      },
+      {
+        "href": "https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556",
+        "label": "This site ↗"
+      },
+      {
+        "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+        "label": "Contract source on GitHub ↗"
+      },
+      {
+        "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
+        "label": "Hook and token source on GitHub ↗"
+      },
+      {
+        "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
+        "label": "Observer contract ↗"
+      },
+      {
+        "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+        "label": "Source on GitHub ↗"
+      },
+      {
+        "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
+        "label": "Hook source on GitHub ↗"
+      },
+      {
+        "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+        "label": "Canary build job on the IMD explorer ↗"
+      },
+      {
+        "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "CANARY launch on the IMD explorer ↗"
+      }
+    ]
+  },
+  {
+    "route": "verify",
+    "links": [
+      {
+        "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
+        "label": "Observer contract ↗"
+      },
+      {
+        "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+        "label": "Source on GitHub ↗"
+      },
+      {
+        "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
+        "label": "Hook source on GitHub ↗"
+      },
+      {
+        "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+        "label": "Canary build job on the IMD explorer ↗"
+      },
+      {
+        "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "CANARY launch on the IMD explorer ↗"
+      }
+    ]
+  },
+  {
+    "route": "integrate",
+    "links": [
+      {
+        "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
+        "label": "0x626517225096671868609c1bbf9c1b416a4efd9a ↗"
+      },
+      {
+        "href": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
+        "label": "Observer contract ↗"
+      },
+      {
+        "href": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+        "label": "Source on GitHub ↗"
+      },
+      {
+        "href": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
+        "label": "Hook source on GitHub ↗"
+      },
+      {
+        "href": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+        "label": "Canary build job on the IMD explorer ↗"
+      },
+      {
+        "href": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+        "label": "CANARY launch on the IMD explorer ↗"
+      }
+    ]
+  }
+]

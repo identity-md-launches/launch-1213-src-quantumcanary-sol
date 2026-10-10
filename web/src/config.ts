@@ -11,7 +11,8 @@ export type Manifest = {
 };
 export const site = {
   source: 'https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol',
-  launch: 'https://imd.fun/launch/1213',
+  launch: 'https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35',
+  build: 'https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556',
   seedPhrase: 'IMD Quantum Canary #1 warns that if this balance ever drops, a quantum computer has broken secp256k1.',
   seedAuthor: 'The building agent of the imd.fun swarm',
   pollMs: 12_000,
@@ -21,12 +22,15 @@ export const site = {
 // These are separate from the launch-1213 attestation in imd-deployment.json.
 // No trading, quoting, approvals, router or factory transactions are offered.
 export const community = {
-  launch: 'https://imd.fun/launch/1235',
+  launch: 'https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56',
+  build: 'https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f',
+  repository: 'https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol',
+  uniswap: 'https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56',
   source: 'https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol',
   token: '0x709927ed370da2b7ac5bd0b2df1fb172892b3b56' as Address,
   hook: '0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc' as Address,
   canary: '0x379C0A5704C211f26eadd26e670246E242Af9e7E' as Address,
-  poolId: '0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5',
+  poolId: '0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5' as const,
   lpFee: 12_500,
   tickSpacing: 60,
   supply: 1_000_000_000n * 10n ** 18n,
@@ -34,6 +38,19 @@ export const community = {
   // events we verify that the hook did not yet exist at this block.
   eventsFromBlock: 26_158_146n,
 };
+// Read-only sources explicitly supplied by the completion brief. The pool
+// manager comes exclusively from the runtime deployment's network block.
+export const pricing = {
+  ethUsdFeed: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419' as Address,
+  feedDecimals: 8,
+  feedMaxAgeSeconds: 7_200n,
+  poolsSlot: 6n,
+  pollMs: 30_000,
+};
+export const priceFeedAbi = parseAbi([
+  'function latestRoundData() view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound)',
+]);
+export const poolManagerReadAbi = parseAbi(['function extsload(bytes32 slot) view returns (bytes32)']);
 export const hookAbi = parseAbi([
   'function accruedFees() view returns (uint256)',
   'function retired() view returns (bool)',

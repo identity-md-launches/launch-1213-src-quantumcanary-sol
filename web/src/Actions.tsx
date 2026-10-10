@@ -3,7 +3,7 @@ import { encodeFunctionData, formatEther, parseEther, type Hash } from 'viem';
 import { publicClient, site, type Config } from './config';
 import { checkedWallet, type Wallet } from './wallet';
 import { errorMessage, readSnapshot, type Snapshot } from './chain';
-import { AddressValue, Arrow, QR } from './components';
+import { AddressValue, Arrow, QR, UsdValue } from './components';
 
 type Transaction = { phase: 'idle' | 'preparing' | 'signing' | 'confirming' | 'uncertain' | 'success' | 'error'; message: string; hash?: Hash };
 const idle: Transaction = { phase: 'idle', message: '' };
@@ -22,7 +22,7 @@ function TxStatus({ tx, config, check }: { tx: Transaction; config: Config; chec
     {tx.phase === 'uncertain' && <button className="button" onClick={check}>Check confirmation</button>}
   </div>;
 }
-export function Actions({ config, wallet, snapshot, stale, readError, refresh }: { config: Config; wallet: Wallet; snapshot?: Snapshot; stale: boolean; readError: string; refresh: () => Promise<void> }) {
+export function Actions({ config, wallet, snapshot, stale, readError, refresh, ethUsd }: { config: Config; ethUsd?: bigint; wallet: Wallet; snapshot?: Snapshot; stale: boolean; readError: string; refresh: () => Promise<void> }) {
   const [input, setInput] = useState('0.01');
   const [inputError, setInputError] = useState('');
   const [review, setReview] = useState<bigint>();
@@ -32,6 +32,8 @@ export function Actions({ config, wallet, snapshot, stale, readError, refresh }:
   const fundLock = useRef(false);
   const pokeLock = useRef(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  let inputWei: bigint | undefined;
+  try { inputWei = validAmount(input); } catch { /* Invalid input has no USD estimate. */ }
   const ready = !!snapshot?.verified && !stale && !readError && !!wallet.account && !wallet.wrongChain;
   const gate = !snapshot ? 'Waiting for a verified Ethereum observation.' : readError || stale ? 'Fresh Ethereum reads are required before sending. Retry reads above.' : snapshot.verificationError || '';
   const provider = wallet.wrongChain ? undefined : wallet.provider;
@@ -102,13 +104,13 @@ export function Actions({ config, wallet, snapshot, stale, readError, refresh }:
         <form onSubmit={e => { e.preventDefault(); setInputError(''); try { setReview(validAmount(input)); setConsent(false); } catch (err) { setInputError(errorMessage(err)); inputRef.current?.focus(); } }}>
           <label htmlFor="bounty-amount">Bounty amount <span className="muted">(ETH)</span></label>
           <div className="amount-input"><input ref={inputRef} id="bounty-amount" name="bounty-amount" type="text" inputMode="decimal" autoComplete="off" value={input} aria-invalid={!!inputError} aria-describedby="amount-context amount-error" disabled={active(fund) || active(poke)} onChange={e => { setInput(e.target.value); setReview(undefined); setInputError(''); }} /><span>ETH</span></div>
-          <p id="amount-context" className="fine">Plus Ethereum network gas. USD conversion unavailable; no price feed is configured.</p>
+          <p id="amount-context" className="fine"><UsdValue wei={inputWei} ethUsd={ethUsd} />Plus Ethereum network gas.</p>
           <p id="amount-error" className="error-text" role="status">{inputError}</p>
           {walletGate || <button className={`button${review === undefined ? ' primary' : ''}`} type="submit" disabled={!ready || active(fund) || active(poke)}>{active(fund) ? 'Bounty transfer pending…' : 'Review bounty transfer'} <span aria-hidden="true">→</span></button>}
         </form>
         {gate && <p className="fine warning-text">{gate}</p>}
         {review !== undefined && wallet.account && !wallet.wrongChain && <div className="transfer-review">
-          <h3>Review irreversible transfer</h3><p>Send <strong>{formatEther(review)} ETH</strong> on Ethereum mainnet to:</p><code className="break">{snapshot?.canaryAddress}</code>
+          <h3>Review irreversible transfer</h3><p>Send <strong>{formatEther(review)} ETH</strong> <UsdValue wei={review} ethUsd={ethUsd} /> on Ethereum mainnet to:</p><code className="break">{snapshot?.canaryAddress}</code>
           <label className="checkbox"><input type="checkbox" checked={consent} disabled={active(fund)} onChange={e => setConsent(e.target.checked)} />I understand this ETH has no refund or recovery path.</label>
           <div className="button-row"><button className="button primary" disabled={!ready || !consent || active(fund) || active(poke)} onClick={() => void execute('fund')}>{active(fund) ? 'Transfer pending…' : `Send ${formatEther(review)} ETH`}</button><button className="button" disabled={active(fund)} onClick={() => setReview(undefined)}>Cancel</button></div>
         </div>}

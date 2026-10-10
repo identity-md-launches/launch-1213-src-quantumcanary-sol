@@ -1,6 +1,14 @@
 {
-  "started": "2026-10-10T14:01:30.339Z",
+  "started": "2026-10-10T15:09:24.890Z",
   "checks": [
+    {
+      "name": "Read-only completion features",
+      "detail": "Oracle USD and live input conversion, inverted pool price / exact FDV, 20 newest payouts, preserved a11y texture, token identity, three-job provenance, original PNG downloads and 1200×630 social metadata."
+    },
+    {
+      "name": "Oracle outage after a successful read",
+      "detail": "Previous USD figures disappear after a failed refresh and recover on the next successful public read."
+    },
     {
       "name": "Disconnected public reads, IMD, QR and clipboard",
       "detail": "No wallet requests; correct full bounty address copied."
@@ -98,6 +106,18 @@
       "detail": "No fabricated zero/alarm on failure; retry restores the live state."
     },
     {
+      "name": "Silent oracle failure",
+      "detail": "All USD figures disappear while native amounts, pool price, and the alarm remain usable; no USD error banner."
+    },
+    {
+      "name": "Independent pool failure",
+      "detail": "Pool unavailability does not hide valid Chainlink dollar context or alarm reads."
+    },
+    {
+      "name": "Empty payout history",
+      "detail": "Zero events is explicit; no synthetic transfer rows."
+    },
+    {
       "name": "Independent token failure",
       "detail": "An IMD RPC error leaves the ETH alarm readable and labels the token counter unavailable."
     },
@@ -112,6 +132,6 @@
   ],
   "failures": [],
   "console": [],
-  "finished": "2026-10-10T14:01:57.593Z",
-  "requestCount": 660
+  "finished": "2026-10-10T15:10:22.916Z",
+  "requestCount": 939
 }

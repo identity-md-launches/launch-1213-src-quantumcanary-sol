@@ -2,6 +2,11 @@ import { useEffect, useState, type ReactNode } from 'react';
 import QRCode from 'qrcode';
 import { formatUnits } from 'viem';
 import type { Config } from './config';
+import { usdValue } from './market-chain';
+
+export function UsdValue({ wei, ethUsd, digits = 2 }: { wei?: bigint; ethUsd?: bigint; digits?: number }) {
+  return wei !== undefined && ethUsd !== undefined ? <span className="usd-value">≈ {usdValue(wei, ethUsd, digits)} USD</span> : null;
+}
 
 export function Arrow() { return <span aria-hidden="true">↗</span>; }
 export function Copy({ value, label = 'Copy' }: { value: string; label?: string }) {

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
-import { parseEther } from 'viem';
+import { parseEther, type Hash } from 'viem';
 import { community, type Client, type Config } from '../src/config';
-import { readFundSnapshot, sumBountyPaid } from '../src/fund-chain';
+import { readFundSnapshot, sumBountyPaid, readBountyPaidHistory } from '../src/fund-chain';
 import { derivationTranscript } from '../src/Verify';
 import { derive } from '../src/derive';
 import type { Snapshot } from '../src/chain';
@@ -15,7 +15,7 @@ function fixture() {
     getChainId: vi.fn(async () => 1),
     getBlock: vi.fn(async () => ({ number: community.eventsFromBlock + 100n, hash: '0xabc', timestamp: BigInt(Math.floor(Date.now() / 1000)) })),
     readContract: vi.fn(async ({ functionName }: { functionName: string }) => getters[functionName]),
-    getContractEvents: vi.fn(async () => [{ removed: false, args: { destination: community.canary, ethAmount: parseEther('0.02') } }]),
+    getContractEvents: vi.fn(async ({ fromBlock }: { fromBlock: bigint; toBlock: bigint }) => [{ removed: false, blockNumber: fromBlock, transactionHash: ('0x' + 'ab'.repeat(32)) as Hash, logIndex: 0, args: { destination: community.canary, ethAmount: parseEther('0.02') } }]),
   };
   return { client, getters, typed: client as unknown as Client };
 }
@@ -30,6 +30,28 @@ describe('complete hook payment history', () => {
       [community.eventsFromBlock + 20_000n, community.eventsFromBlock + 20_000n],
     ]);
   });
+  it('keeps the latest 20 payouts in block/log order without dropping older amounts from the total', async () => {
+    const f = fixture();
+    f.client.getContractEvents.mockImplementation(async ({ fromBlock }) => Array.from({ length: 25 }, (_, i) => ({
+      removed: false, blockNumber: fromBlock + BigInt(Math.floor(i / 2)), logIndex: i % 2,
+      transactionHash: ('0x' + i.toString(16).padStart(64, '0')) as Hash,
+      args: { destination: community.canary, ethAmount: BigInt(i + 1) },
+    })).reverse());
+    const history = await readBountyPaidHistory(f.typed, community.eventsFromBlock + 20_100n);
+    expect(history.total).toBe(975n);
+    expect(history.payouts).toHaveLength(20);
+    expect(history.payouts[0].amount).toBe(25n);
+    expect(history.payouts[19].amount).toBe(6n);
+    expect(history.payouts[0].block).toBe(community.eventsFromBlock + 20_012n);
+  });
+  it('distinguishes empty history from unavailable and rejects duplicate logs', async () => {
+    const f = fixture();
+    f.client.getContractEvents.mockResolvedValue([]);
+    expect(await readBountyPaidHistory(f.typed, community.eventsFromBlock + 100n)).toEqual({ total: 0n, payouts: [] });
+    const log = { removed: false, blockNumber: community.eventsFromBlock, transactionHash: ('0x' + 'ab'.repeat(32)) as Hash, logIndex: 0, args: { destination: community.canary, ethAmount: 1n } };
+    f.client.getContractEvents.mockResolvedValue([log, log]);
+    await expect(readBountyPaidHistory(f.typed, community.eventsFromBlock + 100n)).rejects.toThrow('Duplicate');
+  });
   it('does not publish a partial total after any missing page', async () => {
     const f = fixture(); f.client.getContractEvents.mockRejectedValueOnce(Error('history unavailable'));
     await expect(sumBountyPaid(f.typed, community.eventsFromBlock + 10_000n)).rejects.toThrow('history unavailable');
@@ -40,9 +62,9 @@ describe('complete hook payment history', () => {
     expect(f.client.getContractEvents).not.toHaveBeenCalled();
   });
   it('refuses removed events or an unexpected recipient', async () => {
-    const f = fixture(); f.client.getContractEvents.mockResolvedValue([{ removed: true, args: { destination: community.canary, ethAmount: 1n } }]);
+    const f = fixture(); f.client.getContractEvents.mockResolvedValue([{ blockNumber: community.eventsFromBlock, transactionHash: ('0x' + 'ab'.repeat(32)) as Hash, logIndex: 0, removed: true, args: { destination: community.canary, ethAmount: 1n } }]);
     await expect(sumBountyPaid(f.typed, community.eventsFromBlock + 100n)).rejects.toThrow('Unexpected');
-    f.client.getContractEvents.mockResolvedValue([{ removed: false, args: { destination: community.hook, ethAmount: 1n } }]);
+    f.client.getContractEvents.mockResolvedValue([{ blockNumber: community.eventsFromBlock, transactionHash: ('0x' + 'ab'.repeat(32)) as Hash, logIndex: 0, removed: false, args: { destination: community.hook, ethAmount: 1n } }]);
     await expect(sumBountyPaid(f.typed, community.eventsFromBlock + 100n)).rejects.toThrow('Unexpected');
   });
   it('shows pending fees and retirement even when complete history is unavailable', async () => {

@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-10-10T14:14:16.806949+00:00",
+  "checkedAt": "2026-10-10T15:14:52.592316+00:00",
   "manifest": {
     "handoffMatches": true,
     "networkMatches": true,
     "assetHashesMatch": true,
-    "assetCount": 18,
-    "exportBytes": 2597314
+    "assetCount": 19,
+    "exportBytes": 2663108
   },
   "sourceMatchesBuiltCopy": true,
   "protectedPathsUnchanged": true,
@@ -15,14 +15,31 @@
     "web/src/wallet.ts": "34c4158c75066b06c53264b5d49f988f73dfdd246fbea739261812d0d0073002",
     "web/src/derive.ts": "084331e1837af1bd818b8d507a1e3717f0f9c757641bc4157b1b7637804abf4e",
     "web/src/useCanary.ts": "aa3dfa32d01db69d965fc284a4186f770b07a895c0a221fa8986c349f105f393",
+    "web/src/Verify.tsx": "07ae2c099cf56ebbe591e29bfb130802cb2d578f44b15bc39d5cfdd8a37be0b4",
+    "web/src/Seismograph.tsx": "6de484b6d0a05193ef714162294718a237a55a3c3af43675d28eeafe7c9bb25a",
+    "web/src/Integrate.tsx": "c537eccc5c3e1753b050a8bdab67d1915aec0c4407c64fd6e01c03b5ed2cc3af",
+    "web/vite.config.ts": "77cbc76f5420e375405ac1eecad55605284b920974f4a85b98a8aef16ad0066b",
+    "web/tsconfig.json": "c69495479f7b90e613b7eab9bff4a9dbb7873f30e39cc4b714e9be4f7bd8b2d2",
+    "web/package.json": "c6ebc781987a7c76e0cca0675fab8522113cd7e236ae87e0e5773b4b6a6e8156",
+    "web/package-lock.json": "026f6c13827d34173e63e63362267a4f4178f34c6816429caa1a0b2abc7ca964",
+    ".gitignore": "179e9a82975dc6925416a8f8cc850185d934bb4840a0e700105ba3faad75b715",
+    "web/public/art/hero.png": "03fb7056c462ec2a0565235065d8c06d5f7f3ab89616d3c595f2890056514f2e",
     "web/public/art/logo.png": "238f8ad0af0679b5cd3b55adfcd79d8db3191442fcbe0d2a447cd503a492ff85",
     "web/public/art/mascot.png": "099f772f971081da7463a48f3ef6a0aaa3d32531a81c9044377da704dfdf5927",
-    "web/public/art/hero.png": "03fb7056c462ec2a0565235065d8c06d5f7f3ab89616d3c595f2890056514f2e",
     "web/public/art/sticker.png": "f892b4dfa7b282fcc7870fc47fff6e6fbf6f0659d1ce213ace95d43e5e790f42"
   },
   "bytes": {
     "limit": 8388608,
-    "filesExcludingThisReport": 133,
-    "uncompressedExcludingThisReport": 7302797
+    "filesExcludingThisReport": 152,
+    "uncompressedExcludingThisReport": 7510853
+  },
+  "validation": {
+    "unitTestsPassed": 46,
+    "browserInteractionGroupsPassed": 32,
+    "liveReadGroupsPassed": 5,
+    "externalHttp200": 7,
+    "externalHttp403": 9,
+    "externalHttp503": 1,
+    "liveTransactionsBroadcast": 0
   }
 }

@@ -2,7 +2,7 @@
 
 A static Vite + React + TypeScript export with three hash-routed pages: Status, Verify and Integrate. Read and verify Ethereum without a wallet. An injected browser wallet is needed only to send bounty ETH, call `poke()`, or call the optional community hook's `payout()`.
 
-The redesign is an intentionally dense technical document: Anton headlines, IBM Plex Mono, a real canvas balance strip, a printed derivation transcript, numbered money-flow explanation, and a PGP-style public statement. The original four mascot PNGs are unchanged. Small, one-bit dithered print versions are separate runtime assets; the original sticker appears for TRIPPED.
+The site is an intentionally dense technical document: Anton headlines, IBM Plex Mono, a real canvas balance strip, a printed derivation transcript, numbered money-flow explanation, and a PGP-style public statement. The original four mascot PNGs are unchanged. Small, one-bit dithered print versions are separate runtime assets; the original sticker appears for TRIPPED.
 
 ## Install, build and preview
 
@@ -19,17 +19,17 @@ npm run preview -- --host 127.0.0.1
 
 `npm run build` performs the TypeScript check, exports to repository-root `dist/`, then writes the deployment manifest and verifies the observer ABI hash. Publish that entire directory. `base: './'` and hash navigation work under gateway subpaths without rewrites. The generated `dist/imd-deployment.json` is essential, so use **build + preview** for local inspection; the bare Vite development server does not supply that generated file.
 
-The package manifest and lockfile are unchanged from the existing project. No runtime CDN or backend is used. Dependencies are installed locally, never delivered. On this constrained worker, installation/build/tests ran in `test/scratch/build/web/`, a copy of the exact source with the same lockfile. The final export was copied back to `dist/`. `test/scratch/` is excluded from submission by the assignment. No ignore file was changed.
+The package manifest and lockfile are unchanged from the existing project. No runtime CDN or backend is used. Dependencies are installed locally, never delivered. On this constrained worker, installation/build/tests ran in `/tmp/quantum-canary-check/web/`, a copy of the exact source with the same lockfile. The final export was copied back to `dist/`. Dependency trees, npm cache and Playwright browser downloads stayed under `/tmp`, outside the repository. No ignore file was changed.
 
 ## Runtime configuration
 
 - `config/deployment.json` and `config/network.json` retain the exact supplied handoffs. `scripts/manifest.mjs` binds them to final export bytes.
 - `dist/imd-deployment.json` is the app's runtime source for the observer address, chain, ABI path and public RPCs. `src/config.ts:loadConfig()` fetches it and checks the complete observer ABI's canonical Keccak hash before rendering transactions.
 - The manifest retains the handoff's launch ID, source commit, attestation hash and complete one-contract set. The network and wallet-add-chain blocks are unchanged. No extra manifest keys or unrelated contract entries are added. Every other exported file has a SHA-256 inventory entry.
-- `src/config.ts` centralizes the optional community token/hook/pool identifiers explicitly supplied in this assignment, the small hook interface, site/seed metadata, and polling/staleness settings. The PoolManager comes from the runtime network block. These optional community contracts are **not** covered by the observer's attestation.
+- `src/config.ts` centralizes the optional community token/hook/pool identifiers explicitly supplied in this assignment, the small hook interface, the task-supplied Chainlink proxy and read ABI, the PoolManager read ABI, site/seed metadata, and polling/staleness settings. The PoolManager comes from the runtime network block. These optional community contracts are **not** covered by the observer's attestation.
 - All RPC endpoints are public. No private key, API secret, WalletConnect project ID, backend, quote, approval or swap flow exists. There is no guessed factory or launch-payer address.
 
-For the source evidence and two corrections to the supplied financial copy, read [fund-source.md](docs/fund-source.md). Most importantly, the published hook source still permits old claims to be paid after retirement; the frontend blocks its own payout action when retired or tripped and makes the limitation explicit.
+For the existing source evidence and financial-copy caveats, read [fund-source.md](docs/fund-source.md). Most importantly, the published hook source still permits old claims to be paid after retirement; the frontend blocks its own payout action when retired or tripped and makes the limitation explicit.
 
 ## Reads, chart and derivation
 
@@ -39,7 +39,7 @@ The canvas shows a rolling five-minute strip of **observations from this browser
 
 Verify calls the unchanged BigInt derivation and prints the real seed, hash, candidate encoding/x/rhs/y/square for every counter, acceptance, parity fix, packed point, address hash and final address. Each of five on-chain getters prints `OK` or `MISMATCH`, with both values. `$ run again` recomputes against the latest available observation; stale or changed input is labelled. Reduced motion prints the full transcript immediately.
 
-The hook ledger reads code and immutable destination/observer/PoolManager bindings before accepting pending fees and retirement. A complete `BountyPaid` log sum provides lifetime paid ETH. Missing history is labelled unavailable rather than inferred from the current balance. It refreshes every 30 seconds while visible and has its own retry control. Public RPC history limits can prevent that total without hiding pending fees.
+The hook ledger reads code and immutable destination/observer/PoolManager bindings before accepting pending fees and retirement. A complete `BountyPaid` log sum provides lifetime paid ETH. Missing history is labelled unavailable rather than inferred from the current balance. It refreshes every 30 seconds while visible and has its own retry control. Public RPC history limits can prevent that total without hiding pending fees. The same complete scan retains the latest 20 payouts, newest first, with exact ETH amounts, blocks and Etherscan transaction links. The **Hook payouts** list covers only `BountyPaid` events; direct donations are absent from the list but included in the balance.
 
 ## Wallet actions and signal limits
 
@@ -53,7 +53,7 @@ Each transaction has its own pending state, receipt lock, explorer link and retr
 
 `isTripped()` is a live check, not a permanent latch. It is true only below the threshold after the recorded high-water mark reached it. A refill can clear it. Integrate includes the full ABI, observer address, and a copyable/compiled Solidity guard with a separate permissionless `observeCanary()` latch. A state change followed by a revert would roll the latch back; the page explains why the observation must succeed separately.
 
-USD estimates are unavailable because no price source was supplied. Amounts use native ETH/IMD/CANARY units and exact wei disclosures.
+The supplied Chainlink ETH/USD feed adds dollar context beside the canary balance, arming threshold and bounty input/review. Feed failures silently hide USD. Section 04 reads `sqrtPriceX96` through the configured PoolManager’s `extsload`, then displays ETH/USD per CANARY and fully diluted value at the fixed 1,000,000,000 supply. These are labelled pool mid prices, not quotes. Reads are independent, use integer arithmetic, and refresh every 30 seconds while visible. See [market-reads.md](docs/market-reads.md) for formulas, source references and failure handling.
 
 ## Validation
 
@@ -62,11 +62,12 @@ From `web/`, after building:
 ```sh
 node scripts/interaction-check.mjs
 node scripts/browser-check.mjs
+python3 scripts/link-check.py
 ```
 
-Install a Playwright Chromium browser if needed (`npx playwright install chromium`), or set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to an existing compatible Chromium executable. Both scripts own and close a local `/preview/` server. The interaction script mocks RPC and wallet responses and broadcasts nothing. The live script performs only public reads. Test runs write results and screenshots under `artifacts/browser/` at repository root. The retained, delivered evidence is in `web/evidence/browser/`; it was moved out of the workspace-ignored output directory without changing an ignore file. Review its size before delivery.
+Install a Playwright Chromium browser if needed (`npx playwright install chromium`), or set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to an existing compatible Chromium executable. Both browser scripts own and close a local `/preview/` server. The interaction script mocks RPC and wallet responses and broadcasts nothing. The live script performs only public reads and inventories external anchors on each route. `link-check.py` requests every distinct link with GET and records actual HTTP statuses; it exits nonzero for any non-200 response. Test runs write results and screenshots under `artifacts/browser/` at repository root. The retained, delivered evidence is in `web/evidence/browser/`; a bounded selection was copied from the isolated check directory without changing an ignore file. Review its size before delivery.
 
-`tests/core.test.ts` retains the original derivation, alarm, ABI, value and wallet tests. `tests/fund.test.ts` adds log completeness, history failure, recipient binding, reorg and transcript cases. [VALIDATION.md](VALIDATION.md) records the final commands, measured contrast, viewport/keyboard/motion checks, source findings and remaining untested behavior. Root [DESIGN.md](../DESIGN.md) describes actual source tokens/components.
+`tests/core.test.ts` retains the original derivation, alarm, ABI, value and wallet tests. `tests/fund.test.ts` checks log completeness, newest-20 retention, duplicate rejection, history failure, recipient binding, reorg and transcript cases. `tests/market.test.ts` checks price inversion, packed slots, exact FDV, dollar formatting and oracle failures. [VALIDATION.md](VALIDATION.md) records the final commands, measured contrast, viewport/keyboard/motion checks, source findings and remaining untested behavior. Root [DESIGN.md](../DESIGN.md) describes actual source tokens/components.
 
 ## Artwork, licenses and metadata
 
@@ -74,4 +75,6 @@ Install a Playwright Chromium browser if needed (`npx playwright install chromiu
 
 Design review used the pinned Better Interface guide (Jakub Krehel, MIT) and its documentation section adapted from Impeccable (Paul Bakaus, Apache-2.0), with the pinned eth-frontend-ux reference (Austin Griffith, MIT). Notices are retained in `docs/licenses/`.
 
-The ENS/IPFS site name is `quantum-canary.site.identitymd.eth`. No canonical HTTPS gateway was supplied, so no invented absolute Open Graph image URL is emitted. There are no social links. Real funded transactions, browser-wallet extensions, hardware wallets, native mobile devices, screen-reader sessions and a byte-for-byte verification of the optional hook deployment were not exercised.
+The footer downloads all four original PNGs under **Press kit / CC0**. `public/social-preview.png` is a committed 1200×630 render of the existing dithered hero and Anton headline. Normal builds copy it; optionally regenerate it with `node scripts/social-preview.mjs` after installing Playwright Chromium. `og:url` is `https://quantum-canary.sites.imd.fun/`; `og:image` and `twitter:image` use that domain’s `/social-preview.png`, with `summary_large_image`. The new image becomes publicly available when this export is published. The ENS/IPFS site name remains `quantum-canary.site.identitymd.eth`. Real funded transactions, browser-wallet extensions, hardware wallets, native mobile devices, screen-reader sessions and a byte-for-byte verification of the optional hook deployment were not exercised.
+
+External-link status details are in [LINKS.md](LINKS.md). All 17 distinct external anchors were requested: the final check returned 7 HTTP 200, 9 Etherscan HTTP 403, and one HTTP 503 for the pinned GitHub hook-source page (200 in the earlier check). A Chromium retry also received an Etherscan challenge. This worker cannot honestly certify the requested all-200 gate. Required Etherscan destinations are preserved.

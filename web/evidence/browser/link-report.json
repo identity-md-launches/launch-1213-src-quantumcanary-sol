@@ -1,0 +1,367 @@
+{
+  "checkedAt": "2026-10-10T15:12:44.859757+00:00",
+  "method": "GET, following redirects; retry non-200 once with desktop browser headers",
+  "uniqueLinks": 17,
+  "all200": false,
+  "results": [
+    {
+      "url": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+      "labels": [
+        "CANARY on Uniswap \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 200,
+          "finalUrl": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "bytesRead": 86728
+        }
+      ],
+      "status": 200
+    },
+    {
+      "url": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
+      "labels": [
+        "0x000000000004444c5dc75cb358380d2e3de08a90 \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
+          "reason": "Forbidden"
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
+          "reason": "Forbidden"
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
+      "labels": [
+        "0x379C0A5704C211f26eadd26e670246E242Af9e7E \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
+          "reason": "Forbidden"
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
+          "reason": "Forbidden"
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
+      "labels": [
+        "0x626517225096671868609c1bbf9c1b416a4efd9a \u2197"
+      ],
+      "routes": [
+        "integrate"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
+          "reason": "Forbidden"
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
+          "reason": "Forbidden"
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
+      "labels": [
+        "Canary observer on Etherscan \u2197",
+        "Observer contract \u2197"
+      ],
+      "routes": [
+        "status",
+        "verify",
+        "integrate"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
+          "reason": "Forbidden"
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
+          "reason": "Forbidden"
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+      "labels": [
+        "0x709927ed370da2b7ac5bd0b2df1fb172892b3b56 \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "reason": "Forbidden"
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "reason": "Forbidden"
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+      "labels": [
+        "0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7 \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+          "reason": "Forbidden"
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+          "reason": "Forbidden"
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
+      "labels": [
+        "0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
+          "reason": "Forbidden"
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
+          "reason": "Forbidden"
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
+      "labels": [
+        "Hook on Etherscan \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
+          "reason": "Forbidden"
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
+          "reason": "Forbidden"
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+      "labels": [
+        "Token on Etherscan \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "reason": "Forbidden"
+        },
+        {
+          "status": 403,
+          "finalUrl": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "reason": "Forbidden"
+        }
+      ],
+      "status": 403
+    },
+    {
+      "url": "https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f",
+      "labels": [
+        "Hook and token build \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 200,
+          "finalUrl": "https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f",
+          "bytesRead": 1578574
+        }
+      ],
+      "status": 200
+    },
+    {
+      "url": "https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556",
+      "labels": [
+        "This site \u2197"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 200,
+          "finalUrl": "https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556",
+          "bytesRead": 97501
+        }
+      ],
+      "status": 200
+    },
+    {
+      "url": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+      "labels": [
+        "Canary build job on the IMD explorer \u2197",
+        "Contract build \u2197"
+      ],
+      "routes": [
+        "status",
+        "verify",
+        "integrate"
+      ],
+      "attempts": [
+        {
+          "status": 200,
+          "finalUrl": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+          "bytesRead": 257050
+        }
+      ],
+      "status": 200
+    },
+    {
+      "url": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+      "labels": [
+        "CANARY on the IMD explorer \u2197",
+        "CANARY launch on the IMD explorer \u2197"
+      ],
+      "routes": [
+        "status",
+        "verify",
+        "integrate"
+      ],
+      "attempts": [
+        {
+          "status": 200,
+          "finalUrl": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+          "bytesRead": 1118459
+        }
+      ],
+      "status": 200
+    },
+    {
+      "url": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+      "labels": [
+        "Contract source on GitHub \u2197",
+        "Source on GitHub \u2197"
+      ],
+      "routes": [
+        "status",
+        "verify",
+        "integrate"
+      ],
+      "attempts": [
+        {
+          "status": 200,
+          "finalUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+          "bytesRead": 329290
+        }
+      ],
+      "status": 200
+    },
+    {
+      "url": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
+      "labels": [
+        "Hook and token source on GitHub \u2197",
+        "Hook source on GitHub \u2197"
+      ],
+      "routes": [
+        "status",
+        "verify",
+        "integrate"
+      ],
+      "attempts": [
+        {
+          "status": 200,
+          "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
+          "bytesRead": 320267
+        }
+      ],
+      "status": 200
+    },
+    {
+      "url": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
+      "labels": [
+        "published hook source"
+      ],
+      "routes": [
+        "status"
+      ],
+      "attempts": [
+        {
+          "status": 503,
+          "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
+          "reason": "Service Unavailable"
+        },
+        {
+          "status": 503,
+          "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
+          "reason": "Service Unavailable"
+        },
+        {
+          "status": 503,
+          "reason": "Service Unavailable"
+        }
+      ],
+      "status": 503,
+      "earlierRunStatus": 200
+    }
+  ]
+}

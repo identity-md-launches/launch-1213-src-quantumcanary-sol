@@ -37,6 +37,32 @@ try {
   await page.screenshot({ path: resolve(reportDir, 'live-status-desktop.jpeg'), fullPage: false, animations: 'disabled', quality: 70 });
   await expect(page.locator('.fund-ledger .field').first()).not.toContainText('—', { timeout: 45000 });
   report.checks.push({ name: 'Live hook ledger', result: await page.locator('.ledger-values').innerText() });
+  await expect(page.locator('.market-read')).toContainText('Pool state at block', { timeout: 45000 });
+  await expect(page.locator('.metrics .usd-value')).toHaveCount(1, { timeout: 20000 });
+  report.checks.push({ name: 'Live Chainlink and PoolManager reads', result: await page.locator('.market-read').innerText(), threshold: await page.locator('.metrics .field').first().innerText(), bountyInput: await page.locator('#amount-context').innerText() });
+  report.checks.push({ name: 'Live Hook payouts', result: await page.locator('.hook-history').innerText() });
+  await page.locator('.money-intro').screenshot({ path: resolve(reportDir, 'token-identity-desktop.jpeg'), animations: 'disabled', quality: 78 });
+  await page.locator('.market-read').screenshot({ path: resolve(reportDir, 'live-market.jpeg'), animations: 'disabled', quality: 78 });
+  report.externalLinks = [];
+  for (const route of ['status', 'verify', 'integrate']) {
+    await page.locator(`header nav a[href="#${route}"]`).click();
+    await expect(page.locator(`header nav a[href="#${route}"]`)).toHaveAttribute('aria-current', 'page');
+    const links = await page.locator('a[href^="http"]').evaluateAll(anchors => anchors.filter(a => !a.closest('[hidden]')).map(a => ({ href:a.href, label:a.textContent.trim() })));
+    report.externalLinks.push({ route, links });
+  }
+  await writeFile(resolve(reportDir, 'external-links.json'), JSON.stringify(report.externalLinks, null, 2));
+  await page.locator('header nav a[href="#status"]').click();
+  for (const width of [390,320]) {
+    await page.setViewportSize({width,height:900});
+    await page.locator('.money-intro').screenshot({ path: resolve(reportDir, `token-identity-${width}.jpeg`), animations: 'disabled', quality: 78 });
+    await page.locator('.market-read').screenshot({ path: resolve(reportDir, `market-${width}.jpeg`), animations: 'disabled', quality: 78 });
+    await page.setViewportSize({width,height:1400});
+    await page.locator('.provenance').screenshot({ path: resolve(reportDir, `provenance-${width}.jpeg`), animations: 'disabled', quality: 75 });
+    await page.setViewportSize({width,height:900});
+    await page.locator('.site-footer').screenshot({ path: resolve(reportDir, `footer-${width}.jpeg`), animations: 'disabled', quality: 75 });
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+  }
+  await page.setViewportSize({width:1440,height:1000});
   await page.locator('header nav a[href="#verify"]').click();
   await expect(page.getByText(/OK \/ 5 of 5 on-chain comparisons match/)).toBeVisible();
   await page.screenshot({ path: resolve(reportDir, 'live-verify-desktop.jpeg'), fullPage: false, animations: 'disabled', quality: 70 });

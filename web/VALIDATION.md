@@ -1,128 +1,70 @@
-# Quantum Canary redesign — worker validation
+# Quantum Canary correction and completion validation
 
-## Scope and outcome
+This is a worker report, not independent certification. The implemented frontend is complete; the requested **all-external-links-return-200 gate remains unmet** because Etherscan returned HTTP 403 challenges for all nine of its URLs, and the pinned GitHub hook-source page returned HTTP 503 during the final check (200 earlier). The useful deliverable is retained, with the exact results in [LINKS.md](LINKS.md).
 
-**Complete for the frontend scope, with a documented correction to the brief's hook-retirement guarantee.** Status, Verify and Integrate have been rebuilt; source and the production export are delivered together. The original chain reader, wallet implementation, derivation and four mascot PNGs are preserved. No contract, dependency manifest/lockfile, Foundry configuration, remapping, submodule, environment file or Git/GitHub metadata was modified.
+## Scope and preservation
 
-This is a worker report, not independent certification. The task's verifier checks paths and bytes, not behavior. No transaction was broadcast on a live chain.
+Continued the existing Vite/React/TypeScript app, without contract changes, deployment, token issuance, swaps or approvals. Preserved the three pages, display/mono fonts, palette, seismograph, Verify terminal, statement and existing explanatory copy except the requested corrections. All four original press PNGs remain byte-identical. Existing package manifests/lockfiles, Vite/TypeScript configuration, Solidity/build files, libraries, ignore file and protected directories were not changed.
 
-Consequential choices:
+Implemented the corrected CANARY headline and identity, replacement IMD links, adjacent hook GitHub footer link, Chainlink USD context, PoolManager mid-price/FDV reads, newest-20 hook payouts, section 06 provenance, CC0 press downloads and a committed 1200×630 preview. The hero texture already had `aria-hidden="true"`; it was preserved and asserted in the browser. The two descriptions of payout history in the brief refer to the same `BountyPaid` events, so one **Hook payouts** list serves both; it explicitly excludes direct donations from history and includes them in the balance.
 
-- Preserve `AWAITING POKE` in addition to the three requested alarm labels: a funded balance cannot arm an unobserved high-water mark by itself.
-- Render only session observations in the canvas. Held segments and jagged alarm graphics are explicitly labelled; no invented historical balance or random numerical samples.
-- Keep the supplied observer manifest's contract set unchanged. The separately requested community token/hook identifiers are centralized in `src/config.ts` and are not described as attested by launch 1213.
-- Use a single dark theme and exactly two font families, with three small one-bit print assets derived from unchanged originals. No theme picker, trading UI, token approvals, backend or new ownership settings were added.
-- Correct financial claims where the published hook source is more specific than the brief. In particular, already-accrued claims remain payable after retirement in that source. See [fund-source.md](docs/fund-source.md). The UI disables payout on a live trip or permanent retirement; this cannot stop another caller using the contract directly.
+The supplied facts about agents, audits, dates, 26 minutes, factory attestations and payer ownership are reproduced in the provenance block with the requested public records. This frontend pass did not independently redo those audits or prove every historic attribution. The observer ABI remains bound to its supplied canonical Keccak hash. The optional hook/token and the newly named oracle are not added to, or misrepresented as part of, the observer's one-contract deployment attestation.
 
-## Commands and results
+## Commands and outcomes
 
-Dependencies were installed with the existing lockfile into an exact source copy under `test/scratch/build/web/`. Scratch is removed before submission; the root repository never receives a generated dependency directory. Source, package manifest/lockfile, Vite config, public assets and final output were compared between the real tree and this copy. Commands below are the actual worker forms (ordinary local commands are documented in README).
+Dependencies were installed using the existing unchanged lockfile in `/tmp/quantum-canary-check/web`; npm cache and Chromium downloads also stayed under `/tmp`. Source used by the build was compared byte-for-byte to the delivered source. Final files were copied to repository-root `dist/`.
 
 | Command | Result |
 | --- | --- |
-| `npm ci --ignore-scripts --no-audit --no-fund --cache /tmp/qc-npm-cache` in the scratch web copy | Passed; 158 existing locked packages installed |
-| `npm run build --prefix test/scratch/build/web` | Passed; TypeScript + Vite export + deployment manifest |
-| `npm run typecheck --prefix test/scratch/build/web` | Passed |
-| `npm test --prefix test/scratch/build/web` | Passed: 31 tests in 2 files |
-| `npm run check:manifest --prefix test/scratch/build/web` | Passed: complete observer ABI hash and SHA-256 inventory, 18 assets |
-| `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/root/.cache/ms-playwright/chromium-1247/chrome-linux64/chrome node test/scratch/build/web/scripts/interaction-check.mjs` | Passed: 27 interaction/design scenarios; no page errors, console errors or Axe violations |
-| Same executable override, `node test/scratch/build/web/scripts/browser-check.mjs` | Passed: production public reads, fund ledger and all 5 derivation comparisons; no wallet |
-| `/root/.local/share/svm/0.8.26/solc-0.8.26 --bin test/scratch/build/artifacts/browser/CanaryGuard.sol -o test/scratch/snippet-compile --overwrite` | Passed: the actual browser-copied integration example compiles |
-| `PYTHONPATH=/tmp/quantum-canary-art312 python3 web/scripts/ink-art.py` | Passed: Pillow 12.3.0 generated literal one-bit PNGs; optional rebuild only |
+| `npm ci --ignore-scripts --no-audit --no-fund` with a temporary cache | Pass; exact existing dependencies, no repository dependency/cache directories |
+| `npm run typecheck` | Pass; strict TypeScript |
+| `npm test` | Pass; 46 cases across core (21), fund (12), market (13) |
+| `node scripts/social-preview.mjs` | Pass; 1200×630 PNG, existing local Anton and dithered hero; visually inspected |
+| `npm run build` after final source correction | Pass; Vite relative-base export and manifest generation |
+| `npm run check:manifest` | Pass; one attested contract, 19 exported assets, matching ABI and SHA-256 inventory |
+| `node scripts/interaction-check.mjs` against final `/preview/` export | Pass; 32 interaction groups, no JS/console errors; mocked RPC/wallet, no broadcast |
+| `node scripts/browser-check.mjs` against final `/preview/` export | Pass; 5 live-read groups, no JS/console/resource errors; real mainnet, no wallet/funds |
+| `python3 scripts/link-check.py` | Nonzero by design: 7 HTTP 200, 9 Etherscan HTTP 403, 1 GitHub HTTP 503 (earlier 200); no false success |
+| `git diff --check` and delivery integrity audit | Pass; final details in `evidence/delivery-integrity.json` |
 
-Vite reports its advisory that the primary uncompressed JS chunk exceeds 500 kB. It is approximately 547 kB / 173 kB gzip, with the existing viem/React stack. No dependency or build configuration was changed to suppress that advisory.
+Vite reports the existing large-chunk advisory: the main bundle is about 556 kB minified / 175 kB gzip. No runtime CDN, source maps, package archives, vendored registry, backend or secret is included. No changes were made to build configuration to suppress the advisory.
 
-`evidence/delivery-integrity.json` records the final source/export consistency, pinned handoff/network comparison, protected-path/original-art checks and conservative byte budget. The static export is 2,597,314 bytes; the complete deliverable file set, including retained browser evidence and the existing contract sources/dependencies, is approximately 7.31 MB uncompressed, below the 8,388,608-byte limit. No cache, dependency installation, old build chunk or registry archive is delivered. `evidence/browser/interaction-report.json` and `live-report.json` contain timestamps and precise observations from the final production export.
+## Behavior covered
 
-## Meaningful interactions
+Unit cases exercise derivation, alarm lifecycle, amount parsing, wallet network fallback and attested ABI binding. New financial cases check inverse ETH/CANARY orientation, packed tick/fee masking, fixed supply FDV calculated before per-token rounding, tiny USD values, incorrect chain/reorgs, and seven invalid/incomplete/stale Chainlink round variants. Oracle and pool failures are independent. History tests cover complete non-overlapping ranges, total preservation while limiting rows to 20, newest block/log order, empty results, duplicates, bad recipients, removed events, unavailable pages and reorgs.
 
-The production export is served under `/preview/`, exercising relative assets and hash routing. The interaction harness intercepts only the configured public RPC endpoints and supplies an injected mock wallet; all transaction payloads terminate in that fixture.
+Browser interactions exercise public reads without a wallet; missing-wallet recovery; connect; wrong chain; exact `wallet_switchEthereumChain` → 4902 → supplied `wallet_addEthereumChain` → switch; live input USD; invalid amount/no USD; irreversible consent; wallet rejection and recovery; exact funding/poke/payout destinations, values and calldata; per-action pending/receipt locks across navigation; payout simulation; retirement/trip/stale gates; ABI tampering; public RPC outage/retry; initial oracle outage; an oracle failing after a successful price then recovering; independent pool failure; zero and 25 mock event histories with exactly 20 visible rows; original PNG download bytes; corrected links, provenance and social image dimensions/metadata. Existing chart pause/reduced motion and terminal mismatch/run-again behavior are covered.
 
-Checked:
+All mock transactions stay inside the test's injected provider. No actual wallet was connected and no transaction was signed, submitted or simulated against mainnet for a write. The live script reads the deployed observer, complete hook history, Chainlink proxy and PoolManager over the supplied public RPCs. Mainnet had zero bounty balance, zero pending/paid hook ETH, `retired=false`, no payout events, and five matching derivation getters at the recorded block. It displayed 0.00000001 ETH per CANARY and 10 ETH FDV with a live USD rate. Populated event rows are therefore validated with mocks, not claimed as real transfers.
 
-- Public reads with no wallet, exact bounty address clipboard, payment QR and independent IMD counter.
-- Missing wallet feedback, exact unknown-chain switch → add supplied network → switch sequence, connected account/chain display, and immediate gating on chain changes.
-- Zero/ambiguous ETH amount rejection and focus/`aria-invalid`; exact one-wei handling in unit tests; explicit irreversible-transfer consent.
-- Rejected fund and payout signatures send nothing and recover. A zero-result payout simulation sends nothing.
-- Fund uses the derived address, exact ETH value and empty calldata. Poke targets the observer with zero value and the correct selector. Payout targets the configured hook with zero value and the correct selector.
-- Controls lock through pending receipts and route changes. Payout success uses the receipt's actual payment event; pending and cumulative totals refresh. Retirement remains gated after a refill. The production code checks replacements and offers an explicit uncertain-confirmation retry; replacement/cancellation/timeout branches were source-reviewed, not end-to-end simulated.
-- Complete hook history, pending fees and retired state. Missing log pages leave the total unavailable while preserving other reads. An immutable recipient mismatch disables payout. Unit tests cover log pages, recipient/removed-event rejection, missing historical boundary, wrong chain, missing hook code and reorgs.
-- Unfunded → awaiting poke → armed → tripped → refilled; first-recorded-trip retention; red paper and original color sticker only on TRIPPED.
-- Actual canvas pixel changes while scrolling, unchanged pixels while paused, and static pixels between observations under reduced motion. The exact-data table remains available.
-- Terminal automatically prints all real values; 5 OK comparisons; run-again recomputes; altered getter produces a textual MISMATCH and disables transactions. Unit coverage includes rejected candidate counters, square checks, parity and packed bytes. The unchanged derivation has 40 additional seed cases.
-- Runtime ABI tampering fails before wallet controls; missing observer code, stale blocks and RPC outages disable writes; retry restores reads. IMD failure does not hide ETH.
+## Better Interface review
 
-## Browser review and evidence
+Read the pinned workflow, all six core domains and document-web-design section. The requested visual design took precedence over generic suggestions to add themes, cards, rounded controls or animation. Coverage is limited to the supported single dark English interface.
 
-An available Playwright MCP browser was used to navigate the actual export, inspect screenshots and computed state, follow Status/Verify/Integrate/Money links, check keyboard focus, and inspect desktop and 390/320px layouts. Its expected tool-managed preview descriptor was absent, so a bounded foreground static preview session using the repository's existing preview server supplied `/preview/`; it was closed after review. Automated Playwright scripts separately create and close their own previews.
-
-All three pages were checked at **1440, 768, 390 and 320 CSS pixels**, plus **200% root text enlargement at 1440px**. No page-level horizontal overflow was observed. Code and the money table intentionally scroll in named regions. A focused 320px fee-table check moved its horizontal offset from 0 to 40px with ArrowRight. There is one visible primary heading per route. Screenshots were viewed, including the red instrument, fund controls, terminal, money flow and visible keyboard focus; they were not treated as screen-reader evidence.
-
-Delivered evidence in `evidence/browser/` (the scripts wrote temporary `artifacts/browser/` output, which was copied here because that output directory is ignored by the workspace):
-
-- `status-1440.jpeg`, `status-390.jpeg`, `verify-1440.jpeg`, `verify-390.jpeg`, `integrate-1440.jpeg`, `integrate-390.jpeg` — representative viewport captures.
-- `verify-terminal.jpeg`, `money-flow.jpeg`, `money-mobile-320.jpeg`, `fund-controls.jpeg`, `tripped-desktop.jpeg`, `keyboard-focus.jpeg` — component/state evidence, using mock observations where appropriate.
-- `live-status-desktop.jpeg`, `live-verify-desktop.jpeg`, `live-report.json` — real read-only production observations, separate from fixtures.
-- `axe-status.json`, `axe-verify.json`, `axe-integrate.json` — no WCAG 2 A/AA, 2.1 AA or 2.2 AA tagged violations found by Axe.
-- `computed-design.json` — loaded-font result, browser-computed colors and calculated contrast pairs.
-
-The manual MCP session encountered intermittent HTTP 403 responses from PublicNode; the configured dRPC fallback returned valid reads. These were remote RPC failures, not missing static resources. The final live browser script recorded its own errors explicitly and passed. Public RPC availability remains outside the export's control.
-
-## Better Interface — all six domains
-
-The pinned workflow and core principles for all six domains were read before implementation. The pinned document-web-design method was used to rewrite root DESIGN.md from final source values. These guides were treated as design knowledge within this assignment's scope.
-
-| Domain | Coverage | Evidence / limits |
+| Domain | Coverage and evidence | Limits |
 | --- | --- | --- |
-| Accessibility | Checked | Native controls, labelled inputs/QR, skip link, active-route state, visible focus, keyboard activation, semantic table/definition lists, live status text, stale/error gates, reduced motion and Axe on all routes. Screen-reader sessions and physical touch devices not performed. No modal/focus-trap flow exists. |
-| Layout | Checked | Full-width hero/instrument, ledger rows, documented breakpoints, 4 widths, 200% root text enlargement, scroll regions, direct hash entry and mobile fee-table hint. Native browser zoom and RTL localization not performed; English-only site. |
-| Writing | Checked | Exact requested headline, threshold/arming/refill limits, public seed attribution, explicit fee currencies/recipients and speculation/direct-funding distinction, verb-led actions and recoverable errors. Corrected source/brief discrepancies are documented below. |
-| Typography | Checked | Two locally loaded families, available weights, ragged display type, bounded/justified reading measures, selectable wrapping addresses/hashes, numeric stability, mobile input/terminal size and no page overflow. No pseudolocalization or additional scripts supported. |
-| Colors | Checked | Semantic hex tokens, red exclusive to current TRIPPED, text/state redundancy, nine measured browser-computed text pairs with overlay lower bounds. No invented claim of pixel-perfect contrast for every antialiased glyph or artwork pixel. Single intentional dark theme; high-contrast OS combinations not manually checked. |
-| UI | Checked | Square flat rules, dithered print assets, original color trip sticker, visible controls/disabled/busy states, receipt locks, chart motion/pause/static behavior, terminal rerun and copy. Native details replace custom overlays. Slow-motion animation-panel and hardware-wallet checks not performed. |
+| Accessibility — Checked | Native headings, numbered provenance list, semantic payout table/caption/headers, accessible transaction names, copy/download controls, amount descriptions, inherited keyboard focus and skip link. Hero texture asserted hidden; decorative mark has empty alt. Axe WCAG 2 A/AA, 2.1 AA and 2.2 AA scans on all three routes. Keyboard route/skip paths and reduced-motion states exercised. | No screen-reader session, physical touch device or browser-native 200% zoom. Axe is not a compliance certificate. |
+| Layout — Checked | Rendered export at 1440, 768, 390 and 320 CSS px; all routes checked for page overflow. Token identification precedes original fund copy in DOM order; mobile stacks with a 1.5rem gap. Checked long addresses, 20 rows, wrapping footer, new provenance and 200% root text enlargement. | No RTL/localization variants exist. Tall section screenshots may use a taller viewport at the same width; ordinary reflow tests use 900px height. |
+| Writing — Checked | Corrected exact headline, descriptive explorer labels, retained speculation/direct-funding sentences, explicit pool-mid-price/not-a-quote and direct-donation boundary, distinct empty/unavailable history, hidden failed USD. Original terminal and statement copy untouched. | Etherscan external availability remains unresolved; detailed status table is separate. |
+| Typography — Checked | Existing local Anton 400 and Plex Mono 400/600 loaded; no new family/weight. Muted .8125rem/1.65 USD; tabular numbers; full selectable addresses; inspected narrow token/provenance/ledger wrapping. Corrected split block numbers in new table. | Native mobile font rendering not tested. |
+| Colors — Checked | Existing semantic hex tokens reused. Browser-computed token pairs and conservative 12% overlay lower bounds recorded in `computed-design.json`; all nine checked text pairs exceed 4.5:1. No new status/accent color. | This measures specified token pairs, not every antialiased/mascot pixel. No light theme exists. |
+| UI — Checked | Loading, empty, unavailable, recovery, disabled/pending/success/error states; unchanged static/reduced-motion chart and terminal; direct downloads work from subpath; no extra trading controls. Screenshot review of final additions. | Native extensions/hardware wallets, Safari/Firefox and 10%-speed DevTools animation replay not exercised. |
 
-## Findings, corrections and rechecks
+### Findings and fixes
 
-| Severity / domain | Source location | Evidence and correction | Recheck |
-| --- | --- | --- | --- |
-| Medium / layout | `src/style.css:265` | Writing-mode changed the meaning of logical inline inset and put the vertical margin label over the headline. Used a physical left offset for this physical margin annotation. | Desktop screenshot and bounding rectangle place it outside the headline. |
-| Medium / writing | `src/App.tsx:66` | Hiding command-strip line breaks joined adjacent words at mobile width. Added actual separating whitespace. | 390px/320px rendered command rows. |
-| Medium / accessibility | `src/Seismograph.tsx:26` | A wall-clock static reference would move the reduced-motion grid on parent rerenders. Static time now comes from the actual observed timestamp (or page-open time before data). | Canvas byte comparisons show scrolling live and stable paused/reduced frames. |
-| Low / typography | `src/style.css:1530` | Narrow terminal values were 11px. Increased them to 12px while retaining wrapping and small decorative line numbers. | Mobile transcript, overflow and Axe checks. |
-| Medium / layout/UI | `src/MoneyFlow.tsx:86`, `src/style.css:1645` | A narrow fee table could clip without an explicit scrolling instruction. Added a visible mobile cue and associated description; retained a keyboard-focusable scroll region. | 320px review, responsive checks and Axe. |
-| High / writing | `src/MoneyFlow.tsx:91`, `docs/fund-source.md:9` | Brief's absolute no-payout-after-retirement guarantee contradicts public launch source/README. State the old-claims exception explicitly and link the fixed source; UI independently blocks retired/tripped payouts. | Rendered copy, source review, retired-after-refill and payout tests. Deployed hook/source bytecode equivalence remains unverified. |
-| Medium / writing | `src/MoneyFlow.tsx:92` | Requested 1 ETH example uses both rates on the original gross amount; public hook reserves 1% first. Label the requested example as headline-rate illustration and state exact pool-input calculation beside it. | Source arithmetic and rendered worked example reviewed; no trade quote or swap simulated. |
-| Low / UI | `scripts/ink-art.py:12` | Threshold-only CSS would not produce true dithering. Created 1-bit error-diffusion copies without changing originals. | PNG format check, byte comparison of originals, visual inspection of printed logo/art. |
-| Low / accessibility | `src/style.css:1170` | An indefinite decorative blink has no separate pause control. Limit it to four cycles/five seconds; reduced motion disables it. | Source duration/count and computed reduced-motion animation check. |
+| Severity / location | Evidence and correction | Recheck |
+| --- | --- | --- |
+| Medium — `src/MoneyFlow.tsx:84`, `src/config.ts:14` | Old “has no token” headline contradicted existing CANARY; old launch URLs were obsolete. Applied the exact replacement headline, dithered identity, Uniswap link and requested explorer destinations; retained Etherscan source link in place. | Browser text/href assertions; corrected IMD and Uniswap destinations return 200. |
+| Medium — `src/market-chain.ts:23`, `src/useMarket.ts:17` | USD context was unavailable. Added task-specified Chainlink reads with invalid/stale guards and failure isolation; no stale USD survives a failed refresh. | 13 market unit cases, input conversion and outage/recovery interactions; real mainnet rate read. |
+| Medium — `src/market-chain.ts:13`, `src/MoneyFlow.tsx:87` | Added price could be misleading if treated as a trade quote or if inverted incorrectly. Low-160-bit slot extraction, inverse ETH/token calculation and independent exact FDV are labelled as mid price, excluding execution costs. | Known-ratio and packed-bit tests plus real PoolManager read. |
+| Medium — `src/fund-chain.ts:10`, `src/MoneyFlow.tsx:103` | A limited log list could be mistaken for all incoming ETH. Reused complete event scan; retain latest 20; reject incomplete/invalid metadata; visibly distinguish no events, unavailable history and direct donations. | Empty/25-event browser states, newest-first tests, failed-history recovery, actual empty mainnet history. |
+| Low — `src/style.css:1419` | 320px screenshot showed token links touching the original fund paragraph. Added scoped 1.5rem separation under the identity column at the existing breakpoint. | Inspected final 320px token screenshot. |
+| Medium — `src/style.css:840` | 320px payout screenshot split the last digit of each block and the transaction heading. Rebalanced columns to 33/34/33 and kept block values/links together; exact amounts may wrap. | Final 320px payout screenshot and overflow checks. |
+| No defect — `src/App.tsx:66` | Hex texture already had `aria-hidden="true"`; no visual/source change needed. | Browser attribute assertion. |
+| Remaining external limitation — `src/config.ts:90` | All nine required Etherscan targets returned HTTP 403. Retried GET with browser headers; actual Chromium also received a Cloudflare challenge. | Preserved destinations, reported every status; all-200 gate is unmet. The final pinned GitHub source check also returned 503 after an earlier 200 and was retried. |
 
-No unresolved observed interface defect blocks the assigned frontend flows. The contract-source discrepancy is not represented as repaired on chain.
+## Evidence and limits
 
-## Measured contrast
+Final browser JSON reports and a bounded set of screenshots are in `evidence/browser/`; the social PNG is a required runtime asset under `public/` and `dist/`. Obsolete screenshots were replaced or removed; the four original press images and runtime assets were not optimized away. `evidence/delivery-integrity.json` records preserved hashes, manifest equality, source/build equality, path checks and byte budget. The export is 2,663,108 bytes; the complete delivery is approximately 7.17 MiB in uncompressed file bytes (5.40 MiB in a temporary gzip archive), below 8 MiB. That archive stays in `/tmp` and is not packaged with the submission. [DESIGN.md](../DESIGN.md) documents the final tokens, components and responsive behavior.
 
-From browser-computed tokens, standard sRGB relative luminance:
-
-| Foreground / background | Flat ratio | Conservative lower bound with 12% dark overlay |
-| --- | ---: | ---: |
-| Working green / page | 14.28 | 10.94 |
-| Muted / page | 8.95 | 6.97 |
-| Bone / page | 14.66 | 11.23 |
-| Muted / surface | 8.53 | 6.65 |
-| Working green / surface | 13.62 | 10.43 |
-| Alarm yellow / surface | 14.19 | 10.86 |
-| Trip ink / trip paper | 9.68 | 7.47 |
-| Primary button dark text / green fill | 14.28 | 10.94 |
-| Focus / page | 14.66 | 11.23 |
-
-The lower bound darkens only the lighter member by the overlay's maximum opacity, leaving the darker member unchanged; this is conservative, not an invented screenshot pixel measurement. Artwork, antialiasing and all forced-color combinations are not covered by these ratios. The faint decorative grid is not the sole representation of any value; exact data is accessible in text.
-
-## Remaining limits
-
-- No live funding, poke, payout, swap, token approval, factory fee claim or deployment was performed. Funded transactions use mocks only. Real wallet extensions, hardware wallets, mobile wallet in-app browsers, RPC failover under every provider error, every receipt replacement/cancellation/timeout branch and chain reorganizations in the browser remain untested beyond described source/unit coverage.
-- The optional hook is not in the observer attestation. Code presence and recipient/getter bindings were checked, but exact public-source/deployed-bytecode equivalence was not established. Source behavior permits paying old claims after retirement; the UI guard cannot constrain other callers. No false immutable guarantee is advertised.
-- Platform supply allocation, locked factory liquidity and 80/20 split are facts supplied by the requester. No factory/payer address was invented, and that factory policy was not independently exercised.
-- Historical log access can fail or grow slow. The UI never labels a partial total as lifetime paid ETH. Latest-block observations may reorganize after display; use suitable finality in an integration.
-- Screen-reader sessions, native 200% browser zoom, physical devices, RTL/pseudolocalization and manual forced-colors review were not performed. Axe passing is not a claim of complete accessibility conformance.
-- The ENS site name is provided, but no canonical HTTPS gateway is given. An absolute social-preview image remains intentionally unset. No social links were added.
-- Git metadata is prohibited by the assignment. Files are prepared in the working tree for its submission process; this worker did not run `git add` or `git commit`.
-
-Licenses/attribution: Better Interface (Jakub Krehel, MIT), Impeccable documentation method (Paul Bakaus, Apache-2.0), and eth-frontend-ux (Austin Griffith, MIT) are retained in `docs/licenses/`.
+Do not treat mocked wallets as extension testing, narrow viewports as physical devices, root font enlargement as native zoom, or a passing accessibility scan as screen-reader verification. The optional hook's deployed bytecode was not independently reconstructed against its public source in this pass. Its known retirement caveat remains visible. Social preview publication and social-platform cache refresh are not performed by this local export; the PNG and absolute metadata are ready for the supplied domain.
