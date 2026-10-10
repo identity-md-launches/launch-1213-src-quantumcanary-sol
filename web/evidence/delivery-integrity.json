@@ -55,13 +55,13 @@
   },
   "noSubmodulesOrDependencyCaches": true,
   "deliveryFileCount": 164,
-  "deliveryFileBytes": 7872717,
+  "deliveryFileBytes": 7877371,
   "byteLimit": 8388608,
   "externalLinkCheck": {
     "destinations": 43,
-    "http200": 10,
-    "http403": 31,
-    "http503": 2,
+    "http200": 42,
+    "http403": 1,
+    "http503": 0,
     "all200": false,
     "browserHttp200": 9,
     "browserHttp403": 32,
@@ -75,9 +75,11 @@
     "all200": false
   },
   "revisionAudit": {
-    "finding": "45e66b43cd438ac5d0729e3e9c8559edb832d1b52ff73cda763eb250634e98e2",
+    "checkedAt": "2026-10-10T18:58:23.781506+00:00",
+    "finding": "1286424d74d3f8f7140f61b3320fb52f0200306d4e621d1a653b26f590f62580",
     "responseVerdict": "disputed",
     "sourceAndExportUnchanged": true,
+    "allNonEvidenceTrackedBytesMatchBaseline": true,
     "protectedFilesUnchanged": true,
     "all19AssetSHA256Match": true,
     "exactPinnedHandoffAndNetwork": true,
@@ -86,6 +88,18 @@
     "noDependencyOrBuildChanges": true,
     "revisionResponseIncludedInByteBudget": true,
     "noGeneratedToolArtifacts": true,
-    "buildAndInteractionSuites": "Accepted baseline unchanged; previous results retained, not rerun for documentation-only revision."
+    "gitDiffCheckPassed": true,
+    "buildAndInteractionSuites": "Accepted baseline unchanged; prior build/typecheck/mocked-wallet results retained as historical, not rerun. This revision executed live route inventory and all-destination HTTP/navigation checks."
+  },
+  "previousRevisionExternalLinkCheck": {
+    "destinations": 43,
+    "http200": 10,
+    "http403": 31,
+    "http503": 2,
+    "all200": false,
+    "browserHttp200": 9,
+    "browserHttp403": 32,
+    "browserHttp503": 2,
+    "browserAll200": false
   }
 }

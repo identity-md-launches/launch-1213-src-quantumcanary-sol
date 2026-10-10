@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-10T18:43:43.249856+00:00",
+  "checkedAt": "2026-10-10T18:56:15.351899+00:00",
   "method": "curl GET, following redirects, 20-second total timeout; retry non-200/error once with desktop browser headers",
   "uniqueLinks": 43,
   "all200": false,
@@ -38,13 +38,13 @@
         {
           "status": 403,
           "finalUrl": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
-          "bytesRead": 5758,
+          "bytesRead": 5737,
           "exitCode": 0
         },
         {
           "status": 403,
           "finalUrl": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
-          "bytesRead": 5972,
+          "bytesRead": 5951,
           "exitCode": 0
         }
       ],
@@ -60,19 +60,13 @@
       ],
       "attempts": [
         {
-          "status": 403,
+          "status": 200,
           "finalUrl": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
-          "bytesRead": 5620,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
-          "bytesRead": 5813,
+          "bytesRead": 4354561,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
       "url": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
@@ -84,19 +78,13 @@
       ],
       "attempts": [
         {
-          "status": 403,
+          "status": 200,
           "finalUrl": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
-          "bytesRead": 5620,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
-          "bytesRead": 5813,
+          "bytesRead": 528317,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
       "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
@@ -108,19 +96,13 @@
       ],
       "attempts": [
         {
-          "status": 403,
+          "status": 200,
           "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
-          "bytesRead": 5620,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
-          "bytesRead": 5813,
+          "bytesRead": 447816,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
       "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
@@ -135,19 +117,13 @@
       ],
       "attempts": [
         {
-          "status": 403,
+          "status": 200,
           "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
-          "bytesRead": 5620,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
-          "bytesRead": 5813,
+          "bytesRead": 447816,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
       "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#readContract",
@@ -159,19 +135,13 @@
       ],
       "attempts": [
         {
-          "status": 403,
+          "status": 200,
           "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#readContract",
-          "bytesRead": 5620,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#readContract",
-          "bytesRead": 5813,
+          "bytesRead": 447816,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
       "url": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
@@ -183,19 +153,13 @@
       ],
       "attempts": [
         {
-          "status": 403,
+          "status": 200,
           "finalUrl": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-          "bytesRead": 5620,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-          "bytesRead": 5813,
+          "bytesRead": 625895,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
       "url": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
@@ -207,19 +171,13 @@
       ],
       "attempts": [
         {
-          "status": 403,
+          "status": 200,
           "finalUrl": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
-          "bytesRead": 5620,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
-          "bytesRead": 5813,
+          "bytesRead": 1120479,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
       "url": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
@@ -231,19 +189,13 @@
       ],
       "attempts": [
         {
-          "status": 403,
+          "status": 200,
           "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
-          "bytesRead": 5620,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
-          "bytesRead": 5813,
+          "bytesRead": 666414,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
       "url": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
@@ -255,19 +207,13 @@
       ],
       "attempts": [
         {
-          "status": 403,
+          "status": 200,
           "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
-          "bytesRead": 5620,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
-          "bytesRead": 5813,
+          "bytesRead": 666414,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
       "url": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
@@ -279,22 +225,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
+          "status": 200,
           "finalUrl": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-          "bytesRead": 5593,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-          "bytesRead": 5807,
+          "bytesRead": 296990,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0x3a5f1dbfb3b9e89e20f7ad4fb65a63249f13b2cc87d0d27b5983a8b74d2d56c9",
+      "url": "https://etherscan.io/tx/0x14d11c1154019cbd2fcaf804e15fe4e4c97d7f84de6437d55e1dfd6bf2e1e218",
       "labels": [
         "Etherscan ↗"
       ],
@@ -303,22 +243,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x3a5f1dbfb3b9e89e20f7ad4fb65a63249f13b2cc87d0d27b5983a8b74d2d56c9",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x3a5f1dbfb3b9e89e20f7ad4fb65a63249f13b2cc87d0d27b5983a8b74d2d56c9",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x14d11c1154019cbd2fcaf804e15fe4e4c97d7f84de6437d55e1dfd6bf2e1e218",
+          "bytesRead": 504483,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0x3d3ebdfd1f657ee6d026ab60486cba3ecf309197c1f3633f8c2b43c5e7b3e8b5",
+      "url": "https://etherscan.io/tx/0x3138ed19a9d8bf4c786c1e8458de2980768c6cc30c8063cd8d34f1351f52af8e",
       "labels": [
         "Etherscan ↗"
       ],
@@ -327,22 +261,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x3d3ebdfd1f657ee6d026ab60486cba3ecf309197c1f3633f8c2b43c5e7b3e8b5",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x3d3ebdfd1f657ee6d026ab60486cba3ecf309197c1f3633f8c2b43c5e7b3e8b5",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x3138ed19a9d8bf4c786c1e8458de2980768c6cc30c8063cd8d34f1351f52af8e",
+          "bytesRead": 330390,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0x3f051956a5201404fd8d7573880a53145741645fae13b1638d7a3d7ee71ac233",
+      "url": "https://etherscan.io/tx/0x46509ae10762ab2d7b4a8154ff98e6d09392f97fa7d09e71acbfb02b7bddc36b",
       "labels": [
         "Etherscan ↗"
       ],
@@ -351,22 +279,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x3f051956a5201404fd8d7573880a53145741645fae13b1638d7a3d7ee71ac233",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x3f051956a5201404fd8d7573880a53145741645fae13b1638d7a3d7ee71ac233",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x46509ae10762ab2d7b4a8154ff98e6d09392f97fa7d09e71acbfb02b7bddc36b",
+          "bytesRead": 330389,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0x48f6f462d3b3fcfa7f62dea0bc7328d3001ec1dfaea8d2f7dcfad91f50135f1c",
+      "url": "https://etherscan.io/tx/0x52aaf86cd4e40120a22cc070ff9e22bb125da84725e5f0c52e0582742bf7e3d6",
       "labels": [
         "Etherscan ↗"
       ],
@@ -375,22 +297,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x48f6f462d3b3fcfa7f62dea0bc7328d3001ec1dfaea8d2f7dcfad91f50135f1c",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x48f6f462d3b3fcfa7f62dea0bc7328d3001ec1dfaea8d2f7dcfad91f50135f1c",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x52aaf86cd4e40120a22cc070ff9e22bb125da84725e5f0c52e0582742bf7e3d6",
+          "bytesRead": 330390,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0x666f52dd2392332779285d344948d6716469ae0bf25c73e41c491440a52eec4c",
+      "url": "https://etherscan.io/tx/0x58df30d680defe71f9cf24144f6eb375ecc329d400f37df7eeedbb03cc4a520c",
       "labels": [
         "Etherscan ↗"
       ],
@@ -399,22 +315,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x666f52dd2392332779285d344948d6716469ae0bf25c73e41c491440a52eec4c",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x666f52dd2392332779285d344948d6716469ae0bf25c73e41c491440a52eec4c",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x58df30d680defe71f9cf24144f6eb375ecc329d400f37df7eeedbb03cc4a520c",
+          "bytesRead": 275015,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0x6bfc21526deb5cdc93adb447dc5f426fc3fdb344abe5b9dfb5ca1559e0cf9af8",
+      "url": "https://etherscan.io/tx/0x65769788a531dcbf21beb2bc959c8c18e89d1029152172cd963063376f1f4e11",
       "labels": [
         "Etherscan ↗"
       ],
@@ -423,22 +333,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x6bfc21526deb5cdc93adb447dc5f426fc3fdb344abe5b9dfb5ca1559e0cf9af8",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x6bfc21526deb5cdc93adb447dc5f426fc3fdb344abe5b9dfb5ca1559e0cf9af8",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x65769788a531dcbf21beb2bc959c8c18e89d1029152172cd963063376f1f4e11",
+          "bytesRead": 330359,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0x6eb2d35472cfbecc12f906b065267a68589c1e2f42c6338b0f44241fed32f060",
+      "url": "https://etherscan.io/tx/0x6f78fe6ece3393f6391e76f6ffa7172bbbba101c604d0f93ca97ed0729fd3e2f",
       "labels": [
         "Etherscan ↗"
       ],
@@ -447,22 +351,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x6eb2d35472cfbecc12f906b065267a68589c1e2f42c6338b0f44241fed32f060",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x6eb2d35472cfbecc12f906b065267a68589c1e2f42c6338b0f44241fed32f060",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x6f78fe6ece3393f6391e76f6ffa7172bbbba101c604d0f93ca97ed0729fd3e2f",
+          "bytesRead": 330390,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0x84afe863b78a5e6a679c11a703792040bae2e9118aab06402804b6463183617c",
+      "url": "https://etherscan.io/tx/0x719a2d04625a6e165fd3ac2cf973d78df2653f3f24a968f209327f4bec807c9c",
       "labels": [
         "Etherscan ↗"
       ],
@@ -471,22 +369,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x84afe863b78a5e6a679c11a703792040bae2e9118aab06402804b6463183617c",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x84afe863b78a5e6a679c11a703792040bae2e9118aab06402804b6463183617c",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x719a2d04625a6e165fd3ac2cf973d78df2653f3f24a968f209327f4bec807c9c",
+          "bytesRead": 467941,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0x864e579d8cede8f1be9d6acc6467f852219c3447b1e1efe647da4cb38c3476d0",
+      "url": "https://etherscan.io/tx/0x7304fba04b516f18ab05f0bd194fdfae56cb9c17909fce1686c1f38f7a39ec84",
       "labels": [
         "Etherscan ↗"
       ],
@@ -495,22 +387,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x864e579d8cede8f1be9d6acc6467f852219c3447b1e1efe647da4cb38c3476d0",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x864e579d8cede8f1be9d6acc6467f852219c3447b1e1efe647da4cb38c3476d0",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x7304fba04b516f18ab05f0bd194fdfae56cb9c17909fce1686c1f38f7a39ec84",
+          "bytesRead": 330236,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0x8e1a65213ce514ce770d2f5dfcc79dbf56ed85f44dc5f331cf823f6f1f33d6ba",
+      "url": "https://etherscan.io/tx/0x7818205134ae588ef8377370670663f3d6db0811aff7f9c546732a10741c353b",
       "labels": [
         "Etherscan ↗"
       ],
@@ -519,22 +405,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x8e1a65213ce514ce770d2f5dfcc79dbf56ed85f44dc5f331cf823f6f1f33d6ba",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x8e1a65213ce514ce770d2f5dfcc79dbf56ed85f44dc5f331cf823f6f1f33d6ba",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x7818205134ae588ef8377370670663f3d6db0811aff7f9c546732a10741c353b",
+          "bytesRead": 469301,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0x9dd523f17871803b1a9b2aff41229b70039d6b2eb1cbdcca02010ce796910687",
+      "url": "https://etherscan.io/tx/0x89e0577bb31e41dfc8a93e9a565ca7732a29d45c4c6c88568d38251bb9fdf50c",
       "labels": [
         "Etherscan ↗"
       ],
@@ -543,22 +423,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x9dd523f17871803b1a9b2aff41229b70039d6b2eb1cbdcca02010ce796910687",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0x9dd523f17871803b1a9b2aff41229b70039d6b2eb1cbdcca02010ce796910687",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x89e0577bb31e41dfc8a93e9a565ca7732a29d45c4c6c88568d38251bb9fdf50c",
+          "bytesRead": 378270,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0xa37131b9e076a06099a5e3a79e990ce248b796a0ddf940b2861b98fe7f263a99",
+      "url": "https://etherscan.io/tx/0x9e69c19f5f061c89520d0d46acf20f92dd5bf1ee4ca6d78949991450f0d9905d",
       "labels": [
         "Etherscan ↗"
       ],
@@ -567,22 +441,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xa37131b9e076a06099a5e3a79e990ce248b796a0ddf940b2861b98fe7f263a99",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xa37131b9e076a06099a5e3a79e990ce248b796a0ddf940b2861b98fe7f263a99",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0x9e69c19f5f061c89520d0d46acf20f92dd5bf1ee4ca6d78949991450f0d9905d",
+          "bytesRead": 330488,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0xb1a9a3e4bdfd52b8dfb54406a22e2172eee22f97f765efbd4b2e0895f4a9f34a",
+      "url": "https://etherscan.io/tx/0xa8560b296b818a1acba49307e673d95880e8dc695be4ca996316e2e0bb1a2141",
       "labels": [
         "Etherscan ↗"
       ],
@@ -591,22 +459,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xb1a9a3e4bdfd52b8dfb54406a22e2172eee22f97f765efbd4b2e0895f4a9f34a",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xb1a9a3e4bdfd52b8dfb54406a22e2172eee22f97f765efbd4b2e0895f4a9f34a",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0xa8560b296b818a1acba49307e673d95880e8dc695be4ca996316e2e0bb1a2141",
+          "bytesRead": 330390,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0xb208932f7ecbd2c641ea79b628aefb1700ec590f5fe9cf975e9cb33e7b9fb667",
+      "url": "https://etherscan.io/tx/0xb1788a3ad5cd1bbe1fd5c8b0ff44b03b1141e9739b802be60f91820c4fc047d7",
       "labels": [
         "Etherscan ↗"
       ],
@@ -615,22 +477,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xb208932f7ecbd2c641ea79b628aefb1700ec590f5fe9cf975e9cb33e7b9fb667",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xb208932f7ecbd2c641ea79b628aefb1700ec590f5fe9cf975e9cb33e7b9fb667",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0xb1788a3ad5cd1bbe1fd5c8b0ff44b03b1141e9739b802be60f91820c4fc047d7",
+          "bytesRead": 330360,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0xb6284dcf2b7ab719a4c98b46e3c96ba61cd959727cbe0e53537976effd7329b4",
+      "url": "https://etherscan.io/tx/0xb4d3c7402d89fc2ff0c73c80da547b476c8cd169c3feca8809b36170d204d5ba",
       "labels": [
         "Etherscan ↗"
       ],
@@ -639,22 +495,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xb6284dcf2b7ab719a4c98b46e3c96ba61cd959727cbe0e53537976effd7329b4",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xb6284dcf2b7ab719a4c98b46e3c96ba61cd959727cbe0e53537976effd7329b4",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0xb4d3c7402d89fc2ff0c73c80da547b476c8cd169c3feca8809b36170d204d5ba",
+          "bytesRead": 330390,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0xce6264454093caf95ec8d5532ecf0244e4907e29bfcc6963a548e7d28aa10028",
+      "url": "https://etherscan.io/tx/0xd05cd5587779c4be3b6429809a9ec26eab946c8283d75e97abd8bb5218baa4ea",
       "labels": [
         "Etherscan ↗"
       ],
@@ -663,22 +513,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xce6264454093caf95ec8d5532ecf0244e4907e29bfcc6963a548e7d28aa10028",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xce6264454093caf95ec8d5532ecf0244e4907e29bfcc6963a548e7d28aa10028",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0xd05cd5587779c4be3b6429809a9ec26eab946c8283d75e97abd8bb5218baa4ea",
+          "bytesRead": 330358,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0xd24b00e28617d3a47bee1b7967dba8b160880398b7eaa7f3a78de31d197c9424",
+      "url": "https://etherscan.io/tx/0xd68b8251c0e10b2703a73cfa1e925ed435e648e6c77c833bd2895cf37096f44b",
       "labels": [
         "Etherscan ↗"
       ],
@@ -687,22 +531,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xd24b00e28617d3a47bee1b7967dba8b160880398b7eaa7f3a78de31d197c9424",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xd24b00e28617d3a47bee1b7967dba8b160880398b7eaa7f3a78de31d197c9424",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0xd68b8251c0e10b2703a73cfa1e925ed435e648e6c77c833bd2895cf37096f44b",
+          "bytesRead": 330359,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0xd3de39a5db35db617357f78075d97c724f66371e3d87f114a83bdcef3a28ce79",
+      "url": "https://etherscan.io/tx/0xddfdf1a6a15f492bcae4918562a31bcd9d05953d8f7a1c902cc3807a24fe642e",
       "labels": [
         "Etherscan ↗"
       ],
@@ -711,22 +549,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xd3de39a5db35db617357f78075d97c724f66371e3d87f114a83bdcef3a28ce79",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xd3de39a5db35db617357f78075d97c724f66371e3d87f114a83bdcef3a28ce79",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0xddfdf1a6a15f492bcae4918562a31bcd9d05953d8f7a1c902cc3807a24fe642e",
+          "bytesRead": 330248,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0xe1972122e021b815f63ed46c9d1dbd7e8724b19d446961c3d3ae0b30a1977af5",
+      "url": "https://etherscan.io/tx/0xfa5b58482c28febdf0008e2eda67e48fe20cdeb01a7746d932ce92169e65a805",
       "labels": [
         "Etherscan ↗"
       ],
@@ -735,22 +567,16 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xe1972122e021b815f63ed46c9d1dbd7e8724b19d446961c3d3ae0b30a1977af5",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xe1972122e021b815f63ed46c9d1dbd7e8724b19d446961c3d3ae0b30a1977af5",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0xfa5b58482c28febdf0008e2eda67e48fe20cdeb01a7746d932ce92169e65a805",
+          "bytesRead": 330354,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
-      "url": "https://etherscan.io/tx/0xe8001109bd4f63e27f9b22c0e4cc17e302512e8005e1d0fc96bbc8793601ff70",
+      "url": "https://etherscan.io/tx/0xfad84ad99c7ff9622dd1ae58d05381f499bdb39527c072cdf2d9f4af141e1b92",
       "labels": [
         "Etherscan ↗"
       ],
@@ -759,19 +585,13 @@
       ],
       "attempts": [
         {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xe8001109bd4f63e27f9b22c0e4cc17e302512e8005e1d0fc96bbc8793601ff70",
-          "bytesRead": 5699,
-          "exitCode": 0
-        },
-        {
-          "status": 403,
-          "finalUrl": "https://etherscan.io/tx/0xe8001109bd4f63e27f9b22c0e4cc17e302512e8005e1d0fc96bbc8793601ff70",
-          "bytesRead": 5891,
+          "status": 200,
+          "finalUrl": "https://etherscan.io/tx/0xfad84ad99c7ff9622dd1ae58d05381f499bdb39527c072cdf2d9f4af141e1b92",
+          "bytesRead": 330359,
           "exitCode": 0
         }
       ],
-      "status": 403
+      "status": 200
     },
     {
       "url": "https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f",
@@ -785,7 +605,7 @@
         {
           "status": 200,
           "finalUrl": "https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f",
-          "bytesRead": 1580461,
+          "bytesRead": 1580407,
           "exitCode": 0
         }
       ],
@@ -803,7 +623,7 @@
         {
           "status": 200,
           "finalUrl": "https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556",
-          "bytesRead": 99105,
+          "bytesRead": 99051,
           "exitCode": 0
         }
       ],
@@ -825,7 +645,7 @@
         {
           "status": 200,
           "finalUrl": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
-          "bytesRead": 258280,
+          "bytesRead": 258226,
           "exitCode": 0
         }
       ],
@@ -846,7 +666,7 @@
         {
           "status": 200,
           "finalUrl": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-          "bytesRead": 1120169,
+          "bytesRead": 1120115,
           "exitCode": 0
         }
       ],
@@ -867,7 +687,7 @@
         {
           "status": 200,
           "finalUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
-          "bytesRead": 329290,
+          "bytesRead": 329289,
           "exitCode": 0
         }
       ],
@@ -890,13 +710,13 @@
           "exitCode": 0
         },
         {
-          "status": 503,
+          "status": 200,
           "finalUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
-          "bytesRead": 56635,
+          "bytesRead": 277803,
           "exitCode": 0
         }
       ],
-      "status": 503
+      "status": 200
     },
     {
       "url": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
@@ -913,7 +733,7 @@
         {
           "status": 200,
           "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
-          "bytesRead": 320273,
+          "bytesRead": 320268,
           "exitCode": 0
         }
       ],
@@ -935,13 +755,13 @@
           "exitCode": 0
         },
         {
-          "status": 503,
+          "status": 200,
           "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
-          "bytesRead": 56635,
+          "bytesRead": 383038,
           "exitCode": 0
         }
       ],
-      "status": 503
+      "status": 200
     },
     {
       "url": "https://quantum-canary.sites.imd.fun/",
@@ -998,411 +818,583 @@
         {
           "status": 200,
           "finalUrl": "https://x.com/Quantum_Canary",
-          "bytesRead": 94211,
+          "bytesRead": 112687,
           "exitCode": 0
         }
       ],
       "status": 200
     }
   ],
-  "inventory": {
-    "checkedAt": "2026-10-10T18:43:37.206Z",
-    "block": "● VERIFIED OBSERVATIONBlock 26,163,901\n2026-10-10 18:43:23 UTCPublic reads every 12 seconds."
-  },
   "statusCounts": {
-    "200": 10,
-    "403": 31,
-    "503": 2
+    "200": 42,
+    "403": 1
   },
-  "browserMethod": "Chromium navigation to each exact destination from about:blank; status read from PerformanceNavigationTiming.responseStatus, with page title and final URL; X confirmed by browser network log after navigation error",
+  "exitCode": 1,
+  "inventory": {
+    "startedAt": "2026-10-10T18:55:30.309Z",
+    "checks": [
+      {
+        "route": "status",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "capturedAt": "2026-10-10T18:55:31.522Z",
+        "block": "● VERIFIED OBSERVATION\n\nBlock 26,163,961\n2026-10-10 18:55:23 UTC\nPublic reads every 12 seconds.",
+        "documentWidth": 1440,
+        "twitterSite": "@Quantum_Canary",
+        "linkCount": 52
+      },
+      {
+        "route": "verify",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "capturedAt": "2026-10-10T18:55:31.598Z",
+        "block": "● VERIFIED OBSERVATIONBlock 26,163,961\n2026-10-10 18:55:23 UTCPublic reads every 12 seconds.",
+        "documentWidth": 1440,
+        "twitterSite": "@Quantum_Canary",
+        "linkCount": 15
+      },
+      {
+        "route": "integrate",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "capturedAt": "2026-10-10T18:55:31.660Z",
+        "block": "● VERIFIED OBSERVATIONBlock 26,163,961\n2026-10-10 18:55:23 UTCPublic reads every 12 seconds.",
+        "documentWidth": 1440,
+        "twitterSite": "@Quantum_Canary",
+        "linkCount": 12
+      },
+      {
+        "route": "status",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "capturedAt": "2026-10-10T18:55:31.742Z",
+        "block": "● VERIFIED OBSERVATION\n\nBlock 26,163,961\n2026-10-10 18:55:23 UTC\nPublic reads every 12 seconds.",
+        "documentWidth": 390,
+        "twitterSite": "@Quantum_Canary",
+        "linkCount": 52
+      },
+      {
+        "route": "verify",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "capturedAt": "2026-10-10T18:55:31.815Z",
+        "block": "● VERIFIED OBSERVATIONBlock 26,163,961\n2026-10-10 18:55:23 UTCPublic reads every 12 seconds.",
+        "documentWidth": 390,
+        "twitterSite": "@Quantum_Canary",
+        "linkCount": 15
+      },
+      {
+        "route": "integrate",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "capturedAt": "2026-10-10T18:55:31.875Z",
+        "block": "● VERIFIED OBSERVATIONBlock 26,163,961\n2026-10-10 18:55:23 UTCPublic reads every 12 seconds.",
+        "documentWidth": 390,
+        "twitterSite": "@Quantum_Canary",
+        "linkCount": 12
+      }
+    ],
+    "errors": [],
+    "source": "unchanged dist/ served by web/scripts/preview-server.mjs",
+    "browserToolLimitation": "Supplied browser tool could not launch: expected chrome-for-testing executable was absent. Used installed Playwright Chromium headless shell directly.",
+    "browserVersion": "154.0.8037.0",
+    "initialBlock": "● VERIFIED OBSERVATION\n\nBlock 26,163,961\n2026-10-10 18:55:23 UTC\nPublic reads every 12 seconds.",
+    "payoutHistory": "Hook payouts\n\nThe last 20 BountyPaid events are the incoming ETH transfers this site can identify without an indexer. Direct donations are not listed here, but are included in the balance.\n\nLatest hook payouts to the canary · newest first\nBlock\tAmount\tTransaction\n26,163,961\t0.000825 ETH\tEtherscan ↗\n26,163,961\t0.000825 ETH\tEtherscan ↗\n26,163,961\t0.000825 ETH\tEtherscan ↗\n26,163,961\t0.000825 ETH\tEtherscan ↗\n26,163,961\t0.000825 ETH\tEtherscan ↗\n26,163,961\t0.000825 ETH\tEtherscan ↗\n26,163,960\t0.000825 ETH\tEtherscan ↗\n26,163,960\t0.000825 ETH\tEtherscan ↗\n26,163,960\t0.000825 ETH\tEtherscan ↗\n26,163,960\t0.000825 ETH\tEtherscan ↗\n26,163,960\t0.000825 ETH\tEtherscan ↗\n26,163,960\t0.000825 ETH\tEtherscan ↗\n26,163,957\t0.000846625648556776 ETH\tEtherscan ↗\n26,163,957\t0.000040302066195122 ETH\tEtherscan ↗\n26,163,952\t0.000179711259967476 ETH\tEtherscan ↗\n26,163,949\t0.0000495 ETH\tEtherscan ↗\n26,163,948\t0.000395296272750132 ETH\tEtherscan ↗\n26,163,948\t0.00099 ETH\tEtherscan ↗\n26,163,945\t0.003175122946256221 ETH\tEtherscan ↗\n26,163,938\t0.00099 ETH\tEtherscan ↗",
+    "inventoryAt": "2026-10-10T18:55:31.877Z",
+    "uniqueDestinations": 43,
+    "latestBlock": "● VERIFIED OBSERVATIONBlock 26,163,961\n2026-10-10 18:55:23 UTCPublic reads every 12 seconds.",
+    "dexscreenerLink": {
+      "href": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+      "label": "CANARY on DexScreener ↗",
+      "target": "_blank"
+    },
+    "dexscreenerNavigation": {
+      "checkedAt": "2026-10-10T18:55:40.071Z",
+      "url": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+      "title": "Just a moment...",
+      "status": 403,
+      "text": "dexscreener.com\nPerforming security verification\n\nThis website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot.\n\nRay ID: a487d7012ccd4905\nPerformance and Security by Cloudflare\nPrivacy"
+    },
+    "finishedAt": "2026-10-10T18:55:40.132Z"
+  },
+  "browserMethod": "Chromium GET navigation to each exact destination in a fresh page; 20-second DOM-content-loaded timeout; main-document response status, final URL, content type and title recorded.",
+  "browserStartedAt": "2026-10-10T18:56:01.202Z",
+  "browserFinishedAt": "2026-10-10T18:56:12.617Z",
   "browserResults": [
     {
       "requestedUrl": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-      "checkedAt": "2026-10-10T18:44:06.167Z",
-      "url": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-      "title": "Buy and sell on Uniswap",
+      "checkedAt": "2026-10-10T18:56:01.346Z",
       "status": 200,
-      "contentType": "text/html",
+      "finalUrl": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+      "contentType": "text/html; charset=utf-8",
+      "title": "Buy and sell on Uniswap",
+      "url": "https://app.uniswap.org/explore/tokens/ethereum/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
       "challengeOrError": false
     },
     {
       "requestedUrl": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
-      "checkedAt": "2026-10-10T18:44:14.169Z",
-      "url": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
-      "title": "Just a moment...",
+      "checkedAt": "2026-10-10T18:56:03.464Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5?__cf_chl_rt_tk=kjTeME183rzS5.s06ZpBVRqfbf4R3UROk2z7K6pHjho-1791658563-1.0.1.1-1ceAPqi04KQ__Ig1ZTgTVxSUothUKfRX3CrzAEsb.ZE",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
       "requestedUrl": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
-      "checkedAt": "2026-10-10T18:44:15.059Z",
-      "url": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
-      "title": "Just a moment...",
+      "checkedAt": "2026-10-10T18:56:03.570Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/address/0x000000000004444c5dc75cb358380d2e3de08a90?__cf_chl_rt_tk=jSIJVdmwQ4DlQ8LBUKf1RC5FsOPNrnA3fKU63Ft6g1A-1791658563-1.0.1.1-.tmI7TxGx.UiUJdb7KRCStlus50U8gaW_NKR7pz7WBk",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
       "requestedUrl": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
-      "checkedAt": "2026-10-10T18:44:15.841Z",
-      "url": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
-      "title": "Just a moment...",
+      "checkedAt": "2026-10-10T18:56:03.647Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/address/0x379C0A5704C211f26eadd26e670246E242Af9e7E?__cf_chl_rt_tk=murM0sotNit7Kooyu0a3o21_H.uxQdCu.JIIWctI7QM-1791658563-1.0.1.1-xg6_jYUX8GXzGrrD21FN9Yih95Nr_iDuG9F8qyHG6Og",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
       "requestedUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
-      "checkedAt": "2026-10-10T18:44:16.570Z",
-      "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
-      "title": "Just a moment...",
+      "checkedAt": "2026-10-10T18:56:03.712Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a?__cf_chl_rt_tk=KGSuSIfIX8PIMz5QaUYBBEC3HVsiH3ObN.bBXIuQyZg-1791658563-1.0.1.1-2DPOUmUk4d6LwmovoysmrtiDmQ1a_CW_JGOt1hOL7_M",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
       "requestedUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
-      "checkedAt": "2026-10-10T18:44:17.302Z",
-      "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#code",
-      "title": "Just a moment...",
+      "checkedAt": "2026-10-10T18:56:03.801Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a?__cf_chl_rt_tk=K4AoKWj0qvtTthooFVf6_WpBz2rGT9v_vtpEnyRxHLk-1791658563-1.0.1.1-nlgfyYZugR23H4LG67fBNC4KVpHPtPOd0TxQt7afkJ8#code",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
       "requestedUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#readContract",
-      "checkedAt": "2026-10-10T18:44:18.069Z",
-      "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a#readContract",
-      "title": "Just a moment...",
+      "checkedAt": "2026-10-10T18:56:03.882Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/address/0x626517225096671868609c1bbf9c1b416a4efd9a?__cf_chl_rt_tk=Rv5pgJWnS2C8wdPr6xyP5G2d03MpxrRP41hHCNJlEtQ-1791658563-1.0.1.1-BS6Ur1wps2EajkWZPfDVpoAY2hxi8YaLqseP6iT12W8#readContract",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
       "requestedUrl": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-      "checkedAt": "2026-10-10T18:44:18.786Z",
-      "url": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-      "title": "Just a moment...",
+      "checkedAt": "2026-10-10T18:56:03.955Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/address/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56?__cf_chl_rt_tk=P5kFn8ERVhUppyil9_w0tEpS4oAwa070PLQVXd5NYRM-1791658563-1.0.1.1-P16mFxUHbNba0z6THZiORd0Xft.QYjkcQNivOv4C2bU",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
       "requestedUrl": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
-      "checkedAt": "2026-10-10T18:44:19.511Z",
-      "url": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
-      "title": "Just a moment...",
+      "checkedAt": "2026-10-10T18:56:04.007Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/address/0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7?__cf_chl_rt_tk=St1KA_F9.U7IcgOPNMvuVpkd7mqKjxI8dyC9cLZnZ5c-1791658564-1.0.1.1-9JXEoLB4AjSJLT57zSlf2.nq4NIVM2U1vt4U7VNPFFk",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
       "requestedUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
-      "checkedAt": "2026-10-10T18:44:20.241Z",
-      "url": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
-      "title": "Just a moment...",
+      "checkedAt": "2026-10-10T18:56:04.074Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc?__cf_chl_rt_tk=szd2jXeQUodQuADk4EkGzUR7CGtzVEY4W_1WcpQt.d8-1791658564-1.0.1.1-7pGMa1D4tdRLxMVGK1t4Ks7rheKw_d5iVCmsHl9g2B8",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
       "requestedUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
-      "checkedAt": "2026-10-10T18:44:20.963Z",
-      "url": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc#code",
-      "title": "Just a moment...",
+      "checkedAt": "2026-10-10T18:56:04.175Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/address/0xdf3cc71b7a8f85a5a1b515072eae679ed21e60cc?__cf_chl_rt_tk=JHcmDqypfDw_SqWhGR1Ry2KpAlT8YDIlHiveUsZ9rpI-1791658564-1.0.1.1-Y5fFKZjm5pBdfD1w18fRbTJSgc1JQpHygU9yTwdkSes#code",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
       "requestedUrl": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-      "checkedAt": "2026-10-10T18:44:21.708Z",
-      "url": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-      "title": "Just a moment...",
+      "checkedAt": "2026-10-10T18:56:04.284Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56?__cf_chl_rt_tk=ZJivCbRLbTRqjrxWXflfJu.8KH7wJsbzbiRHdo2rPPs-1791658564-1.0.1.1-SaMh9MBTiiFIV8BqRzEprlX_XN4pT5iXG_m5QwvQVS8",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0x3a5f1dbfb3b9e89e20f7ad4fb65a63249f13b2cc87d0d27b5983a8b74d2d56c9",
-      "checkedAt": "2026-10-10T18:44:22.410Z",
-      "url": "https://etherscan.io/tx/0x3a5f1dbfb3b9e89e20f7ad4fb65a63249f13b2cc87d0d27b5983a8b74d2d56c9",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x14d11c1154019cbd2fcaf804e15fe4e4c97d7f84de6437d55e1dfd6bf2e1e218",
+      "checkedAt": "2026-10-10T18:56:04.383Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x14d11c1154019cbd2fcaf804e15fe4e4c97d7f84de6437d55e1dfd6bf2e1e218",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x14d11c1154019cbd2fcaf804e15fe4e4c97d7f84de6437d55e1dfd6bf2e1e218?__cf_chl_rt_tk=._ygM1F9kRNQmVPUr.Fk0STQbXkyZw.KXeLMvjLpEHo-1791658564-1.0.1.1-MfSxjgXxJ8Va_81UIByNkTt_mzi0PGsU4yaGtfZB0HU",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0x3d3ebdfd1f657ee6d026ab60486cba3ecf309197c1f3633f8c2b43c5e7b3e8b5",
-      "checkedAt": "2026-10-10T18:44:23.146Z",
-      "url": "https://etherscan.io/tx/0x3d3ebdfd1f657ee6d026ab60486cba3ecf309197c1f3633f8c2b43c5e7b3e8b5",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x3138ed19a9d8bf4c786c1e8458de2980768c6cc30c8063cd8d34f1351f52af8e",
+      "checkedAt": "2026-10-10T18:56:04.443Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x3138ed19a9d8bf4c786c1e8458de2980768c6cc30c8063cd8d34f1351f52af8e",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x3138ed19a9d8bf4c786c1e8458de2980768c6cc30c8063cd8d34f1351f52af8e?__cf_chl_rt_tk=MlTvOJSzI_wlUtwOY4AqunUalGyNY04fGhtGsp7s5qY-1791658564-1.0.1.1-qFZAJidVkqZOOoyi9NAoNT8gSoRiE414P68HNzyib0Q",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0x3f051956a5201404fd8d7573880a53145741645fae13b1638d7a3d7ee71ac233",
-      "checkedAt": "2026-10-10T18:44:23.860Z",
-      "url": "https://etherscan.io/tx/0x3f051956a5201404fd8d7573880a53145741645fae13b1638d7a3d7ee71ac233",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x46509ae10762ab2d7b4a8154ff98e6d09392f97fa7d09e71acbfb02b7bddc36b",
+      "checkedAt": "2026-10-10T18:56:04.514Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x46509ae10762ab2d7b4a8154ff98e6d09392f97fa7d09e71acbfb02b7bddc36b",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x46509ae10762ab2d7b4a8154ff98e6d09392f97fa7d09e71acbfb02b7bddc36b?__cf_chl_rt_tk=9NkLLtGSQ4plO4aVXfaY5ITF1nFSbGyxX6IyAVAciJA-1791658564-1.0.1.1-YpVQnwj9giThD79DlouL2SQW2Ta95nOtTuQJ4QW8yxQ",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0x48f6f462d3b3fcfa7f62dea0bc7328d3001ec1dfaea8d2f7dcfad91f50135f1c",
-      "checkedAt": "2026-10-10T18:44:24.610Z",
-      "url": "https://etherscan.io/tx/0x48f6f462d3b3fcfa7f62dea0bc7328d3001ec1dfaea8d2f7dcfad91f50135f1c",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x52aaf86cd4e40120a22cc070ff9e22bb125da84725e5f0c52e0582742bf7e3d6",
+      "checkedAt": "2026-10-10T18:56:04.581Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x52aaf86cd4e40120a22cc070ff9e22bb125da84725e5f0c52e0582742bf7e3d6",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x52aaf86cd4e40120a22cc070ff9e22bb125da84725e5f0c52e0582742bf7e3d6?__cf_chl_rt_tk=LUTO3qwC8n9UlCuZPJtjHbm79DzjhpAVgwpQoIU.6Kk-1791658564-1.0.1.1-2akjmrzFqBATRh8F163DVW3a7JOVy1ybnycmdb2F4zg",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0x666f52dd2392332779285d344948d6716469ae0bf25c73e41c491440a52eec4c",
-      "checkedAt": "2026-10-10T18:44:25.349Z",
-      "url": "https://etherscan.io/tx/0x666f52dd2392332779285d344948d6716469ae0bf25c73e41c491440a52eec4c",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x58df30d680defe71f9cf24144f6eb375ecc329d400f37df7eeedbb03cc4a520c",
+      "checkedAt": "2026-10-10T18:56:04.663Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x58df30d680defe71f9cf24144f6eb375ecc329d400f37df7eeedbb03cc4a520c",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x58df30d680defe71f9cf24144f6eb375ecc329d400f37df7eeedbb03cc4a520c?__cf_chl_rt_tk=52kekK3vXYsO_qzpx9bJGNkEWnhFlebHNkqkVDNFFZA-1791658564-1.0.1.1-wRdIUBiAT5LVvM40dpoAAwagbNiLzgHBElD5euTJ6lk",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0x6bfc21526deb5cdc93adb447dc5f426fc3fdb344abe5b9dfb5ca1559e0cf9af8",
-      "checkedAt": "2026-10-10T18:44:26.075Z",
-      "url": "https://etherscan.io/tx/0x6bfc21526deb5cdc93adb447dc5f426fc3fdb344abe5b9dfb5ca1559e0cf9af8",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x65769788a531dcbf21beb2bc959c8c18e89d1029152172cd963063376f1f4e11",
+      "checkedAt": "2026-10-10T18:56:04.721Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x65769788a531dcbf21beb2bc959c8c18e89d1029152172cd963063376f1f4e11",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x65769788a531dcbf21beb2bc959c8c18e89d1029152172cd963063376f1f4e11?__cf_chl_rt_tk=wVG5oCgpwQAqum.ReOX.2TX84JBv8OILpazxZ4h.Hiw-1791658564-1.0.1.1-z5yaEsLlhS9109s_yxQN.cUdSs1ixpfcYe6cBDWLITM",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0x6eb2d35472cfbecc12f906b065267a68589c1e2f42c6338b0f44241fed32f060",
-      "checkedAt": "2026-10-10T18:44:26.785Z",
-      "url": "https://etherscan.io/tx/0x6eb2d35472cfbecc12f906b065267a68589c1e2f42c6338b0f44241fed32f060",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x6f78fe6ece3393f6391e76f6ffa7172bbbba101c604d0f93ca97ed0729fd3e2f",
+      "checkedAt": "2026-10-10T18:56:04.804Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x6f78fe6ece3393f6391e76f6ffa7172bbbba101c604d0f93ca97ed0729fd3e2f",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x6f78fe6ece3393f6391e76f6ffa7172bbbba101c604d0f93ca97ed0729fd3e2f?__cf_chl_rt_tk=bJQpeUQEI3AUpAMcGXGuzltuKTtPpd.dIlYcKYguf1U-1791658564-1.0.1.1-shPCAqNxUGqawf2Rd9OxCQ5BdpC3.6c1oZTZte.81eg",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0x84afe863b78a5e6a679c11a703792040bae2e9118aab06402804b6463183617c",
-      "checkedAt": "2026-10-10T18:44:27.510Z",
-      "url": "https://etherscan.io/tx/0x84afe863b78a5e6a679c11a703792040bae2e9118aab06402804b6463183617c",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x719a2d04625a6e165fd3ac2cf973d78df2653f3f24a968f209327f4bec807c9c",
+      "checkedAt": "2026-10-10T18:56:04.894Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x719a2d04625a6e165fd3ac2cf973d78df2653f3f24a968f209327f4bec807c9c",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x719a2d04625a6e165fd3ac2cf973d78df2653f3f24a968f209327f4bec807c9c?__cf_chl_rt_tk=v2cWk.XOFnE8e40jFpwuBKotpCgkoQiNvuE5WmohZnI-1791658564-1.0.1.1-bK2J2zYmMBSO.EVLoxaosFPGS6tYr7b9FwTR.ByqF00",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0x864e579d8cede8f1be9d6acc6467f852219c3447b1e1efe647da4cb38c3476d0",
-      "checkedAt": "2026-10-10T18:44:28.247Z",
-      "url": "https://etherscan.io/tx/0x864e579d8cede8f1be9d6acc6467f852219c3447b1e1efe647da4cb38c3476d0",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x7304fba04b516f18ab05f0bd194fdfae56cb9c17909fce1686c1f38f7a39ec84",
+      "checkedAt": "2026-10-10T18:56:04.972Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x7304fba04b516f18ab05f0bd194fdfae56cb9c17909fce1686c1f38f7a39ec84",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x7304fba04b516f18ab05f0bd194fdfae56cb9c17909fce1686c1f38f7a39ec84?__cf_chl_rt_tk=IWs1TzgUCou4KR5werndOa5QByV9KQZoV.e_oFZZCrk-1791658564-1.0.1.1-G0PAO2Oi0T_Pe0uYDiA0_DznQfECNl8Za8_zTTo0Zl0",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0x8e1a65213ce514ce770d2f5dfcc79dbf56ed85f44dc5f331cf823f6f1f33d6ba",
-      "checkedAt": "2026-10-10T18:44:28.978Z",
-      "url": "https://etherscan.io/tx/0x8e1a65213ce514ce770d2f5dfcc79dbf56ed85f44dc5f331cf823f6f1f33d6ba",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x7818205134ae588ef8377370670663f3d6db0811aff7f9c546732a10741c353b",
+      "checkedAt": "2026-10-10T18:56:05.027Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x7818205134ae588ef8377370670663f3d6db0811aff7f9c546732a10741c353b",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x7818205134ae588ef8377370670663f3d6db0811aff7f9c546732a10741c353b?__cf_chl_rt_tk=A_y_8I.9LdbT6c4kGpzjfiCat1kEdu8ixXiGlReT22o-1791658565-1.0.1.1-ntzGRpQAZX.lCsz3q_.JmTcvGHl3WkvpMMpC4eZ.S0c",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0x9dd523f17871803b1a9b2aff41229b70039d6b2eb1cbdcca02010ce796910687",
-      "checkedAt": "2026-10-10T18:44:29.710Z",
-      "url": "https://etherscan.io/tx/0x9dd523f17871803b1a9b2aff41229b70039d6b2eb1cbdcca02010ce796910687",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x89e0577bb31e41dfc8a93e9a565ca7732a29d45c4c6c88568d38251bb9fdf50c",
+      "checkedAt": "2026-10-10T18:56:05.093Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x89e0577bb31e41dfc8a93e9a565ca7732a29d45c4c6c88568d38251bb9fdf50c",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x89e0577bb31e41dfc8a93e9a565ca7732a29d45c4c6c88568d38251bb9fdf50c?__cf_chl_rt_tk=3FlprFWeTW1ZLhhWtoznLEN9sIi3H_7rg385KH1ciGA-1791658565-1.0.1.1-4APwiO5W4lbnCUa0T1GXHYTSPiU40O.4LanE8rJv0OM",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0xa37131b9e076a06099a5e3a79e990ce248b796a0ddf940b2861b98fe7f263a99",
-      "checkedAt": "2026-10-10T18:44:30.456Z",
-      "url": "https://etherscan.io/tx/0xa37131b9e076a06099a5e3a79e990ce248b796a0ddf940b2861b98fe7f263a99",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0x9e69c19f5f061c89520d0d46acf20f92dd5bf1ee4ca6d78949991450f0d9905d",
+      "checkedAt": "2026-10-10T18:56:05.156Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0x9e69c19f5f061c89520d0d46acf20f92dd5bf1ee4ca6d78949991450f0d9905d",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0x9e69c19f5f061c89520d0d46acf20f92dd5bf1ee4ca6d78949991450f0d9905d?__cf_chl_rt_tk=H3kq3Qb4GJa8WcmUIja8LkFsbjUoTi8hWX3BYk2sSng-1791658565-1.0.1.1-r0wV5.Gnts.t3evtUJSKXgIwOchNmRxakynWIJ3MAAQ",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0xb1a9a3e4bdfd52b8dfb54406a22e2172eee22f97f765efbd4b2e0895f4a9f34a",
-      "checkedAt": "2026-10-10T18:44:31.174Z",
-      "url": "https://etherscan.io/tx/0xb1a9a3e4bdfd52b8dfb54406a22e2172eee22f97f765efbd4b2e0895f4a9f34a",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0xa8560b296b818a1acba49307e673d95880e8dc695be4ca996316e2e0bb1a2141",
+      "checkedAt": "2026-10-10T18:56:05.212Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0xa8560b296b818a1acba49307e673d95880e8dc695be4ca996316e2e0bb1a2141",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0xa8560b296b818a1acba49307e673d95880e8dc695be4ca996316e2e0bb1a2141?__cf_chl_rt_tk=NxpxrzYHVD9bESOoG5k32AV58DTqjBYmfNen357kc5U-1791658565-1.0.1.1-EA9fRZz91DQC3uo4_k6NOq2z0OdabGiIUPJvFORrI60",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0xb208932f7ecbd2c641ea79b628aefb1700ec590f5fe9cf975e9cb33e7b9fb667",
-      "checkedAt": "2026-10-10T18:44:31.877Z",
-      "url": "https://etherscan.io/tx/0xb208932f7ecbd2c641ea79b628aefb1700ec590f5fe9cf975e9cb33e7b9fb667",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0xb1788a3ad5cd1bbe1fd5c8b0ff44b03b1141e9739b802be60f91820c4fc047d7",
+      "checkedAt": "2026-10-10T18:56:05.269Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0xb1788a3ad5cd1bbe1fd5c8b0ff44b03b1141e9739b802be60f91820c4fc047d7",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0xb1788a3ad5cd1bbe1fd5c8b0ff44b03b1141e9739b802be60f91820c4fc047d7?__cf_chl_rt_tk=IdaGZjTKQ0xk5QeIDx4sW97c98pfJyIflgwj2n5Y2hw-1791658565-1.0.1.1-WIa7VxmO7C2oGaemSnUDBt6BfveJFdRK1k9GEq8UByo",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0xb6284dcf2b7ab719a4c98b46e3c96ba61cd959727cbe0e53537976effd7329b4",
-      "checkedAt": "2026-10-10T18:44:32.592Z",
-      "url": "https://etherscan.io/tx/0xb6284dcf2b7ab719a4c98b46e3c96ba61cd959727cbe0e53537976effd7329b4",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0xb4d3c7402d89fc2ff0c73c80da547b476c8cd169c3feca8809b36170d204d5ba",
+      "checkedAt": "2026-10-10T18:56:05.324Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0xb4d3c7402d89fc2ff0c73c80da547b476c8cd169c3feca8809b36170d204d5ba",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0xb4d3c7402d89fc2ff0c73c80da547b476c8cd169c3feca8809b36170d204d5ba?__cf_chl_rt_tk=l5Eh1wlz4kMSDS9oDwGU5BRK0Y_yjGlm1NXETx5xZ5c-1791658565-1.0.1.1-mkBKz3uV1UbPzZJXgjDW4WgEt4yWZwRtCcMHCtm91qA",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0xce6264454093caf95ec8d5532ecf0244e4907e29bfcc6963a548e7d28aa10028",
-      "checkedAt": "2026-10-10T18:44:33.300Z",
-      "url": "https://etherscan.io/tx/0xce6264454093caf95ec8d5532ecf0244e4907e29bfcc6963a548e7d28aa10028",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0xd05cd5587779c4be3b6429809a9ec26eab946c8283d75e97abd8bb5218baa4ea",
+      "checkedAt": "2026-10-10T18:56:05.385Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0xd05cd5587779c4be3b6429809a9ec26eab946c8283d75e97abd8bb5218baa4ea",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0xd05cd5587779c4be3b6429809a9ec26eab946c8283d75e97abd8bb5218baa4ea?__cf_chl_rt_tk=Sw_E6Gz3VCYbIxKK6sFeQexxbIiy.7oYZ5vDqGp6rKU-1791658565-1.0.1.1-gJ3kP2YJThPMcyADkLUHmNd6CHDuBU5j3FjI3TJ2FDI",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0xd24b00e28617d3a47bee1b7967dba8b160880398b7eaa7f3a78de31d197c9424",
-      "checkedAt": "2026-10-10T18:44:34.019Z",
-      "url": "https://etherscan.io/tx/0xd24b00e28617d3a47bee1b7967dba8b160880398b7eaa7f3a78de31d197c9424",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0xd68b8251c0e10b2703a73cfa1e925ed435e648e6c77c833bd2895cf37096f44b",
+      "checkedAt": "2026-10-10T18:56:05.467Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0xd68b8251c0e10b2703a73cfa1e925ed435e648e6c77c833bd2895cf37096f44b",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0xd68b8251c0e10b2703a73cfa1e925ed435e648e6c77c833bd2895cf37096f44b?__cf_chl_rt_tk=bGBc8DFmehykKjspc810bfuyXrutx65jBl_qEh_t6to-1791658565-1.0.1.1-gEQnu24eQQlxTQQyoIYfP_JMZ7B0gwvDhnrAtMHGmy8",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0xd3de39a5db35db617357f78075d97c724f66371e3d87f114a83bdcef3a28ce79",
-      "checkedAt": "2026-10-10T18:44:34.746Z",
-      "url": "https://etherscan.io/tx/0xd3de39a5db35db617357f78075d97c724f66371e3d87f114a83bdcef3a28ce79",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0xddfdf1a6a15f492bcae4918562a31bcd9d05953d8f7a1c902cc3807a24fe642e",
+      "checkedAt": "2026-10-10T18:56:05.529Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0xddfdf1a6a15f492bcae4918562a31bcd9d05953d8f7a1c902cc3807a24fe642e",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0xddfdf1a6a15f492bcae4918562a31bcd9d05953d8f7a1c902cc3807a24fe642e?__cf_chl_rt_tk=7F5bQsHeH0nOysg3LfVFMwV73w1UCk1tJYe8byrWC8I-1791658565-1.0.1.1-e4nqMQY2w6M74s3SY6MH_3Mp2oyGKv3G2H9XPO4yiz0",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0xe1972122e021b815f63ed46c9d1dbd7e8724b19d446961c3d3ae0b30a1977af5",
-      "checkedAt": "2026-10-10T18:44:35.469Z",
-      "url": "https://etherscan.io/tx/0xe1972122e021b815f63ed46c9d1dbd7e8724b19d446961c3d3ae0b30a1977af5",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0xfa5b58482c28febdf0008e2eda67e48fe20cdeb01a7746d932ce92169e65a805",
+      "checkedAt": "2026-10-10T18:56:05.583Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0xfa5b58482c28febdf0008e2eda67e48fe20cdeb01a7746d932ce92169e65a805",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0xfa5b58482c28febdf0008e2eda67e48fe20cdeb01a7746d932ce92169e65a805?__cf_chl_rt_tk=ms6n7_NKw_DQQZd97I3o9GJf1F0n6TnTxerrXgAi_Pw-1791658565-1.0.1.1-w8xXGxzRme4ZMo_kwiCGTZunOB_.k699BReNEFjI8is",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
-      "requestedUrl": "https://etherscan.io/tx/0xe8001109bd4f63e27f9b22c0e4cc17e302512e8005e1d0fc96bbc8793601ff70",
-      "checkedAt": "2026-10-10T18:44:36.212Z",
-      "url": "https://etherscan.io/tx/0xe8001109bd4f63e27f9b22c0e4cc17e302512e8005e1d0fc96bbc8793601ff70",
-      "title": "Just a moment...",
+      "requestedUrl": "https://etherscan.io/tx/0xfad84ad99c7ff9622dd1ae58d05381f499bdb39527c072cdf2d9f4af141e1b92",
+      "checkedAt": "2026-10-10T18:56:05.636Z",
       "status": 403,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://etherscan.io/tx/0xfad84ad99c7ff9622dd1ae58d05381f499bdb39527c072cdf2d9f4af141e1b92",
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Just a moment...",
+      "url": "https://etherscan.io/tx/0xfad84ad99c7ff9622dd1ae58d05381f499bdb39527c072cdf2d9f4af141e1b92?__cf_chl_rt_tk=NCBLbU8xULz6mfv4obS_4uxyfyCSJee0VT0o64xzMeQ-1791658565-1.0.1.1-NiMSGVu3F1sdUjnunu6LR5b4m4XtrERGAWrRNWhlYPc",
+      "challengeOrError": true,
+      "visibleText": ""
     },
     {
       "requestedUrl": "https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f",
-      "checkedAt": "2026-10-10T18:44:36.927Z",
-      "url": "https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f",
-      "title": "IMD › Explorer › Build the Quantum Canary hook: a Uniswap v4 hook whose only purpose is to feed, forever …",
+      "checkedAt": "2026-10-10T18:56:05.689Z",
       "status": 200,
-      "contentType": "text/html",
+      "finalUrl": "https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f",
+      "contentType": "text/html; charset=utf-8",
+      "title": "IMD › Explorer › Build the Quantum Canary hook: a Uniswap v4 hook whose only purpose is to feed, forever …",
+      "url": "https://explorer.imd.fun/jobs/69561148-b678-420c-bf0b-3b6fb49af48f",
       "challengeOrError": false
     },
     {
       "requestedUrl": "https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556",
-      "checkedAt": "2026-10-10T18:44:44.465Z",
-      "url": "https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556",
-      "title": "IMD › Explorer › Redesign the Quantum Canary site from the ground up and rewrite its copy.",
+      "checkedAt": "2026-10-10T18:56:06.529Z",
       "status": 200,
-      "contentType": "text/html",
+      "finalUrl": "https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556",
+      "contentType": "text/html; charset=utf-8",
+      "title": "IMD › Explorer › Redesign the Quantum Canary site from the ground up and rewrite its copy.",
+      "url": "https://explorer.imd.fun/jobs/b68f0623-1b19-4525-9e78-0107eb8cc556",
       "challengeOrError": false
     },
     {
       "requestedUrl": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
-      "checkedAt": "2026-10-10T18:44:50.923Z",
-      "url": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
-      "title": "IMD › Explorer › Build QuantumCanary: one immutable, ownerless Solidity contract that is a public on-chain …",
+      "checkedAt": "2026-10-10T18:56:06.838Z",
       "status": 200,
-      "contentType": "text/html",
+      "finalUrl": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
+      "contentType": "text/html; charset=utf-8",
+      "title": "IMD › Explorer › Build QuantumCanary: one immutable, ownerless Solidity contract that is a public on-chain …",
+      "url": "https://explorer.imd.fun/jobs/ffb47362-cdd3-498f-8c1c-911c27666c35",
       "challengeOrError": false
     },
     {
       "requestedUrl": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-      "checkedAt": "2026-10-10T18:44:57.679Z",
-      "url": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
-      "title": "IMD › Explorer › $CANARY",
+      "checkedAt": "2026-10-10T18:56:07.554Z",
       "status": 200,
-      "contentType": "text/html",
+      "finalUrl": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
+      "contentType": "text/html; charset=utf-8",
+      "title": "IMD › Explorer › $CANARY",
+      "url": "https://explorer.imd.fun/token/0x709927ed370da2b7ac5bd0b2df1fb172892b3b56",
       "challengeOrError": false
     },
     {
       "requestedUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
-      "checkedAt": "2026-10-10T18:45:04.533Z",
-      "url": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
-      "title": "GitHub - identity-md-launches/launch-1213-src-quantumcanary-sol: Build QuantumCanary: one immutable, ownerless Solidity contract that is a public on-chain alarm for a cryptographically relevant quantum computer (CRQC) able to break secp256k1. Idea: a 'canary' is an Ethereum address whose secp256k1 public key is derived in a verifiable nothing-up-my-sleeve way, so that nobody on Earth knows its private key. An... · GitHub",
+      "checkedAt": "2026-10-10T18:56:08.017Z",
       "status": 200,
-      "contentType": "text/html",
+      "finalUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
+      "contentType": "text/html; charset=utf-8",
+      "title": "GitHub - identity-md-launches/launch-1213-src-quantumcanary-sol: Build QuantumCanary: one immutable, ownerless Solidity contract that is a public on-chain alarm for a cryptographically relevant quantum computer (CRQC) able to break secp256k1. Idea: a 'canary' is an Ethereum address whose secp256k1 public key is derived in a verifiable nothing-up-my-sleeve way, so that nobody on Earth knows its private key. An... · GitHub",
+      "url": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol",
       "challengeOrError": false
     },
     {
       "requestedUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
-      "checkedAt": "2026-10-10T18:45:07.836Z",
-      "url": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
-      "title": "Unicorn! · GitHub",
+      "checkedAt": "2026-10-10T18:56:09.805Z",
       "status": 503,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
+      "contentType": "text/html; charset=utf-8",
+      "title": "Unicorn! · GitHub",
+      "url": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
+      "challengeOrError": true,
+      "visibleText": "We're having a really bad day.\n\nThe Unicorns have taken over. We're doing our best to get them under control and get GitHub back up and running.\n\nContact Support — GitHub Status — @githubstatus"
     },
     {
       "requestedUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
-      "checkedAt": "2026-10-10T18:45:08.686Z",
-      "url": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
-      "title": "GitHub - identity-md-launches/launch-1235-src-quantumcanaryhook-sol: Build the Quantum Canary hook: a Uniswap v4 hook whose only purpose is to feed, forever and without any owner, the ETH bounty of the Quantum Canary, an immutable contract already live on Ethereum mainnet at 0x626517225096671868609c1bbf9c1b416a4efd9a. That contract exposes canaryAddress() (the address whose secp256k1 private key nobody knows; ETH... · GitHub",
+      "checkedAt": "2026-10-10T18:56:10.048Z",
       "status": 200,
-      "contentType": "text/html",
+      "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
+      "contentType": "text/html; charset=utf-8",
+      "title": "GitHub - identity-md-launches/launch-1235-src-quantumcanaryhook-sol: Build the Quantum Canary hook: a Uniswap v4 hook whose only purpose is to feed, forever and without any owner, the ETH bounty of the Quantum Canary, an immutable contract already live on Ethereum mainnet at 0x626517225096671868609c1bbf9c1b416a4efd9a. That contract exposes canaryAddress() (the address whose secp256k1 private key nobody knows; ETH... · GitHub",
+      "url": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol",
       "challengeOrError": false
     },
     {
       "requestedUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
-      "checkedAt": "2026-10-10T18:45:11.474Z",
-      "url": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
-      "title": "Unicorn! · GitHub",
+      "checkedAt": "2026-10-10T18:56:11.021Z",
       "status": 503,
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
+      "contentType": "text/html; charset=utf-8",
+      "title": "Unicorn! · GitHub",
+      "url": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
+      "challengeOrError": true,
+      "visibleText": "We're having a really bad day.\n\nThe Unicorns have taken over. We're doing our best to get them under control and get GitHub back up and running.\n\nContact Support — GitHub Status — @githubstatus"
     },
     {
       "requestedUrl": "https://quantum-canary.sites.imd.fun/",
-      "checkedAt": "2026-10-10T18:45:12.337Z",
-      "url": "https://quantum-canary.sites.imd.fun/",
-      "title": "Status — Quantum Canary",
+      "checkedAt": "2026-10-10T18:56:11.343Z",
       "status": 200,
+      "finalUrl": "https://quantum-canary.sites.imd.fun/",
       "contentType": "text/html",
+      "title": "Status — Quantum Canary",
+      "url": "https://quantum-canary.sites.imd.fun/",
       "challengeOrError": false
     },
     {
       "requestedUrl": "https://quantum-canary.sites.imd.fun/social-preview.png",
-      "checkedAt": "2026-10-10T18:45:14.823Z",
-      "url": "https://quantum-canary.sites.imd.fun/social-preview.png",
-      "title": "social-preview.png (1200×630)",
+      "checkedAt": "2026-10-10T18:56:11.989Z",
       "status": 200,
+      "finalUrl": "https://quantum-canary.sites.imd.fun/social-preview.png",
       "contentType": "image/png",
+      "title": "social-preview.png (1200×630)",
+      "url": "https://quantum-canary.sites.imd.fun/social-preview.png",
       "challengeOrError": false
     },
     {
       "requestedUrl": "https://x.com/Quantum_Canary",
-      "checkedAt": "2026-10-10T18:45:15.599Z",
+      "checkedAt": "2026-10-10T18:56:12.253Z",
       "status": 403,
-      "error": "Navigation ended on Chromium's error page. Follow-up browser network log confirmed GET https://x.com/Quantum_Canary => 403.",
-      "url": "chrome-error://chromewebdata/",
-      "title": "x.com",
-      "contentType": "text/html",
-      "challengeOrError": true
+      "finalUrl": "https://x.com/Quantum_Canary",
+      "title": "",
+      "url": "https://x.com/Quantum_Canary",
+      "challengeOrError": false,
+      "visibleText": ""
     }
   ],
   "browserStatusCounts": {
@@ -1411,122 +1403,6 @@
     "503": 2
   },
   "browserAll200": false,
-  "previousInventoryRecheck": {
-    "checkedAt": "2026-10-10T18:42:35.653931+00:00",
-    "method": "curl GET, following redirects, 20-second total timeout; retry non-200/error once with desktop browser headers",
-    "uniqueLinks": 31,
-    "all200": false,
-    "statusCounts": {
-      "200": 10,
-      "403": 19,
-      "503": 2
-    },
-    "reportedDestinations": [
-      {
-        "url": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
-        "labels": [
-          "CANARY on DexScreener ↗"
-        ],
-        "routes": [
-          "status",
-          "verify",
-          "integrate"
-        ],
-        "attempts": [
-          {
-            "status": 403,
-            "finalUrl": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
-            "bytesRead": 5758,
-            "exitCode": 0
-          },
-          {
-            "status": 403,
-            "finalUrl": "https://dexscreener.com/ethereum/0x34eac7f9a4c9b76df13ac4d0fbdc58055578ea9d3c1ea64d166c405476d49cd5",
-            "bytesRead": 5993,
-            "exitCode": 0
-          }
-        ],
-        "status": 403
-      },
-      {
-        "url": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
-        "labels": [
-          "GitHub source ↗",
-          "AI prompt reference"
-        ],
-        "routes": [
-          "verify"
-        ],
-        "attempts": [
-          {
-            "status": 503,
-            "finalUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
-            "bytesRead": 56635,
-            "exitCode": 0
-          },
-          {
-            "status": 503,
-            "finalUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
-            "bytesRead": 56635,
-            "exitCode": 0
-          }
-        ],
-        "status": 503
-      },
-      {
-        "url": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
-        "labels": [
-          "published hook source"
-        ],
-        "routes": [
-          "status"
-        ],
-        "attempts": [
-          {
-            "status": 503,
-            "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
-            "bytesRead": 56635,
-            "exitCode": 0
-          },
-          {
-            "status": 503,
-            "finalUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
-            "bytesRead": 56635,
-            "exitCode": 0
-          }
-        ],
-        "status": 503
-      }
-    ]
-  },
-  "initialReportedUrlNavigations": [
-    {
-      "checkedAt": "2026-10-10T18:43:03.753Z",
-      "requestedUrl": "https://github.com/identity-md-launches/launch-1213-src-quantumcanary-sol/blob/main/src/QuantumCanary.sol",
-      "status": 503,
-      "title": "Unicorn! · GitHub",
-      "note": "Preliminary navigation; a missing HTTP status is not counted as 200. The later complete sweep is recorded separately."
-    },
-    {
-      "checkedAt": "2026-10-10T18:43:12.693Z",
-      "requestedUrl": "https://github.com/identity-md-launches/launch-1235-src-quantumcanaryhook-sol/blob/e69c854c9ea623bc155f74a8edd8c85e857cf2ac/src/QuantumCanaryHook.sol",
-      "status": null,
-      "title": "launch-1235-src-quantumcanaryhook-sol/src/QuantumCanaryHook.sol at e69c854c9ea623bc155f74a8edd8c85e857cf2ac · identity-md-launches/launch-1235-src-quantumcanaryhook-sol · GitHub",
-      "note": "Preliminary navigation; a missing HTTP status is not counted as 200. The later complete sweep is recorded separately."
-    }
-  ],
-  "dexscreenerFinalObservation": {
-    "checkedAt": "2026-10-10T18:45:54.773Z",
-    "status": 403,
-    "title": "Just a moment...",
-    "visibleText": "Performing security verification",
-    "note": "Exact required URL, fresh navigation followed by five-second browser wait; challenge persisted."
-  },
-  "xCurlFollowup": {
-    "checkedAt": "2026-10-10T18:47:19.677664+00:00",
-    "status": 200,
-    "title": "Quantum Canary (@Quantum_Canary) / X",
-    "bodySha256": "dea6f0713926139d3a461e02c33df37aa1b49fbf62d59c261a048e39eab1f1bc",
-    "note": "Same exact profile URL and curl headers as checker; profile identity present, no Cloudflare challenge markers. Browser navigation separately returned 403."
-  }
+  "finding": "1286424d74d3f8f7140f61b3320fb52f0200306d4e621d1a653b26f590f62580",
+  "completion": "Incomplete: third-party HTTP responses still fail the required all-200 gate. Required URLs, application source and static export remain unchanged."
 }
